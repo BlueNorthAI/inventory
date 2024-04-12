@@ -25,32 +25,24 @@ export default function LevelMaster() {
 
   const columnDefs = [
     {
-      field: "level_id",
-      filter: "agNumberColumnFilter",
+      field: 'customer',
+      filter: 'agNumberColumnFilter',
       // rowGroup: true,
+      pivot: true,
     },
     {
-      field: "level_code",
-      filter: "agTextColumnFilter",
-      flex: 2
+      field: 'site',
+      filter: 'agTextColumnFilter',
       // rowGroup: true,
+      pivot: true,
     },
     {
-      field: "column_name",
-      filter: "agTextColumnFilter",
+      field: 'measures',
+      filter: 'agTextColumnFilter',
       // rowGroup: true,
+      pivot: true,
     },
-    {
-      field: "level_description",
-      filter: "agTextColumnFilter",
-    },
-    {
-      field: "dimension_id",
-      filter: "agNumberColumnFilter",
-    },
-
-
-  ];
+  ]
 
   // const onCellValueChanged = useCallback(
   //   (event) => {
@@ -85,7 +77,8 @@ export default function LevelMaster() {
 
   // Function to load data
   const loadData = useCallback(() => {
-    fetcher.load("/rLevelMaster?page=1&limit=100"); // Adjust endpoint as necessary
+    // fetcher.load("/rLevelMaster?page=1&limit=100"); // Adjust endpoint as necessary
+    fetcher.load("/rLevelMaster"); // Adjust endpoint as necessary
   }, [fetcher]);
 
   // Effect to update row data when fetcher data changes
@@ -110,6 +103,7 @@ export default function LevelMaster() {
           paginationPageSize={10}
           suppressPaginationPanel={false}
           domLayout="autoHeight"
+          pivotMode={true}
           // onCellValueChanged={onCellValueChanged}
           rowGroupPanelShow="always"
         />

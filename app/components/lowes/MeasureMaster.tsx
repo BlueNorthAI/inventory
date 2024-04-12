@@ -132,7 +132,7 @@ export default function MeasureMaster() {
           rowData={rowData}
           onGridReady={onGridReady}
           pagination={true}
-          paginationPageSize={12}
+          paginationPageSize={8}
           suppressPaginationPanel={false}
           domLayout="autoHeight"
           // onCellValueChanged={onCellValueChanged}

@@ -1,29 +1,37 @@
 import React from 'react'
-import { PlusCircledIcon } from "@radix-ui/react-icons"
-
-import { Button } from "~/components/ui/button"
-import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area"
-import { Separator } from "~/components/ui/separator"
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Button } from '~/components/ui/button'
+import { Card, CardContent } from '~/components/ui/card'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "~/components/ui/tabs"
-import type { LinksFunction } from "@remix-run/node";
-// import Dimension from "~/components/lowes/Dimension"
-import gridCommStyles from "ag-grid-community/styles/ag-grid.css?url"; // Mandatory CSS required by the grid
-import themeStyles from "ag-grid-community/styles/ag-theme-quartz.css?url";
+} from '~/components/ui/bluetabs'
+import { PrinterIcon } from '@heroicons/react/24/outline'
+import {
+  FilePlusIcon,
+  Pencil2Icon,
+  TrashIcon,
+  DownloadIcon,
+} from '@radix-ui/react-icons'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '~/components/ui/tooltip'
+import type { LinksFunction } from '@remix-run/node'
+import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
+import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import LevelMaster from '~/components/lowes/LevelMaster'
 import MeasureMaster from '~/components/lowes/MeasureMaster'
 import AttributeMaster from '~/components/lowes/AttributeMaster'
 import { cn } from '~/lib/utils'
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: gridCommStyles },
-  { rel: "stylesheet", href: themeStyles },
-];
+  { rel: 'stylesheet', href: gridCommStyles },
+  { rel: 'stylesheet', href: themeStyles },
+]
 function DemoContainer({
   className,
   ...props
@@ -31,68 +39,235 @@ function DemoContainer({
   return (
     <div
       className={cn(
-        "flex items-center justify-center [&>div]:w-full",
-        className,
+        'flex items-center justify-center [&>div]:w-full',
+        className
       )}
       {...props}
     />
-  );
+  )
 }
 
 export default function MasterData() {
   return (
     <>
-      <div className='m-4'>
+      <div className="m-4">
         <DemoContainer>
+          <Tabs defaultValue="Dimensions" className="tracking-normal">
+            <TabsList className="">
+              <TabsTrigger value="Dimensions" className="relative text-xl">
+                Dimensions
+              </TabsTrigger>
+              <TabsTrigger className="text-xl font-semibold" value="Metrics">
+                Metrics
+              </TabsTrigger>
+              <TabsTrigger className="text-xl" value="Attributes">
+                Attributes
+              </TabsTrigger>
+            </TabsList>
 
-          <Tabs defaultValue="Dimensions" className="w-[400px] tracking-normal text-xl">
-            <div className="flex justify-between items-center">
-              <TabsList>
-                <TabsTrigger value="Dimensions" className="relative">
-                  Dimensions
-                </TabsTrigger>
-                <TabsTrigger value="Metrics">Metrics</TabsTrigger>
-                <TabsTrigger value="Attributes">
-                  Attributes
-                </TabsTrigger>
-              </TabsList>
-
-            </div>
-
-            <TabsContent value='Dimensions'>
-              <Card className="shadow-lg bg-gray-100">
-                <div className='flex flex-col'>
-              <div className='px-6 pt-6'>
-                  <CardTitle className=" text-xl text-white font-semibold">
-                     <span className='bg-blue-900 p-2 border rounded-t-lg'>Dimension Master</span>
-                  </CardTitle>
+            <TabsContent value="Dimensions">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Dimension Master</div>
                 </div>
               </div>
-                <CardContent>
-                 
-                  {/* <Dimension /> */}
-                  <LevelMaster />
-                </CardContent>
-              </Card>
-            </TabsContent>
-            <TabsContent value="Metrics" className="">
 
-              <div className="">
+              <div>
+                <LevelMaster />
+              </div>
+            </TabsContent>
+            <TabsContent value="Metrics">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Metrics Master</div>
+
+                  <div className="m-2 space-x-1">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-indigo-100 "
+                          >
+                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>New</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-purple-100"
+                          >
+                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Edit</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-red-100"
+                          >
+                            <TrashIcon className="text-red-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Delete</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-yellow-100"
+                          >
+                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Print</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-green-100"
+                          >
+                            <DownloadIcon className="text-green-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+              </div>
+
+              <div>
                 <MeasureMaster />
               </div>
             </TabsContent>
-            <TabsContent value="Attributes" className="">
+            <TabsContent value="Attributes">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Attributes Master</div>
 
-              <div className="">
+                  <div className="m-2 space-x-1">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-indigo-100 "
+                          >
+                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>New</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-purple-100"
+                          >
+                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Edit</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-red-100"
+                          >
+                            <TrashIcon className="text-red-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Delete</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-yellow-100"
+                          >
+                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Print</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-green-100"
+                          >
+                            <DownloadIcon className="text-green-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+              </div>
+              <div>
                 <AttributeMaster />
               </div>
             </TabsContent>
           </Tabs>
-
-        </DemoContainer> {/* Adjust 48px based on your header/nav height */}
-
+        </DemoContainer>
       </div>
     </>
-
   )
 }

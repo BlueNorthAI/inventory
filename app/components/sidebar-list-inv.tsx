@@ -43,7 +43,7 @@ const menus = [
   {
     id: 2,
     name: "Scenario",
-    to: "/snop/scenario",
+    to: "/snop/process",
     icon: GearIcon,
     current: false,
   },
@@ -277,7 +277,7 @@ export function SidebarList({ userId }: SidebarListProps) {
 
 
               <nav aria-label="Sidebar" className="flex items-center">
-                <div className="static  w-full   px-2">
+                <div className="static  w-full space-y-2 px-2">
                   {menus.map((item, index) => (
                     <NavLink
                       to={item.to}

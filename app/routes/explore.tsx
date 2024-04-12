@@ -1,11 +1,11 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment } from 'react'
 import {
   Dialog,
   Transition,
   Tab,
   RadioGroup,
   Disclosure,
-} from "@headlessui/react";
+} from '@headlessui/react'
 import {
   CheckCircleIcon,
   PlusSmallIcon,
@@ -15,9 +15,9 @@ import {
   ShareIcon,
   ClipboardDocumentCheckIcon,
   XMarkIcon,
-} from "@heroicons/react/20/solid";
-import { WrapperTreeView } from "~/kendo/grid/treeview/WrapperTree";
-import { Button } from "~/components/ui/button"
+} from '@heroicons/react/20/solid'
+import { WrapperTreeView } from '~/kendo/grid/treeview/WrapperTree'
+import { Button } from '~/components/ui/button'
 import {
   Card,
   CardContent,
@@ -25,15 +25,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card"
-import { Input } from "~/components/ui/input"
-import { Label } from "~/components/ui/label"
+} from '~/components/ui/card'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "~/components/ui/tabs"
+} from '~/components/ui/bluetabs'
 
 import {
   TreeView,
@@ -45,86 +45,84 @@ import {
   TreeViewCheckChangeSettings,
   processTreeViewItems,
   handleTreeViewCheckChange,
-} from "@progress/kendo-react-treeview";
+} from '@progress/kendo-react-treeview'
 
-import ListBox from "~/components/Listbox";
-
+import ListBox from '~/components/Listbox'
 
 type TreeViewDataItem = {
-  text: string;
-  expanded?: boolean;
-  checked?: boolean;
-  selected?: boolean;
-  items?: TreeViewDataItem[];
-};
+  text: string
+  expanded?: boolean
+  checked?: boolean
+  selected?: boolean
+  items?: TreeViewDataItem[]
+}
 
 const tree: TreeViewDataItem[] = [
   {
-    text: "Furniture",
+    text: 'Furniture',
     items: [
-      { text: "Tables & Chairs" },
-      { text: "Sofas" },
-      { text: "Occasional Furniture" },
+      { text: 'Tables & Chairs' },
+      { text: 'Sofas' },
+      { text: 'Occasional Furniture' },
     ],
   },
   {
-    text: "Decor",
+    text: 'Decor',
     items: [
-      { text: "Bed Linen" },
-      { text: "Curtains & Blinds" },
-      { text: "Carpets" },
+      { text: 'Bed Linen' },
+      { text: 'Curtains & Blinds' },
+      { text: 'Carpets' },
     ],
   },
-];
-
+]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ')
 }
 
 export default function ExploreFiltersRoute() {
   const [check, setCheck] = React.useState<string[] | TreeViewCheckDescriptor>(
     []
-  );
+  )
   const [expand, setExpand] = React.useState<TreeViewOperationDescriptor>({
-    ids: ["Item2"],
-    idField: "text",
-  });
-  const [select, setSelect] = React.useState<string[]>([""]);
+    ids: ['Item2'],
+    idField: 'text',
+  })
+  const [select, setSelect] = React.useState<string[]>([''])
 
   const onItemClick = (event: TreeViewItemClickEvent) => {
-    setSelect([event.itemHierarchicalIndex]);
-  };
+    setSelect([event.itemHierarchicalIndex])
+  }
 
   const onExpandChange = (event: TreeViewExpandChangeEvent) => {
-    const ids: string[] = expand.ids ? expand.ids.slice() : [];
-    const index: number = ids.indexOf(event.item.text);
+    const ids: string[] = expand.ids ? expand.ids.slice() : []
+    const index: number = ids.indexOf(event.item.text)
 
-    index === -1 ? ids.push(event.item.text) : ids.splice(index, 1);
-    setExpand({ ids, idField: "text" });
-  };
+    index === -1 ? ids.push(event.item.text) : ids.splice(index, 1)
+    setExpand({ ids, idField: 'text' })
+  }
 
   const onCheckChange = (event: TreeViewCheckChangeEvent) => {
     const settings: TreeViewCheckChangeSettings = {
       singleMode: false,
       checkChildren: false,
       checkParents: false,
-    };
-    setCheck(handleTreeViewCheckChange(event, check, tree, settings));
-  };
+    }
+    setCheck(handleTreeViewCheckChange(event, check, tree, settings))
+  }
 
   let [businessTab] = useState({
     businessFunc: [
-      { name: "Dashboard" },
-      { name: "Financial Plan" },
-      { name: "Income Statement" },
+      { name: 'Dashboard' },
+      { name: 'Financial Plan' },
+      { name: 'Income Statement' },
     ],
     reports: [
-      { name: "Distribution Plan" },
-      { name: "Inventory Plan" },
-      { name: "Demand Plan" },
+      { name: 'Distribution Plan' },
+      { name: 'Inventory Plan' },
+      { name: 'Demand Plan' },
     ],
-  });
+  })
 
   let [sellerTab] = useState({
     seller: [
@@ -138,71 +136,63 @@ export default function ExploreFiltersRoute() {
     ],
     site: [
       {
-        tree: (
-          <div>
-           
-          </div>
-        ),
+        tree: <div></div>,
       },
     ],
     Product: [
       {
-        tree: (
-          <div>
-          
-          </div>
-        ),
+        tree: <div></div>,
       },
     ],
-  });
+  })
 
   let [timeTab] = useState({
     timeline: [
-      { name: "Type:" },
-      { name: "View:" },
-      { name: "Plan:" },
-      { name: "From:" },
-      { name: "To:" },
+      { name: 'Type:' },
+      { name: 'View:' },
+      { name: 'Plan:' },
+      { name: 'From:' },
+      { name: 'To:' },
     ],
     options: [
-      { name: "Units Revenue:" },
-      { name: "Plan Type:" },
-      { name: "Currency:" },
+      { name: 'Units Revenue:' },
+      { name: 'Plan Type:' },
+      { name: 'Currency:' },
     ],
-  });
+  })
 
-  const type = [{ name: "Fiscal" }, { name: "Calender" }];
-  const view = [{ name: "Monthly" }, { name: "Quaterly" }, { name: "Year" }];
+  const type = [{ name: 'Fiscal' }, { name: 'Calender' }]
+  const view = [{ name: 'Monthly' }, { name: 'Quaterly' }, { name: 'Year' }]
   const plan = [
-    { name: "April 2023" },
-    { name: "May 2023" },
-    { name: "June 2023" },
-    { name: "July 2023" },
-  ];
+    { name: 'April 2023' },
+    { name: 'May 2023' },
+    { name: 'June 2023' },
+    { name: 'July 2023' },
+  ]
 
   const from = [
-    { name: "Partial Week-13" },
-    { name: "Partial Week-13" },
-    { name: "Partial Week-13" },
-    { name: "Partial Week-13" },
-  ];
+    { name: 'Partial Week-13' },
+    { name: 'Partial Week-13' },
+    { name: 'Partial Week-13' },
+    { name: 'Partial Week-13' },
+  ]
 
   const to = [
-    { name: "April 2023" },
-    { name: "May 2023" },
-    { name: "June 2023" },
-    { name: "July 2023" },
-  ];
+    { name: 'April 2023' },
+    { name: 'May 2023' },
+    { name: 'June 2023' },
+    { name: 'July 2023' },
+  ]
 
   const centericon = [
-    { name: "Download as PDF", icon: DocumentArrowDownIcon },
-    { name: "Email KPIs", icon: ShareIcon },
-    { name: "Copy as Image", icon: ClipboardDocumentCheckIcon },
-  ];
-  const plans = Object.values(businessTab);
-  const [selected, setSelected] = useState(plans[0]);
-  const seller = Object.values(sellerTab);
-  const [open, setOpen] = useState(true);
+    { name: 'Download as PDF', icon: DocumentArrowDownIcon },
+    { name: 'Email KPIs', icon: ShareIcon },
+    { name: 'Copy as Image', icon: ClipboardDocumentCheckIcon },
+  ]
+  const plans = Object.values(businessTab)
+  const [selected, setSelected] = useState(plans[0])
+  const seller = Object.values(sellerTab)
+  const [open, setOpen] = useState(true)
 
   return (
     <>
@@ -299,9 +289,7 @@ export default function ExploreFiltersRoute() {
                     >
                       <Disclosure.Panel className="pt-4">
                         <div className="grid grid-cols-1">
-                          <div className="rounded-lg border p-1">
-                         
-                          </div>
+                          <div className="rounded-lg border p-1"></div>
                         </div>
                       </Disclosure.Panel>
                     </Transition>
@@ -352,10 +340,7 @@ export default function ExploreFiltersRoute() {
                       >
                         <Disclosure.Panel className="pt-2">
                           <div className="grid grid-cols-1">
-                            <div className="rounded-lg border p-1">
-                          
-
-                            </div>
+                            <div className="rounded-lg border p-1"></div>
                           </div>
                         </Disclosure.Panel>
                       </Transition>
@@ -422,16 +407,16 @@ export default function ExploreFiltersRoute() {
                                       key={category}
                                       className={({ selected }) =>
                                         classNames(
-                                          "group relative min-w-0 flex-1 rounded-md border-2 bg-white px-2 py-2 text-center text-sm font-semibold shadow hover:bg-gray-100 focus:z-10",
+                                          'group relative min-w-0 flex-1 rounded-md border-2 bg-white px-2 py-2 text-center text-sm font-semibold shadow hover:bg-gray-100 focus:z-10',
                                           selected
-                                            ? "border-b-blue-900  text-blue-900"
-                                            : "bg-gray-100 text-blue-700 hover:text-blue-900"
+                                            ? 'border-b-blue-900  text-blue-900'
+                                            : 'bg-gray-100 text-blue-700 hover:text-blue-900'
                                         )
                                       }
                                     >
-                                      {category === "businessFunc"
-                                        ? "Business Functions"
-                                        : "Reports"}
+                                      {category === 'businessFunc'
+                                        ? 'Business Functions'
+                                        : 'Reports'}
                                     </Tab>
                                   ))}
                                 </Tab.List>
@@ -441,7 +426,7 @@ export default function ExploreFiltersRoute() {
                                     <Tab.Panel
                                       key={idx}
                                       className={classNames(
-                                        "rounded-xl pb-2 pt-1 "
+                                        'rounded-xl pb-2 pt-1 '
                                       )}
                                     >
                                       <RadioGroup
@@ -457,11 +442,11 @@ export default function ExploreFiltersRoute() {
                                                 active,
                                                 checked,
                                               }) =>
-                                                `${active ? " " : ""}
+                                                `${active ? ' ' : ''}
                                                    ${
                                                      checked
-                                                       ? "bg-blue-900  text-white"
-                                                       : "bg-gray-100"
+                                                       ? 'bg-blue-900  text-white'
+                                                       : 'bg-gray-100'
                                                    }
                                                        relative my-1 flex  cursor-pointer rounded-md px-4 py-3 shadow-md focus:outline-none`
                                               }
@@ -475,8 +460,8 @@ export default function ExploreFiltersRoute() {
                                                           as="p"
                                                           className={`font-medium  ${
                                                             checked
-                                                              ? "text-white"
-                                                              : "text-gray-900"
+                                                              ? 'text-white'
+                                                              : 'text-gray-900'
                                                           }`}
                                                         >
                                                           {each.name}
@@ -501,72 +486,84 @@ export default function ExploreFiltersRoute() {
                               </Tab.Group>
                             </div>
                           </>
- <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">
-        <Card>
-          <CardHeader>
-            <CardTitle>Account</CardTitle>
-            <CardDescription>
-              Make changes to your account here. Click save when you're done.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" defaultValue="Pedro Duarte" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="username">Username</Label>
-              <Input id="username" defaultValue="@peduarte" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button>Save changes</Button>
-          </CardFooter>
-        </Card>
-      </TabsContent>
-      <TabsContent value="password">
-        <Card>
-          <CardHeader>
-            <CardTitle>Password</CardTitle>
-            <CardDescription>
-              Change your password here. After saving, you'll be logged out.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="current">Current password</Label>
-              <Input id="current" type="password" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="new">New password</Label>
-              <Input id="new" type="password" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button>Save password</Button>
-          </CardFooter>
-        </Card>
-      </TabsContent>
+                          <Tabs defaultValue="account" className="w-[400px]">
+                            <TabsList className="grid w-full grid-cols-2">
+                              <TabsTrigger value="account">Account</TabsTrigger>
+                              <TabsTrigger value="password">
+                                Password
+                              </TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="account">
+                              <Card>
+                                <CardHeader>
+                                  <CardTitle>Account</CardTitle>
+                                  <CardDescription>
+                                    Make changes to your account here. Click
+                                    save when you're done.
+                                  </CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-2">
+                                  <div className="space-y-1">
+                                    <Label htmlFor="name">Name</Label>
+                                    <Input
+                                      id="name"
+                                      defaultValue="Pedro Duarte"
+                                    />
+                                  </div>
+                                  <div className="space-y-1">
+                                    <Label htmlFor="username">Username</Label>
+                                    <Input
+                                      id="username"
+                                      defaultValue="@peduarte"
+                                    />
+                                  </div>
+                                </CardContent>
+                                <CardFooter>
+                                  <Button>Save changes</Button>
+                                </CardFooter>
+                              </Card>
+                            </TabsContent>
+                            <TabsContent value="password">
+                              <Card>
+                                <CardHeader>
+                                  <CardTitle>Password</CardTitle>
+                                  <CardDescription>
+                                    Change your password here. After saving,
+                                    you'll be logged out.
+                                  </CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-2">
+                                  <div className="space-y-1">
+                                    <Label htmlFor="current">
+                                      Current password
+                                    </Label>
+                                    <Input id="current" type="password" />
+                                  </div>
+                                  <div className="space-y-1">
+                                    <Label htmlFor="new">New password</Label>
+                                    <Input id="new" type="password" />
+                                  </div>
+                                </CardContent>
+                                <CardFooter>
+                                  <Button>Save password</Button>
+                                </CardFooter>
+                              </Card>
+                            </TabsContent>
                           </Tabs>
-                          
-                            <TreeView
-      data={processTreeViewItems(tree, {
-        select: select,
-        check: check,
-        expand: expand,
-      })}
-      expandIcons={true}
-      onExpandChange={onExpandChange}
-      aria-multiselectable={true}
-      onItemClick={onItemClick}
-      checkboxes={true}
-      onCheckChange={onCheckChange}
-    />
+
+                          <TreeView
+                            data={processTreeViewItems(tree, {
+                              select: select,
+                              check: check,
+                              expand: expand,
+                            })}
+                            expandIcons={true}
+                            onExpandChange={onExpandChange}
+                            aria-multiselectable={true}
+                            onItemClick={onItemClick}
+                            checkboxes={true}
+                            onCheckChange={onCheckChange}
+                          />
                           {/* Site Tab */}
                           <div className="mt-1 pb-2">
                             <Tab.Group>
@@ -576,18 +573,18 @@ export default function ExploreFiltersRoute() {
                                     key={category}
                                     className={({ selected }) =>
                                       classNames(
-                                        "group relative min-w-0 flex-1 rounded-md  border-2 border-gray-100 bg-white px-2 py-2 text-center text-sm font-medium shadow hover:bg-gray-100 focus:z-10",
+                                        'group relative min-w-0 flex-1 rounded-md  border-2 border-gray-100 bg-white px-2 py-2 text-center text-sm font-medium shadow hover:bg-gray-100 focus:z-10',
                                         selected
-                                          ? " border-b-blue-900  text-blue-900"
-                                          : "bg-gray-100 text-blue-700 hover:text-blue-900"
+                                          ? ' border-b-blue-900  text-blue-900'
+                                          : 'bg-gray-100 text-blue-700 hover:text-blue-900'
                                       )
                                     }
                                   >
-                                    {category === "seller"
-                                      ? "Seller"
-                                      : category === "site"
-                                      ? "Site"
-                                      : "Products"}
+                                    {category === 'seller'
+                                      ? 'Seller'
+                                      : category === 'site'
+                                        ? 'Site'
+                                        : 'Products'}
                                   </Tab>
                                 ))}
                               </Tab.List>
@@ -595,7 +592,7 @@ export default function ExploreFiltersRoute() {
                                 {seller.map((sell, idx) => (
                                   <Tab.Panel
                                     key={idx}
-                                    className={classNames("rounded-xl  py-3")}
+                                    className={classNames('rounded-xl  py-3')}
                                   >
                                     <RadioGroup>
                                       <div className="space-y-2">
@@ -604,11 +601,11 @@ export default function ExploreFiltersRoute() {
                                             key={each.name}
                                             value={each}
                                             className={({ active, checked }) =>
-                                              `${active ? "" : ""}
+                                              `${active ? '' : ''}
                                                    ${
                                                      checked
-                                                       ? " bg-opacity-75 text-black"
-                                                       : "bg-gray-100"
+                                                       ? ' bg-opacity-75 text-black'
+                                                       : 'bg-gray-100'
                                                    }
                                                        relative flex cursor-pointer rounded-md px-5 py-4 shadow-md focus:outline-none `
                                             }
@@ -647,16 +644,16 @@ export default function ExploreFiltersRoute() {
                                     key={category}
                                     className={({ selected }) =>
                                       classNames(
-                                        "group relative min-w-0 flex-1 rounded-md border-2 border-gray-100 bg-white px-2 py-2 text-center text-sm font-medium shadow hover:bg-gray-100 focus:z-10",
+                                        'group relative min-w-0 flex-1 rounded-md border-2 border-gray-100 bg-white px-2 py-2 text-center text-sm font-medium shadow hover:bg-gray-100 focus:z-10',
                                         selected
-                                          ? " border-b-blue-900  text-blue-900"
-                                          : "bg-gray-100 text-blue-700 hover:text-blue-900"
+                                          ? ' border-b-blue-900  text-blue-900'
+                                          : 'bg-gray-100 text-blue-700 hover:text-blue-900'
                                       )
                                     }
                                   >
-                                    {category === "timeline"
-                                      ? "Timeline"
-                                      : "Options"}
+                                    {category === 'timeline'
+                                      ? 'Timeline'
+                                      : 'Options'}
                                   </Tab>
                                 ))}
                               </Tab.List>
@@ -725,5 +722,5 @@ export default function ExploreFiltersRoute() {
         </Dialog>
       </Transition.Root>
     </>
-  );
+  )
 }
