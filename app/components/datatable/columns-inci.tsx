@@ -202,6 +202,7 @@ export const columns: ColumnDef<Task>[] = [
       <DataTableColumnHeader column={column} title="Options" />
     ),
     cell: ({ row }) => {
+      console.log(row.original.id)
       return (
         <Link
           to={`/snop/incidents/${row.original.id}`}
