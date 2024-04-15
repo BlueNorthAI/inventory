@@ -23,14 +23,18 @@ import {
 import type { LinksFunction } from '@remix-run/node'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
+import customAgStyles from '~/styles/custom-grid-styles.css?url'
 import LevelMaster from '~/components/lowes/LevelMaster'
 import MeasureMaster from '~/components/lowes/MeasureMaster'
 import AttributeMaster from '~/components/lowes/AttributeMaster'
+
 import { cn } from '~/lib/utils'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: gridCommStyles },
   { rel: 'stylesheet', href: themeStyles },
+  { rel: 'stylesheet', href: customAgStyles },
+  // { rel: 'stylesheet',  href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" },
 ]
 function DemoContainer({
   className,
@@ -73,6 +77,7 @@ export default function MasterData() {
               </div>
 
               <div>
+              
                 <LevelMaster />
               </div>
             </TabsContent>

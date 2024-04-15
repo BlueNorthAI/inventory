@@ -9,72 +9,83 @@ export default function MeasureMaster() {
   const fetcher = useFetcher();
   const [rowData, setRowData] = useState([]);
   const [gridApi, setGridApi] = useState(null);
+  const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), [])
+  
+  const gridStyle = useMemo(() => ({ height: '100%', width: '100%' }), [])
 
   const defaultColDef = {
     sortable: true,
     filter: true,
-    floatingFilter: true,
+    // floatingFilter: true,
     resizable: true,
     editable: true,
-    flex: 1,
+    flex: 2,
     minWidth: 100,
-    enableRowGroup: true,
-    // headerCheckboxSelection: true,    
-
-    
-  };
+    wrapHeaderText: true,
+    autoHeaderHeight: true,
+    initialWidth: 200,
+    // enableRowGroup: true,
+    // headerCheckboxSelection: true,
+  }
 
   const columnDefs = [
+    // {
+    //   field: 'measure_id',
+    //   headerName: 'Measure & Format',
+    //   valueGetter: p => p.data.measure_type + ' ' + p.data.number_format,
+    // },
     {
-      field: "measure_id",
-      filter: "agNumberColumnFilter",
+      field: 'measure_id',
+      headerName: 'Measure ID',
+      filter: 'agNumberColumnFilter',
       checkboxSelection: true,
+      headerCheckboxSelection: true,
+      pinned:true,
       // rowGroup: true,
     },
     {
-      field: "measure_code",
-      filter: "agTextColumnFilter",
+      field: 'measure_code',
+      filter: 'agTextColumnFilter',
       // rowGroup: true,
     },
     {
-      field: "measure_description",
-      filter: "agTextColumnFilter",
+      field: 'measure_description',
+      filter: 'agTextColumnFilter',
       // rowGroup: true,
     },
     {
-      field: "measure_type",
-      filter: "agTextColumnFilter",
+      field: 'measure_type',
+      filter: 'agTextColumnFilter',
     },
     {
-      field: "number_format",
-      filter: "agTextColumnFilter",
+      field: 'number_format',
+      filter: 'agTextColumnFilter',
     },
     {
-      field: "column_name",
-      filter: "agTextColumnFilter",
+      field: 'column_name',
+      filter: 'agTextColumnFilter',
     },
     {
-      field: "rw_flag",
-      filter: "agTextColumnFilter",
+      field: 'rw_flag',
+      filter: 'agTextColumnFilter',
     },
     {
-      field: "computation_type",
-      filter: "agTextColumnFilter",
+      field: 'computation_type',
+      filter: 'agTextColumnFilter',
     },
     {
-      field: "expression",
-      filter: "agTextColumnFilter",
+      field: 'expression',
+      filter: 'agTextColumnFilter',
     },
     {
-      field: "aggregation",
-      filter: "agTextColumnFilter",
+      field: 'aggregation',
+      filter: 'agTextColumnFilter',
     },
     {
-      field: "disaggregation",
-      filter: "agTextColumnFilter",
+      field: 'disaggregation',
+      filter: 'agTextColumnFilter',
     },
-
-  ];
+  ]
 
   // const onCellValueChanged = useCallback(
   //   (event) => {
@@ -103,6 +114,7 @@ export default function MeasureMaster() {
 
   // Load data when the grid is ready
   const onGridReady = useCallback((params) => {
+    console.log(params.api)
     setGridApi(params.api);
     loadData();
   }, []);
@@ -121,10 +133,13 @@ export default function MeasureMaster() {
   }, [fetcher.data]);
 
   return (
-    <div
-      className="ag-theme-quartz"
-      style={{ height: "100%", width: "100%" }}
-    >
+   <div style={containerStyle}>
+      <div
+        style={gridStyle}
+        className={
+          "ag-theme-quartz"
+        }
+      >
       <Form method="post">
         <AgGridReact
           columnDefs={columnDefs}
@@ -132,14 +147,17 @@ export default function MeasureMaster() {
           rowData={rowData}
           onGridReady={onGridReady}
           pagination={true}
-          paginationPageSize={8}
+          paginationPageSize={20}
           suppressPaginationPanel={false}
-          domLayout="autoHeight"
+          domLayout="normal"
           // onCellValueChanged={onCellValueChanged}
-          rowGroupPanelShow="always"
+          // rowGroupPanelShow="always"
+          rowSelection="multiple"
+          enableRangeSelection={true}
           floatingFilter={true}
         />
       </Form>
-    </div>
-  );
+      </div>
+      </div>
+  )
 }

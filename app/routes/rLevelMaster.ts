@@ -16,6 +16,7 @@ export async function loader({ request }) {
     const data = [
       // Best Buy - New York data
       {
+        id: 1,
         customer: 'Best Buy',
         site: 'New York',
         measures: 'Target Plan (Revenue)',
@@ -24,6 +25,7 @@ export async function loader({ request }) {
         '2008Q3': 136162,
       },
       {
+        id: 2,
         customer: 'Best Buy',
         site: 'New York',
         measures: 'Financial Forecast (Revenue)',
@@ -32,6 +34,7 @@ export async function loader({ request }) {
         '2008Q3': 156720,
       },
       {
+        id: 3,
         customer: 'Best Buy',
         site: 'New York',
         measures: 'POS (Revenue)',
@@ -40,6 +43,7 @@ export async function loader({ request }) {
         '2008Q3': 0,
       },
       {
+        id: 4,
         customer: 'Best Buy',
         site: 'New York',
         measures: 'Achievement Rate',
@@ -48,6 +52,7 @@ export async function loader({ request }) {
         '2008Q3': 0,
       },
       {
+        id: 5,
         customer: 'Best Buy',
         site: 'New York',
         measures: 'Weighted Sales Price',
@@ -58,6 +63,7 @@ export async function loader({ request }) {
 
       // San Jose data
       {
+        id: 6,
         customer: 'San Jose',
         site: 'California',
         measures: 'Target Plan (Revenue)',
@@ -66,6 +72,7 @@ export async function loader({ request }) {
         '2008Q3': 154791,
       },
       {
+        id: 7,
         customer: 'San Jose',
         site: 'California',
         measures: 'Financial Forecast (Revenue)',
@@ -74,6 +81,7 @@ export async function loader({ request }) {
         '2008Q3': 157509,
       },
       {
+        id: 8,
         customer: 'San Jose',
         site: 'California',
         measures: 'POS (Revenue)',
@@ -82,6 +90,7 @@ export async function loader({ request }) {
         '2008Q3': 0,
       },
       {
+        id: 9,
         customer: 'San Jose',
         site: 'California',
         measures: 'Achievement Rate',
@@ -90,6 +99,7 @@ export async function loader({ request }) {
         '2008Q3': 0,
       },
       {
+        id: 10,
         customer: 'San Jose',
         site: 'California',
         measures: 'Weighted Sales Price',
@@ -100,6 +110,7 @@ export async function loader({ request }) {
 
       // Totals (you may need to calculate these based on the above data)
       {
+        id: 11,
         customer: 'Total',
         site: '',
         measures: 'Target Plan (Revenue)',
@@ -108,6 +119,7 @@ export async function loader({ request }) {
         '2008Q3': 290953,
       },
       {
+        id: 12,
         customer: 'Total',
         site: '',
         measures: 'Financial Forecast (Revenue)',
@@ -116,6 +128,7 @@ export async function loader({ request }) {
         '2008Q3': 314229,
       },
       {
+        id: 13,
         customer: 'Total',
         site: '',
         measures: 'POS (Revenue)',
@@ -124,6 +137,7 @@ export async function loader({ request }) {
         '2008Q3': 0,
       },
       {
+        id: 14,
         customer: 'Total',
         site: '',
         measures: 'Achievement Rate',
@@ -132,6 +146,7 @@ export async function loader({ request }) {
         '2008Q3': 0,
       },
       {
+        id: 15,
         customer: 'Total',
         site: '',
         measures: 'Weighted Sales Price',
