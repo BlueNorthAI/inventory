@@ -14,16 +14,34 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '~/components/ui/tooltip'
-import type { LinksFunction } from '@remix-run/node'
+import { json, type LinksFunction } from '@remix-run/node'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
-
+import { columnsmeeting } from '~/components/datatable/columns-meeting'
+import { DataTable } from '~/components/datatable/data-table-inci'
+import taskData from '~/data/columndata/tasks.json'
 import { cn } from '~/lib/utils'
+import { useLoaderData } from '@remix-run/react'
+
+
+async function getTasks() {
+  const data = await taskData
+  return data
+}
+
+export const loader = async () => {
+  const tasks = await getTasks()
+  const invData = tasks.filter((task) => task.label === 'Inventory' && task.severity === 'High')
+  return json({ tasks, invData })
+}
+
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: gridCommStyles },
   { rel: 'stylesheet', href: themeStyles },
 ]
+
+
 function DemoContainer({
   className,
   ...props
@@ -40,13 +58,18 @@ function DemoContainer({
 }
 
 export default function InventoryIndex() {
+  const { tasks, invData } = useLoaderData()
+
   return (
     <>
       <div className="m-4">
         <Tabs defaultValue="Dimensions" className="tracking-normal">
-          <div className='flex justify-between'>
-            <h1 className="text-3xl font-bold">Supply & Inventory Review</h1>
+          <div className="flex ">
+            {/* <h1 className="text-3xl font-bold">Inventory Review</h1> */}
             <TabsList className="">
+              <TabsTrigger value="Meeting" className="Meeting">
+                Meeting
+              </TabsTrigger>
               <TabsTrigger value="Demand" className="relative">
                 Procurement Plan
               </TabsTrigger>
@@ -62,6 +85,17 @@ export default function InventoryIndex() {
             </TabsList>
           </div>
           <DemoContainer>
+            <TabsContent value="Meeting">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Inventory Review</div>
+                </div>
+              </div>
+
+              <div className="m-4 bg-white rounded-lg">
+                <DataTable data={invData} columns={columnsmeeting} />
+              </div>
+            </TabsContent>
             <TabsContent value="Demand">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">

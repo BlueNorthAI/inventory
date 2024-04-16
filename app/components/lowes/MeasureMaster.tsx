@@ -133,31 +133,28 @@ export default function MeasureMaster() {
   }, [fetcher.data]);
 
   return (
-   <div style={containerStyle}>
-      <div
-        style={gridStyle}
-        className={
-          "ag-theme-quartz"
-        }
-      >
-      <Form method="post">
-        <AgGridReact
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          rowData={rowData}
-          onGridReady={onGridReady}
-          pagination={true}
-          paginationPageSize={20}
-          suppressPaginationPanel={false}
-          domLayout="normal"
-          // onCellValueChanged={onCellValueChanged}
-          // rowGroupPanelShow="always"
-          rowSelection="multiple"
-          enableRangeSelection={true}
-          floatingFilter={true}
-        />
-      </Form>
+    <div style={containerStyle}>
+      <div style={gridStyle} className={'ag-theme-quartz'}>
+        <Form method="post">
+          <AgGridReact
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            rowData={rowData}
+            onGridReady={onGridReady}
+            pagination={true}
+            paginationPageSize={20}
+            suppressPaginationPanel={false}
+            domLayout="autoHeight"
+            sideBar={true}
+            enableCharts={true}
+            // onCellValueChanged={onCellValueChanged}
+            // rowGroupPanelShow="always"
+            rowSelection="multiple"
+            enableRangeSelection={true}
+            floatingFilter={true}
+          />
+        </Form>
       </div>
-      </div>
+    </div>
   )
 }

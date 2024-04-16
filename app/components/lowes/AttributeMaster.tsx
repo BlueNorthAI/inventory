@@ -125,10 +125,7 @@ export default function MeasureMaster() {
   }, [fetcher.data]);
 
   return (
-    <div
-      className="ag-theme-quartz"
-      style={{ height: "100%", width: "100%" }}
-    >
+    <div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
       <Form method="post">
         <AgGridReact
           columnDefs={columnDefs}
@@ -139,11 +136,13 @@ export default function MeasureMaster() {
           paginationPageSize={12}
           suppressPaginationPanel={false}
           domLayout="autoHeight"
+          enableCharts={true}
+          sideBar={true}
           // onCellValueChanged={onCellValueChanged}
           rowGroupPanelShow="always"
           floatingFilter={true}
         />
       </Form>
     </div>
-  );
+  )
 }

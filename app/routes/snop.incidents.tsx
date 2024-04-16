@@ -197,7 +197,7 @@ export default function TaskPage() {
                                                   {option.label}
                                                 </label>
                                               </div>
-                                            
+
                                               <label
                                                 htmlFor={`filter-${section.id}-${optionIdx}`}
                                                 className="inline-flex items-center rounded bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"

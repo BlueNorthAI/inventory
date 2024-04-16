@@ -4,7 +4,8 @@ import { Link, Outlet } from '@remix-run/react'
 import type { LinksFunction } from '@remix-run/node'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
-
+import customAgStyles from '~/styles/custom-grid-styles.css?url'
+import aggrid from '~/styles/aggrid.css?url'
 
 import {
   NavigationMenu,
@@ -19,21 +20,10 @@ import { cn } from '~/lib/utils'
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: gridCommStyles },
   { rel: 'stylesheet', href: themeStyles },
+  { rel: 'stylesheet', href: customAgStyles },
+  { rel: 'stylesheet', href: aggrid },
 ]
-function DemoContainer({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={cn(
-        'flex items-center justify-center [&>div]:w-full',
-        className
-      )}
-      {...props}
-    />
-  )
-}
+
 const components: { title: string; to: string; description: string }[] = [
   {
     title: 'Demand Review',
@@ -74,6 +64,12 @@ const components: { title: string; to: string; description: string }[] = [
   {
     title: 'Executive Meeting',
     to: '/snop/process/executive',
+    description:
+      'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
+  },
+  {
+    title: 'Distribution Meeting',
+    to: '/snop/process/distribution',
     description:
       'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
   },
