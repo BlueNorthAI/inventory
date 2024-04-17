@@ -74,7 +74,7 @@ export default function MyChart ()  {
       />
     </div>
   );
-};
+}
 
 
 // import WorldMap from "react-svg-worldmap";

@@ -64,7 +64,7 @@ export const discountproductSeries_m = [{
   }
 ];
 
-export const cancellationCategories_m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug"];;
+export const cancellationCategories_m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug"];
 export const cancellationSeries_m = [
   {
     name: "Material",

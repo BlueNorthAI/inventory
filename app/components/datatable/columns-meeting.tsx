@@ -7,7 +7,6 @@ import { Button } from '~/components/ui/button'
 import { labels, priorities, statuses, dot } from '~/data/columndata/data'
 import { Task } from '~/data/columndata/schema'
 
-import { Link } from '@remix-run/react'
 
 export const columnsmeeting: ColumnDef<Task>[] = [
   {

@@ -1,6 +1,5 @@
 import WrapperMultiColumnChart from '~/kendo/charts/column/WrapperColumnChart'
 import WrapperMultiBarChart from '~/kendo/charts/bar/WrapperBarChart'
-import WrapperMultiLineChart from '~/kendo/charts/Line/WrapperLineChart'
 import WrapperMultiStackColChart from '~/kendo/charts/stackcol/WrapperStackColChart'
 import WrapperMultiColumnColorChart from '../../kendo/charts/columnColor/WrapperColorColumnChart'
 import WrapperMultiBarColorChart from '../../kendo/charts/barColor/WrapperColorBarChart'

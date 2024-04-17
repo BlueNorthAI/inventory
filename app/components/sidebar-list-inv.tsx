@@ -17,6 +17,8 @@ import {
   MixIcon,
   BarChartIcon,
   EnvelopeOpenIcon,
+  ExclamationTriangleIcon,
+  LoopIcon,
 } from "@radix-ui/react-icons";
 import { Outlet, NavLink, Link } from "@remix-run/react";
 
@@ -34,55 +36,55 @@ interface NavigationItem {
 const menus = [
   {
     id: 1,
-    name: "Master Data",
-    to: "/snop/master",
+    name: 'Master Data',
+    to: '/snop/master',
     icon: CubeIcon,
     current: false,
   },
 
   {
     id: 2,
-    name: "Scenario",
-    to: "/snop/process",
-    icon: GearIcon,
+    name: 'S&OP Process',
+    to: '/snop/process',
+    icon: LoopIcon,
     current: false,
   },
   {
     id: 3,
-    name: "Optimizer",
-    to: "/snop/optimize",
+    name: 'Scenario Planning',
+    to: '/snop/optimize',
     icon: MixIcon,
     current: true,
   },
   {
     id: 4,
-    name: "Incidents",
-    to: "/snop/incidents",
-    icon: EnvelopeOpenIcon,
+    name: 'Exceptions',
+    to: '/snop/incidents',
+    icon: ExclamationTriangleIcon,
     current: false,
   },
   {
     id: 5,
-    name: "Truck",
-    to: "/snop/truck",
+    name: 'Truck',
+    to: '/snop/truck',
     icon: BarChartIcon,
     current: false,
   },
   {
     id: 6,
-    name: "Report",
-    to: "/snop/dashboard/overview",
+    name: 'Report',
+    to: '/snop/dashboard/overview',
     icon: PieChartIcon,
     current: false,
   },
   {
     id: 7,
-    name: "Email",
-    to: "/snop/email",
+    name: 'Email',
+    to: '/snop/email',
     icon: EnvelopeOpenIcon,
     current: false,
   },
-];
+]
 const navigation: NavigationItem[] = [
   {
     name: "Team",
@@ -242,32 +244,7 @@ const navigation: NavigationItem[] = [
 ];
 
 export function SidebarList({ userId }: SidebarListProps) {
-  const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
-  const [currentItem, setCurrentItem] = useState<string | null>(null);
-  const toggleItem = (name) => {
-    setOpenItems((prevState) => ({
-      ...prevState,
-      [name]: !prevState[name],
-    }));
-  };
- const handleItemClick = (item) => {
-   if (currentItem !== item.name) {
-     setCurrentItem(item.name);
-     navigation.forEach((navItem) => {
-       if (navItem.name !== item.name) {
-         navItem.current = false;
-         if (navItem.children) {
-           navItem.children.forEach((childItem) => {
-             childItem.current = false;
-           });
-         }
-       }
-     });
-   }
-   item.current = true;
- };
-  const [open, setOpen] = useState(true);
-
+ 
   return (
     <div className="flex-1 overflow-auto">
       <div className="flex flex-col overflow-y-auto">

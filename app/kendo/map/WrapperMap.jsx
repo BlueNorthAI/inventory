@@ -1,6 +1,5 @@
-import MapContainer  from "../map/kendomap.client";
+import MapContainer from './kendomap'
 
-
-export default function WrapperChartGrid() { 
-  return typeof document !== "undefined" ? <MapContainer /> : null;
+export default function WrapperChartGrid() {
+  return typeof document !== 'undefined' ? <MapContainer /> : null
 }

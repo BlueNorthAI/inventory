@@ -27,13 +27,13 @@ import type { LinksFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { columns } from '~/components/datatable/columns-inci'
 import { columnsmeeting } from '~/components/datatable/columns-meeting'
-import { DataTable } from '~/components/datatable/data-table-inci'
+import { DataTable } from '~/components/datatable/data-table-meeting'
 import { useLoaderData } from '@remix-run/react'
 import taskData from '~/data/columndata/tasks.json'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import DemandPlanning from '~/components/lowes/DemandPlanning'
-
+import ConsensusForecast from '~/components/lowes/ConsensusForecast'
 import { cn } from '~/lib/utils'
 
 async function getTasks() {
@@ -43,7 +43,9 @@ async function getTasks() {
 
 export const loader = async () => {
   const tasks = await getTasks()
-  const demandData = tasks.filter((task) => task.label === 'Demand Planning')
+  const demandData = tasks.filter(
+    (task) => task.label === 'Demand Planning' && task.severity === 'High'
+  )
   console.log('demandData', demandData)
   return json({ tasks, demandData })
 }
@@ -73,9 +75,9 @@ export default function ProcessIndex() {
   return (
     <>
       <div className="m-4">
-        <Tabs defaultValue="DemandSupply" className="tracking-normal">
-          <div className="flex justify-between">
-            <h1 className="text-3xl font-bold">Demand Review</h1>
+        <Tabs defaultValue="meeting" className="tracking-normal">
+          <div className="">
+            {/* <h1 className="text-3xl font-bold">Demand Review</h1> */}
             <TabsList className="">
               <TabsTrigger value="meeting" className="relative">
                 Meeting
@@ -86,7 +88,7 @@ export default function ProcessIndex() {
               <TabsTrigger className="" value="New">
                 Customer Forecasts
               </TabsTrigger>
-              <TabsTrigger className="" value="Supply">
+              <TabsTrigger className="" value="Consensus">
                 Demand Consensus
               </TabsTrigger>
               <TabsTrigger className="" value="DemandSupply">
@@ -96,7 +98,61 @@ export default function ProcessIndex() {
           </div>
           <DemoContainer>
             <TabsContent value="meeting">
-              <div className="m-4 bg-white rounded-lg">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Demand Review</div>
+                  <div className="m-2 space-x-1">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="outline">Timeline</Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-28">
+                        <DropdownMenuLabel>View Type</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuRadioGroup
+                          value={position}
+                          onValueChange={setPosition}
+                        >
+                          <DropdownMenuRadioItem value="top">
+                            Weekly
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="bottom">
+                            Monthly
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="right">
+                            Quarterly
+                          </DropdownMenuRadioItem>
+                        </DropdownMenuRadioGroup>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="outline">Plan</Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-28">
+                        <DropdownMenuLabel>Plan Type</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuRadioGroup
+                          value={position}
+                          onValueChange={setPosition}
+                        >
+                          <DropdownMenuRadioItem value="top">
+                            Jan'24
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="bottom">
+                            Feb 2024
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="right">
+                            Mar 2024
+                          </DropdownMenuRadioItem>
+                        </DropdownMenuRadioGroup>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
+              </div>
+              <div className="">
                 <DataTable data={demandData} columns={columnsmeeting} />
               </div>
             </TabsContent>
@@ -253,10 +309,10 @@ export default function ProcessIndex() {
 
               <div>New Product Review</div>
             </TabsContent>
-            <TabsContent value="Supply">
+            <TabsContent value="Consensus">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Supply Review</div>
+                  <div className="p-2">Consensus Review</div>
 
                   <div className="m-2 space-x-1">
                     <TooltipProvider>
@@ -343,7 +399,9 @@ export default function ProcessIndex() {
                   </div>
                 </div>
               </div>
-              <div>Supply Review</div>
+              <div>
+                <ConsensusForecast />
+              </div>
             </TabsContent>
             <TabsContent value="DemandSupply">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">

@@ -1,6 +1,6 @@
 import WrapperMultiColumnChart from '~/kendo/charts/column/WrapperColumnChart'
 import WrapperMultiBarChart from '~/kendo/charts/bar/WrapperBarChart'
-import WrapperMultiLineChart from '~/kendo/charts/Line/WrapperLineChart'
+import WrapperMultiLineChart from '~/kendo/charts/line/WrapperLineChart'
 import WrapperMultiStackColChart from '~/kendo/charts/stackcol/WrapperStackColChart'
 
 import { serviceCategories_m,

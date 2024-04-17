@@ -1,5 +1,5 @@
 import WrapperMultiBarChart from "~/kendo/charts/bar/WrapperBarChart"
-import WrapperMap from '../../kendo/map/WrapperMap'
+// import WrapperMap from '~/kendo/map/WrapperMap'
 import { orderTrendCategories_m, orderTrendSeries_m,discountproductCategories_m,discountproductSeries_m} from '~/kendo/rawData/analysis/actionAnalysis'
 
 
@@ -25,10 +25,6 @@ export const kpiService_m = [
     ),
   },
 
-  {
-    Name: "Global Inventories",
-    container: <WrapperMap />,
-  },
 ];
 
 export const kpiInv_m = [
@@ -41,9 +37,6 @@ export const kpiInv_m = [
       />
     ),
   },
-  {
-    Name: "Global Inventories",
-    container: <WrapperMap />,
-  },
+ 
 ];
 

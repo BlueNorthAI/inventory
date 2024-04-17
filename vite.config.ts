@@ -14,7 +14,7 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+   
     alias: {
       '~': `${path.resolve(__dirname, 'app')}/`,
     },
