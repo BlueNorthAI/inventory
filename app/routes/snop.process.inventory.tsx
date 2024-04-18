@@ -14,6 +14,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '~/components/ui/tooltip'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '~/components/ui/select'
 import { kpiService_m, kpiInv_m } from '~/data/analysis/underData'
 import { json, type LinksFunction } from '@remix-run/node'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
@@ -25,7 +34,9 @@ import { cn } from '~/lib/utils'
 import { useLoaderData } from '@remix-run/react'
 import InventoryOnHand from '~/components/lowes/InventoryOnHand'
 import InvExcessDefict from '~/components/lowes/InvExcessDefict'
-
+import InventoryProjection from '~/components/lowes/InventoryProjection'
+import SimulationChart from '~/components/lowes/SimulationChart'
+import Redeploy from '~/components/lowes/Redeploy'
 async function getTasks() {
   const data = await taskData
   return data
@@ -49,7 +60,12 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: gridCommStyles },
   { rel: 'stylesheet', href: themeStyles },
 ]
-
+const skuList = [
+  { title: 'SKU1', },
+  { title: 'SKU2', },
+  { title: 'SKU3', },
+  { title: 'SKU4', },
+]
 
 function DemoContainer({
   // eslint-disable-next-line react/prop-types
@@ -95,6 +111,9 @@ export default function InventoryIndex() {
               </TabsTrigger>
               <TabsTrigger className="" value="IncreaseSupply">
                 Increase Supply
+              </TabsTrigger>
+              <TabsTrigger className="" value="simulation">
+                Simulation
               </TabsTrigger>
             </TabsList>
           </div>
@@ -295,7 +314,9 @@ export default function InventoryIndex() {
                   </div>
                 </div>
               </div>
-              <div>Supply Review</div>
+              <div>
+                <InventoryProjection />
+              </div>
             </TabsContent>
             <TabsContent value="DemandSupply">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
@@ -614,9 +635,9 @@ export default function InventoryIndex() {
                             <h3 className="text-lg m-2 font-medium text-gray-900">
                               {kpi.Name}
                             </h3>
-                            <h1 className="font-display  mb-3 text-4xl font-bold text-black">
+                            {/* <h1 className="font-display  mb-3 text-4xl font-bold text-black">
                               {kpi.Value}
-                            </h1>
+                            </h1> */}
                           </div>
                         </div>
                         <div>{kpi.container}</div>
@@ -639,9 +660,9 @@ export default function InventoryIndex() {
                             <h3 className="text-lg m-2 font-medium text-gray-900">
                               {kpi.Name}
                             </h3>
-                            <h1 className="font-display  mb-3 text-4xl font-bold text-black">
+                            {/* <h1 className="font-display  mb-3 text-4xl font-bold text-black">
                               {kpi.Value}
-                            </h1>
+                            </h1> */}
                           </div>
                         </div>
                         <div>{kpi.container}</div>
@@ -741,7 +762,7 @@ export default function InventoryIndex() {
                   </div>
                 </div>
               </div>
-              <div>Executive Meeting</div>
+              <div><Redeploy/></div>
             </TabsContent>
 
             <TabsContent value="IncreaseSupply">
@@ -835,6 +856,35 @@ export default function InventoryIndex() {
                 </div>
               </div>
               <div>Executive Meeting</div>
+            </TabsContent>
+            <TabsContent value="simulation">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Inventory Simulation for SKU</div>
+                  <div className="flex items-center space-x-4">
+                   
+                    <Select>
+                      <SelectTrigger className="w-[150px]">
+                        <SelectValue placeholder="SKU" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Scenario</SelectLabel>
+                          {skuList.map((sku) => (
+                            <SelectItem key={sku.title} value={sku.title}>
+                              {sku.title }
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+
+              <div className="">
+                <SimulationChart />
+              </div>
             </TabsContent>
           </DemoContainer>
         </Tabs>

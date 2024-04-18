@@ -1,6 +1,5 @@
 import { Sidebar } from "~/components/sidebar";
 import { SidebarList } from "~/components/sidebar-list-inv";
-import { useUser } from "~/utils";
 // import { auth } from '@/auth'
 
 export function SidebarDesktop() {

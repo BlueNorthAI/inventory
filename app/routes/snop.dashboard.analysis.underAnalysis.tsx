@@ -45,7 +45,7 @@ const stats = [
   { name: "Total Change to last", stat: "+1.5M" },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -117,9 +117,9 @@ export default function OverviewAnalysisRoute() {
                     <h3 className="text-lg m-2 font-medium text-gray-900">
                       {kpi.Name}
                     </h3>
-                    <h1 className="font-display  mb-3 text-4xl font-bold text-black">
+                    {/* <h1 className="font-display  mb-3 text-4xl font-bold text-black">
                       {kpi.Value}
-                    </h1>
+                    </h1> */}
                   </div>
                 </div>
                 <div>{kpi.container}</div>
@@ -142,9 +142,9 @@ export default function OverviewAnalysisRoute() {
                     <h3 className="text-lg m-2 font-medium text-gray-900">
                       {kpi.Name}
                     </h3>
-                    <h1 className="font-display  mb-3 text-4xl font-bold text-black">
+                    {/* <h1 className="font-display  mb-3 text-4xl font-bold text-black">
                       {kpi.Value}
-                    </h1>
+                    </h1> */}
                   </div>
                 </div>
                 <div>{kpi.container}</div>

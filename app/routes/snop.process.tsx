@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Link, Outlet, NavLink } from '@remix-run/react'
 
 import type { LinksFunction } from '@remix-run/node'
@@ -6,7 +6,7 @@ import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandato
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import customAgStyles from '~/styles/custom-grid-styles.css?url'
 import aggrid from '~/styles/aggrid.css?url'
-
+import tailwindStyles from '~/styles/tailwind.css?url'
 import { Menu, Transition } from '@headlessui/react'
 import {
   BanknotesIcon,
@@ -25,11 +25,11 @@ import {
   ArrowRightCircleIcon,
   ChevronDownIcon,
   RocketLaunchIcon,
-  DocumentDuplicateIcon,
 } from '@heroicons/react/20/solid'
 
 
 export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: tailwindStyles },
   { rel: 'stylesheet', href: gridCommStyles },
   { rel: 'stylesheet', href: themeStyles },
   { rel: 'stylesheet', href: customAgStyles },
@@ -38,6 +38,30 @@ export const links: LinksFunction = () => [
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
+
+const frameworks = [
+  {
+    value: 'next.js',
+    label: 'Next.js',
+  },
+  {
+    value: 'sveltekit',
+    label: 'SvelteKit',
+  },
+  {
+    value: 'nuxt.js',
+    label: 'Nuxt.js',
+  },
+  {
+    value: 'remix',
+    label: 'Remix',
+  },
+  {
+    value: 'astro',
+    label: 'Astro',
+  },
+]
 const components = [
   {
     title: 'Demand Review',
@@ -82,12 +106,13 @@ const components = [
   },
 ]
 
-export default function MasterData() {
+export default function ProcessData() {
+  const [selectedProcess, setSelectedProcess] = useState('Process')
   return (
     <>
       <div>
         <div className="w-100 m-2 flex  justify-between p-4 rounded-lg border bg-white">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text   bg-gradient-to-r from-blue-700 via-sky-700 to-blue-700 font-display">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-sky-700 to-blue-700 font-display">
             Sales & Operations Planning
           </h2>
 
@@ -95,7 +120,7 @@ export default function MasterData() {
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                  Process
+                  {selectedProcess}
                   <ChevronDownIcon
                     className="-mr-1 h-5 w-5 text-gray-400"
                     aria-hidden="true"
@@ -116,7 +141,10 @@ export default function MasterData() {
                   {components.map((component) => (
                     // eslint-disable-next-line react/jsx-key
                     <div className="py-1 ">
-                      <Menu.Item key={component.title}>
+                      <Menu.Item
+                        key={component.title}
+                        onClick={() => setSelectedProcess(component.title)}
+                      >
                         {({ active }) => (
                           <NavLink
                             to={component.to}

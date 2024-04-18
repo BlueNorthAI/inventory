@@ -1,5 +1,5 @@
 import WrapperGrid from "~/kendo/grid/WrapperGrid";
-import { carData } from "~/data/dashboard/carData.js";
+import { carData } from "~/data/dashboard/carData";
 
 import WrapperPieChart from "~/kendo/charts/pie/WrapperPieChart";
 import WrapperMultiAreaChart from "~/kendo/charts/area/WrapperAreaChart";

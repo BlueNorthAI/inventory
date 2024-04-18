@@ -22,7 +22,12 @@ import { DataTable } from '~/components/datatable/data-table-meeting'
 import taskData from '~/data/columndata/tasks.json'
 import { cn } from '~/lib/utils'
 import { useLoaderData } from '@remix-run/react'
-
+import SupplyDashboard from '~/components/lowes/SupplyDashboard'
+import SpendAnalysis from '~/components/lowes/SpendAnalysis'
+import PayableAnalysis from '~/components/lowes/PayableAnalysis'
+import CategoryAnalysis from '~/components/lowes/CategoryAnalysis'
+import ExpenseAnalysis from '~/components/lowes/ExpenseAnalysis'
+import POGovernance from '~/components/lowes/PoGovernce'
 
 async function getTasks() {
   const data = await taskData
@@ -72,17 +77,23 @@ export default function InventoryIndex() {
               <TabsTrigger value="Meeting" className="Meeting">
                 Meeting
               </TabsTrigger>
-              <TabsTrigger value="Demand" className="relative">
-                Procurement Plan
+              <TabsTrigger value="Procurement" className="relative">
+                Procurement Governance
               </TabsTrigger>
-              <TabsTrigger className="" value="New">
-                Distribution Plan
+              <TabsTrigger className="" value="Spend">
+                Spend Analysis
               </TabsTrigger>
-              <TabsTrigger className="" value="Supply">
-                Demand Consensus
+              <TabsTrigger className="" value="Payable">
+                Payable Analysis
               </TabsTrigger>
-              <TabsTrigger className="" value="DemandSupply">
-                Demand Plan
+              <TabsTrigger className="" value="Category">
+                Category Analysis
+              </TabsTrigger>
+              <TabsTrigger className="" value="Expense">
+                Expense Analysis
+              </TabsTrigger>
+              <TabsTrigger className="" value="SupplyDashboard">
+                Supply Dashboard
               </TabsTrigger>
             </TabsList>
           </div>
@@ -98,19 +109,396 @@ export default function InventoryIndex() {
                 <DataTable data={supplyData} columns={columnsmeeting} />
               </div>
             </TabsContent>
-            <TabsContent value="Demand">
+            <TabsContent value="Procurement">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
                   <div className="p-2">Supply Review</div>
                 </div>
               </div>
 
-              <div>Demand Review</div>
+              <div><POGovernance/></div>
             </TabsContent>
-            <TabsContent value="New">
+
+            <TabsContent value="Spend">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">New Product Review</div>
+                  <div className="p-2">Spend Analysis</div>
+
+                  <div className="m-2 space-x-1">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-indigo-100 "
+                          >
+                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>New</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-purple-100"
+                          >
+                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Edit</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-red-100"
+                          >
+                            <TrashIcon className="text-red-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Delete</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-yellow-100"
+                          >
+                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Print</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-green-100"
+                          >
+                            <DownloadIcon className="text-green-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <SpendAnalysis />
+              </div>
+            </TabsContent>
+            <TabsContent value="Payable">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Payable Analysis</div>
+
+                  <div className="m-2 space-x-1">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-indigo-100 "
+                          >
+                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>New</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-purple-100"
+                          >
+                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Edit</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-red-100"
+                          >
+                            <TrashIcon className="text-red-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Delete</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-yellow-100"
+                          >
+                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Print</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-green-100"
+                          >
+                            <DownloadIcon className="text-green-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <PayableAnalysis />
+              </div>
+            </TabsContent>
+            <TabsContent value="Category">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Category Analysis</div>
+
+                  <div className="m-2 space-x-1">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-indigo-100 "
+                          >
+                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>New</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-purple-100"
+                          >
+                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Edit</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-red-100"
+                          >
+                            <TrashIcon className="text-red-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Delete</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-yellow-100"
+                          >
+                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Print</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-green-100"
+                          >
+                            <DownloadIcon className="text-green-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <CategoryAnalysis />
+              </div>
+            </TabsContent>
+            <TabsContent value="Expense">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Expense Analysis</div>
+
+                  <div className="m-2 space-x-1">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-indigo-100 "
+                          >
+                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>New</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-purple-100"
+                          >
+                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Edit</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-red-100"
+                          >
+                            <TrashIcon className="text-red-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Delete</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-yellow-100"
+                          >
+                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Print</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-green-100"
+                          >
+                            <DownloadIcon className="text-green-700 w-6 h-6 " />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <ExpenseAnalysis />
+              </div>
+            </TabsContent>
+            <TabsContent value="SupplyDashboard">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Supply Planning Dashboard</div>
 
                   <div className="m-2 space-x-1">
                     <TooltipProvider>
@@ -198,377 +586,9 @@ export default function InventoryIndex() {
                 </div>
               </div>
 
-              <div>New Product Review</div>
-            </TabsContent>
-            <TabsContent value="Supply">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Supply Review</div>
-
-                  <div className="m-2 space-x-1">
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-indigo-100 "
-                          >
-                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>New</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-purple-100"
-                          >
-                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Edit</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-red-100"
-                          >
-                            <TrashIcon className="text-red-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Delete</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-yellow-100"
-                          >
-                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Print</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-green-100"
-                          >
-                            <DownloadIcon className="text-green-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Download</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                </div>
+              <div>
+                <SupplyDashboard />
               </div>
-              <div>Supply Review</div>
-            </TabsContent>
-            <TabsContent value="DemandSupply">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Demand Supply Balancing</div>
-
-                  <div className="m-2 space-x-1">
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-indigo-100 "
-                          >
-                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>New</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-purple-100"
-                          >
-                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Edit</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-red-100"
-                          >
-                            <TrashIcon className="text-red-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Delete</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-yellow-100"
-                          >
-                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Print</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-green-100"
-                          >
-                            <DownloadIcon className="text-green-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Download</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                </div>
-              </div>
-              <div>Demand Supply Balancing</div>
-            </TabsContent>
-
-            <TabsContent value="Financial">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Financial Planning</div>
-
-                  <div className="m-2 space-x-1">
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-indigo-100 "
-                          >
-                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>New</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-purple-100"
-                          >
-                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Edit</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-red-100"
-                          >
-                            <TrashIcon className="text-red-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Delete</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-yellow-100"
-                          >
-                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Print</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-green-100"
-                          >
-                            <DownloadIcon className="text-green-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Download</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                </div>
-              </div>
-              <div>Financial Planning</div>
-            </TabsContent>
-
-            <TabsContent value="Executive">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Executive Meeting</div>
-
-                  <div className="m-2 space-x-1">
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-indigo-100 "
-                          >
-                            <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>New</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-purple-100"
-                          >
-                            <Pencil2Icon className="text-purple-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Edit</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-red-100"
-                          >
-                            <TrashIcon className="text-red-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Delete</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-yellow-100"
-                          >
-                            <PrinterIcon className="text-yellow-800 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Print</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="bg-green-100"
-                          >
-                            <DownloadIcon className="text-green-700 w-6 h-6 " />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Download</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                </div>
-              </div>
-              <div>Executive Meeting</div>
             </TabsContent>
           </DemoContainer>
         </Tabs>

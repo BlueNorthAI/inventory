@@ -1,27 +1,39 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import {
-    Chart,
-    ChartTitle,
-    ChartSeries,
-    ChartSeriesItem,
-    ChartCategoryAxis,
-    ChartCategoryAxisTitle,
-    ChartCategoryAxisItem,
-  } from "@progress/kendo-react-charts";
-  import "hammerjs";
-  
-export function MultiStackBarChartContainer({categories,series,name,height=250}){
-    return (
-      <Chart style={{ height:250 }}>
-         {/* <ChartTitle text="Units sold"/>*/}
-          <ChartLegend position="top" orientation="horizontal" />
-          <ChartSeries>
-          {series.map((s) => (
-          <ChartSeriesItem name={s.name} data={s.data} type="bar" stack={true} key={s.name} tooltip={{visible:true}} />
-          ))}
-          </ChartSeries>
-           </Chart>
-       )
-     };
+  Chart,
+  ChartSeries,
+  ChartSeriesItem,
+  ChartCategoryAxis,
+  ChartLegend,
+  ChartCategoryAxisItem,
+} from '@progress/kendo-react-charts'
+import 'hammerjs'
+
+// eslint-disable-next-line react/prop-types
+export function MultiStackBarChartContainer({ categories, series, name }) {
+  return (
+    <Chart style={{ height: 250 }}>
+      {/* <ChartTitle text="Units sold" /> */}
+      <ChartLegend position="top" orientation="horizontal" />
+      <ChartCategoryAxis>
+        <ChartCategoryAxisItem categories={categories} />
+      </ChartCategoryAxis>
+      <ChartSeries>
+        {series.map((s) => (
+          <ChartSeriesItem
+            name={s.name}
+            data={s.data}
+            type="bar"
+            stack={true}
+            key={s.name}
+            tooltip={{ visible: true }}
+          />
+        ))}
+      </ChartSeries>
+    </Chart>
+  )
+}
 
 //   export function SingleStackBarChartContainer({ categories, firstSeries }) {
 //       return (
@@ -41,7 +53,7 @@ export function MultiStackBarChartContainer({categories,series,name,height=250})
 //           </Chart>
 //       )
 //   }
-  
+
 //   export function DoubleStackBarChartContainer({ categories, firstSeries, secondSeries }){
 //       return (
 //           <Chart style={{height: 200}}>
@@ -59,9 +71,9 @@ export function MultiStackBarChartContainer({categories,series,name,height=250})
 //           </ChartSeries>
 //       </Chart>
 //       )
-  
+
 //   }
-  
+
 //   export function TripleStackBarChartContainer({ categories, firstSeries, secondSeries, thirdSeries }){
 //       return (
 //           <Chart style={{height: 200}}>
@@ -79,9 +91,9 @@ export function MultiStackBarChartContainer({categories,series,name,height=250})
 //           </ChartSeries>
 //       </Chart>
 //       )
-  
+
 //   }
-  
+
 //   export function QuadStackBarChartContainer({ categories, firstSeries, secondSeries, thirdSeries, fourthSeries }){
 //       return (
 //           <Chart style={{height: 200}}>
@@ -99,5 +111,5 @@ export function MultiStackBarChartContainer({categories,series,name,height=250})
 //           </ChartSeries>
 //       </Chart>
 //       )
-  
- // }
+
+// }

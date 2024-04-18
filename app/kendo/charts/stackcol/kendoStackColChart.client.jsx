@@ -21,7 +21,7 @@ export function MultiStackColChartContainer({categories,series,name}){
        </ChartCategoryAxis>
        <ChartSeries  >
        {series.map((s) => (
-       <ChartSeriesItem name={s.name} data={s.data} type="column" stack={true} key={s.name} tooltip={{visible:true}} />
+       <ChartSeriesItem name={s.name} data={s.data} type="column" stack={true} key={s.name} tooltip={{visible:true}} labels={{visible:true} }/>
        ))}
        </ChartSeries>
         </Chart>

@@ -57,7 +57,7 @@ const stats = [
   { name: "Total Change to last", stat: "+1.5M" },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 

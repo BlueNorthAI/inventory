@@ -1,195 +1,118 @@
-import { useState, Fragment } from 'react'
-import { AgChartsReact } from 'ag-charts-react'
-
-import {
-  generatedDeficitData,
-  generatedInventoryExcess,
-} from '~/data/agGrid/snop/inventory/excessDeficit'
-import 'ag-charts-enterprise'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '~/components/ui/table'
+import { Link } from "@remix-run/react";
+import { reviewTabs,meetingTabs,kpiService_m, kpiCost_m, kpiService_q,kpiCost_q ,kpiService_y, kpiCost_y,} from "~/data/analysis/expenseData";
+import { Fragment, useState } from "react";
 import {
   Disclosure,
   Menu,
   Transition,
   Dialog,
   Popover,
-} from '@headlessui/react'
-import { Progress } from '~/components/ui/progress'
+} from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  ChatBubbleBottomCenterTextIcon,
+  PaperClipIcon,
+  PencilIcon,
+  TrashIcon,
+  ChevronDoubleRightIcon,
+  ChevronDownIcon
+} from "@heroicons/react/20/solid";
+
+
+const user = {
+  name: "Tom Cook",
+  email: "tom@example.com",
+  imageUrl:
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+};
+const navigation = [
+  { name: "Spend Analysis", href: "/snop/dashboard/analysis/spendAnalysis", current: false },
+  { name: "Off-Contract Spend", href: "/snop/dashboard/analysis/offContractAnalysis", current: false },
+  { name: "Expense Analysis", href: "/snop/dashboard/analysis/expenseAnalysis", current: true },
+  { name: "Payable Analysis", href: "/snop/dashboard/analysis/apAnalysis", current: false },
+  { name: "Category Analysis", href: "/snop/dashboard/analysis/categoryAnalysis", current: false },
+];
+const userNavigation = [
+  { name: "Your Profile", href: "#" },
+  { name: "Settings", href: "#" },
+  { name: "Sign out", href: "#" },
+];
 
 const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-]
+  { name: "Most Popular", href: "#", current: true },
+  { name: "Best Rating", href: "#", current: false },
+  { name: "Newest", href: "#", current: false },
+];
 const filters = [
   {
-    id: 'year',
-    name: 'Year',
+    id: "year",
+    name: "Year",
     options: [
-      { value: 'new-arrivals', label: 'All New Arrivals', checked: false },
-      { value: 'tees', label: 'Tees', checked: false },
-      { value: 'all', label: 'All', checked: true },
+      { value: "new-arrivals", label: "All New Arrivals", checked: false },
+      { value: "tees", label: "Tees", checked: false },
+      { value: "all", label: "All", checked: true },
     ],
   },
   {
-    id: 'quarter',
-    name: 'Quarter',
+    id: "quarter",
+    name: "Quarter",
     options: [
-      { value: 'all', label: 'All', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: false },
+      { value: "all", label: "All", checked: false },
+      { value: "beige", label: "Beige", checked: false },
+      { value: "blue", label: "Blue", checked: false },
     ],
   },
   {
-    id: 'region',
-    name: 'Region',
+    id: "region",
+    name: "Region",
     options: [
-      { value: 's', label: 'S', checked: false },
-      { value: 'm', label: 'M', checked: false },
-      { value: 'l', label: 'L', checked: false },
+      { value: "s", label: "S", checked: false },
+      { value: "m", label: "M", checked: false },
+      { value: "l", label: "L", checked: false },
     ],
   },
   {
-    id: 'country',
-    name: 'Country',
+    id: "country",
+    name: "Country",
     options: [
-      { value: 'all', label: 'All', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: false },
+      { value: "all", label: "All", checked: false },
+      { value: "beige", label: "Beige", checked: false },
+      { value: "blue", label: "Blue", checked: false },
     ],
   },
-]
+];
 
-const activeFilters = [{ value: 'objects', label: 'Objects' }]
-const inventory = [
-  {
-    title: 'SKU-775833',
-    location: 'Location016',
-    deficit: '1.9M',
-    percent: 9,
-  },
-  {
-    title: 'SKU-569018',
-    location: 'Location017',
-    deficit: '0.6M',
-    percent: 20,
-  },
-  {
-    title: 'SKU-166046',
-    location: 'Location018',
-    deficit: '1.8M',
-    percent: 58,
-  },
-  {
-    title: 'SKU-144887',
-    location: 'Location019',
-    deficit: '0.4M',
-    percent: 76,
-  },
-]
-const deficit = [
-  {
-    title: 'SKU-775833',
-    location: 'Location016',
-    deficit: '1.9M',
-    percent: 9,
-  },
-  {
-    title: 'SKU-569018',
-    location: 'Location017',
-    deficit: '0.6M',
-    percent: 20,
-  },
-  {
-    title: 'SKU-166046',
-    location: 'Location018',
-    deficit: '1.8M',
-    percent: 58,
-  },
-  {
-    title: 'SKU-144887',
-    location: 'Location019',
-    deficit: '0.4M',
-    percent: 76,
-  },
-]
-const dataExcess = generatedInventoryExcess
-const dataDeficit = generatedDeficitData
+const stats = [
+  { name: "Off-Contract", stat: "$4M" },
+  { name: "Off-Contact %", stat: "19%" },
+  { name: "Invoice Count", stat: "475" },
+  { name: "Supplier Count", stat: "11" },
+];
+
+const activeFilters = [{ value: "objects", label: "Objects" }];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
-export default function InvExcessDefict() {
-  const [open, setOpen] = useState(false)
-  const [options, setOptions] = useState({
-    data: dataExcess,
-    series: [
-      {
-        type: 'treemap',
-        labelKey: 'title',
-        secondaryLabelKey: 'excess',
-        sizeKey: 'percent',
-        sizeName: 'Excess',
-        fills: ['#43A047'],
-        group: {
-          label: {
-            fontSize: 18,
-            spacing: 2,
-          },
-          secondaryLabel: {
-            formatter: (params) => `£${params.value.toFixed(1)}bn`,
-          },
-        },
-      },
-    ],
-    // title: {
-    //   text: '',
-    // },
-    // subtitle: {
-    //   text: '',
-    // },
-  })
-  const [options2, setOptions2] = useState({
-    data: dataDeficit,
-    series: [
-      {
-        type: 'treemap',
-        labelKey: 'title',
-        secondaryLabelKey: 'deficit',
-        sizeKey: 'percent',
-        sizeName: 'Deficit',
-        strokes: ['#000'],
-        fills: ['#FF5722'],
-        group: {
-          label: {
-            fontSize: 18,
-            spacing: 2,
-          },
-          secondaryLabel: {
-            formatter: (params) => `£${params.value.toFixed(1)}bn`,
-          },
-        },
-      },
-    ],
-    // title: {
-    //   text: '',
-    // },
-    // subtitle: {
-    //   text: '',
-    // },
-  })
+export default function ExpenseAnalysisRoute() {
+  const [open, setOpen] = useState(false);
+
+  const emptyStyles = { background: "#ef4444" };
+  const progressStyles = { background: "#22c55e" };
+  console.log(kpiService_m);
 
   return (
-    <div className="bg-white rounded-b-lg border  w-100">
-      {/* <div className="bg-white">
+    <>
+      <div className="flex flex-col" style={{
+        minHeight: `calc(100vh - 4rem)`,
+      }}>
+
+      {/* ///////////// */}
+      {/* Filters */}
+
+      <div className="bg-white">
+        {/* Mobile filter dialog */}
         <Transition.Root show={open} as={Fragment}>
           <Dialog
             as="div"
@@ -233,6 +156,7 @@ export default function InvExcessDefict() {
                     </button>
                   </div>
 
+                  {/* Filters */}
                   <form className="mt-4">
                     {filters.map((section) => (
                       <Disclosure
@@ -250,8 +174,8 @@ export default function InvExcessDefict() {
                                 <span className="ml-6 flex items-center">
                                   <ChevronDownIcon
                                     className={classNames(
-                                      open ? '-rotate-180' : 'rotate-0',
-                                      'h-5 w-5 transform'
+                                      open ? "-rotate-180" : "rotate-0",
+                                      "h-5 w-5 transform"
                                     )}
                                     aria-hidden="true"
                                   />
@@ -294,6 +218,8 @@ export default function InvExcessDefict() {
           </Dialog>
         </Transition.Root>
 
+        {/* Filters */}
+
         <section aria-labelledby="filter-heading">
           <h2 id="filter-heading" className="sr-only">
             Filters
@@ -320,10 +246,10 @@ export default function InvExcessDefict() {
                               href={option.href}
                               className={classNames(
                                 option.current
-                                  ? 'font-medium text-gray-900'
-                                  : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
+                                  ? "font-medium text-gray-900"
+                                  : "text-gray-500",
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm"
                               )}
                             >
                               {option.name}
@@ -406,6 +332,8 @@ export default function InvExcessDefict() {
                 </div>
               </div>
 
+              {/* Active filters */}
+
               <div className="ml-16  flex px-4 sm:flex sm:items-center sm:px-4 lg:px-4">
                 <h3 className="text-sm font-medium text-gray-500">
                   Filters
@@ -453,81 +381,149 @@ export default function InvExcessDefict() {
             </div>
           </div>
         </section>
-      </div> */}
-      <div className="flex justify-between  space-x-4 ">
-        <div className="w-full bg-white rounded-b-md">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="">Title</TableHead>
-                <TableHead>Location</TableHead>
-                <TableHead>Excess</TableHead>
-                <TableHead>Percent</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {inventory.map((invoice) => (
-                <TableRow key={invoice.title}>
-                  <TableCell className="font-medium">{invoice.title}</TableCell>
-                  <TableCell className="font-medium">
-                    {invoice.location}
-                  </TableCell>
-                  <TableCell className="font-medium">
-                    {invoice.deficit}
-                  </TableCell>
-                  <TableCell>
-                    <Progress
-                      indicatorColor="bg-green-400"
-                      value={invoice.percent}
-                    />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          <div className="w-full h-[500px]">
-            <AgChartsReact options={options} />
-          </div>
-        </div>
-        <div className="w-full bg-white rounded-b-md border">
-          <div className="">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="">Title</TableHead>
-                  <TableHead>Location</TableHead>
-                  <TableHead>Deficit</TableHead>
-                  <TableHead>Percent</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {deficit.map((invoice) => (
-                  <TableRow key={invoice.title}>
-                    <TableCell className="w-100 font-medium">
-                      {invoice.title}
-                    </TableCell>
-                    <TableCell className="w-100 font-medium">
-                      {invoice.location}
-                    </TableCell>
-                    <TableCell className="w-100 font-medium">
-                      {invoice.deficit}
-                    </TableCell>
-                    <TableCell className="w-200 ">
-                      <Progress
-                        indicatorColor="bg-red-400"
-                        value={invoice.percent}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-          <div className="w-full h-[500px]">
-            <AgChartsReact options={options2} />
+      </div>
+
+      {/* stats */}
+
+      <div>
+        <dl className="mx-4 mb-2 mt-4 grid grid-cols-1 gap-6  lg:grid-cols-4">
+          {stats.map((item) => (
+            <div
+              key={item.name}
+              className="items-center overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
+            >
+              <dt className="truncate text-center text-lg font-medium text-gray-500">
+                {item.name}
+              </dt>
+              <dd className="mt-1 text-center text-4xl font-bold tracking-tight  text-gray-900  lg:text-5xl">
+                {item.stat}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <div className="relative">
+          <div
+            className="absolute inset-0 flex items-center"
+            aria-hidden="true"
+          >
+            <div className="mx-4 w-full border-t border-gray-200" />
           </div>
         </div>
       </div>
-    </div>
-  )
+
+      {/* charts */}
+
+      <ul
+        role="list"
+        className="mx-4 my-4 grid grid-cols-1 grid-rows-2 gap-6 md:grid-cols-2" >
+
+          {/* grid-row-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 */}
+        {kpiService_m.map((kpi) => (
+          <li
+            key={kpi.Name}
+            className="col-span-1 flex flex-col divide-y divide-white rounded-lg bg-white shadow-xl shadow-slate-900/10"
+          >
+            <div className="relative flex flex-1 flex-col py-2 pl-3">
+              <div className="flex items-baseline gap-2">
+                <div>
+                  <h3 className="text-md mt-6 font-medium text-gray-900">
+                    {kpi.Name}
+                  </h3>
+                  <h1 className="font-display text-d-h3 mb-3 text-4xl font-bold text-black">
+                    {kpi.Value}
+                  </h1>
+                </div>
+              </div>
+              <div>{kpi.container}</div>
+            </div>
+            <div></div>
+          </li>
+        ))}
+      </ul>
+
+      {/* icons with border */}
+      <footer className="mt-auto">
+        <Disclosure as="nav" className="bg-white h-16 border-t">
+          {({ open }) => (
+            <>
+              <div className="w-full px-2 py-2 sm:px-2 lg:px-2">
+                <div className="flex h-12 items-center justify-">
+                  <h2 className="text-md font-bold text-gray-500 mr-2">
+                  Spend Analysis
+                  </h2>
+                <ChevronDoubleRightIcon
+                            className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500 items-center"
+                            aria-hidden="true"
+                          />
+                  <div className="flex items-center">
+                    <div className="hidden md:block">
+                      {/* <div className="flex items-baseline space-x-4"> */}
+                      <div className="flex items-baseline">
+                        {navigation.map((item) => (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className={classNames(
+                              item.current
+                                ? "bg-blue-500 text-white"
+                                : "text-black hover:bg-blue-500 hover:text-white",
+                              "text-md rounded-md px-5 py-2 mx-2 font-medium"
+                            )}
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="-mr-2 flex md:hidden">
+                    {/* Mobile menu button */}
+                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <span className="sr-only">Open main menu</span>
+                      {open ? (
+                        <XMarkIcon
+                          className="block h-6 w-6"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <Bars3Icon
+                          className="block h-6 w-6"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </Disclosure.Button>
+                  </div>
+                </div>
+              </div>
+
+              <Disclosure.Panel className="md:hidden">
+                <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+                  {navigation.map((item) => (
+                    <Disclosure.Button
+                      key={item.name}
+                      as="a"
+                      href={item.href}
+                      className={classNames(
+                        item.current
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "block rounded-md px-3 py-2 text-base font-medium"
+                      )}
+                      aria-current={item.current ? "page" : undefined}
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  ))}
+                </div>
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
+        
+      </footer>      
+      </div>
+    </>
+  );
 }
