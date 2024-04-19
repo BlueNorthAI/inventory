@@ -1,26 +1,14 @@
-import {
-  AdjustmentsHorizontalIcon,
-  Squares2X2Icon
-} from "@heroicons/react/20/solid";
-import { useState } from "react";
 
-import { ThemeToggle } from "~/components/theme-toggle";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "~/components/ui/collapsible";
 import {
   CubeIcon,
   GearIcon,
   PieChartIcon,
   MixIcon,
   BarChartIcon,
-  EnvelopeOpenIcon,
   ExclamationTriangleIcon,
   LoopIcon,
 } from "@radix-ui/react-icons";
-import { Outlet, NavLink, Link } from "@remix-run/react";
+import { NavLink } from "@remix-run/react";
 import { Separator } from "./ui/separator";
 
 function classNames(...classes) {
@@ -56,6 +44,13 @@ const menus = [
 
 const senariomenus = [
   {
+    id: 7,
+    name: 'Capacity Optimizer',
+    to: '/snop/scenarioanalysis',
+    icon: BarChartIcon,
+    current: false,
+  },
+  {
     id: 4,
     name: 'Scenario Planning',
     to: '/snop/scenarioplan',
@@ -76,27 +71,13 @@ const senariomenus = [
     icon: GearIcon,
     current: true,
   },
-  {
-    id: 6,
-    name: 'Truck',
-    to: '/snop/truck',
-    icon: BarChartIcon,
-    current: false,
-  },
-  {
-    id: 7,
-    name: 'Report',
-    to: '/snop/scenarioanalysis',
-    icon: PieChartIcon,
-    current: false,
-  },
-  {
-    id: 8,
-    name: 'Email',
-    to: '/snop/email',
-    icon: EnvelopeOpenIcon,
-    current: false,
-  },
+  // {
+  //   id: 6,
+  //   name: 'Truck',
+  //   to: '/snop/truck',
+  //   icon: BarChartIcon,
+  //   current: false,
+  // },
 ]
 export function SidebarList({ userId }: SidebarListProps) {
  
@@ -106,7 +87,7 @@ export function SidebarList({ userId }: SidebarListProps) {
         <div className="flex-1 mt-4">
           <nav aria-label="Sidebar" className="flex items-center">
             <div className="static  w-full space-y-2 px-2 ">
-              {menus.map((item, index) => (
+              {menus.map((item ) => (
                 <NavLink
                   to={item.to}
                   key={item.id}
@@ -127,7 +108,7 @@ export function SidebarList({ userId }: SidebarListProps) {
                 </NavLink>
               ))}
               <Separator className="my-4" />
-              {senariomenus.map((item, index) => (
+              {senariomenus.map((item) => (
                 <NavLink
                   to={item.to}
                   key={item.id}

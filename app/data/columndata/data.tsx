@@ -53,7 +53,7 @@ export const labels = [
   {
     value: 'Demand Planning',
     label: 'Demand Planning',
-    color: 'bg-violet-900',
+    color: 'bg-violet-500',
     textClr: 'text-white',
   },
 

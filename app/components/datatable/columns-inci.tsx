@@ -202,10 +202,10 @@ export const columns: ColumnDef<Task>[] = [
       <DataTableColumnHeader column={column} title="Options" />
     ),
     cell: ({ row }) => {
-      console.log(row.original.id)
+      // console.log(row.original)
       return (
         <Link
-          to={`/snop/incidents/${row.original.id}`}
+          to={`/snop/incidents/${row.original.id}/${row.original.label}`}
           className="flex space-x-2"
         >
           <Button variant="outline">Open Exception</Button>

@@ -15,11 +15,11 @@ export const meetingTabs = [
 
 export const kpiService_m = [
   {
-    Name: "Cost per Trip",
-    container: <WrapperWaterfallChart data={tripData} />,
-  },
-  {
-    Name: "Cost per Unit",
+    Name: 'On Hand Inventory for Scenario',
     container: <WrapperWaterfallChart data={bikeData} />,
   },
-];
+  {
+    Name: 'Current on Hand Inventory',
+    container: <WrapperWaterfallChart data={tripData} />,
+  },
+]

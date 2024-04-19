@@ -14,17 +14,17 @@
     "priority": "medium"
   },
   {
-    "id": "EXP-9859",
+    "id": "EXP-2911",
     "sku": "ACC Cement Bulk",
-    "dc": "Houston",
-    "store": "Marietta",
-    "status": "in progress",
-    "title": "SKU is low on stock, immediate replenishment required.",
+    "dc": "Atlanta",
+    "store": "Oak Ridge",
+    "status": "canceled",
+    "title": "Sales forecast error margin is high, need to adjust the prediction model.",
     "severity": "Low",
-    "action": 1,
-    "owner": "Jane Doe",
-    "sop": "Supply Meeting",
-    "label": "Inventory",
+    "action": 5,
+    "owner": "Jim Doe",
+    "sop": "Demand Meeting",
+    "label": "Demand Planning",
     "priority": "low"
   },
   {
@@ -39,6 +39,20 @@
     "owner": "Jane Doe",
     "sop": "Logistics Meeting",
     "label": "Logistics",
+    "priority": "low"
+  },
+  {
+    "id": "EXP-9859",
+    "sku": "ACC Cement Bulk",
+    "dc": "Houston",
+    "store": "Marietta",
+    "status": "in progress",
+    "title": "SKU is low on stock, immediate replenishment required.",
+    "severity": "Low",
+    "action": 1,
+    "owner": "Jane Doe",
+    "sop": "Supply Meeting",
+    "label": "Inventory",
     "priority": "low"
   },
   {
@@ -180,20 +194,6 @@
     "sop": "Executive Meeting",
     "label": "Warehousing",
     "priority": "high"
-  },
-  {
-    "id": "EXP-2911",
-    "sku": "ACC Cement Bulk",
-    "dc": "Atlanta",
-    "store": "Oak Ridge",
-    "status": "canceled",
-    "title": "Sales forecast error margin is high, need to adjust the prediction model.",
-    "severity": "Low",
-    "action": 5,
-    "owner": "Jim Doe",
-    "sop": "Demand Meeting",
-    "label": "Demand Planning",
-    "priority": "low"
   },
   {
     "id": "EXP-1757",

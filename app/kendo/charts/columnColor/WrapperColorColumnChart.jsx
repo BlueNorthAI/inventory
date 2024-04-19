@@ -15,12 +15,12 @@ const Fallback = () => {
     </div>;
   };
 
-export default function WrapperMultiColumnColorChart({ category, series }) {
-  return typeof document !== "undefined" ? (
-    <ColumnColorChartContainer categories={category} series={series} />
+export default function WrapperMultiColumnColorChart({ seriesData }) {
+  return typeof document !== 'undefined' ? (
+    <ColumnColorChartContainer seriesData={seriesData} />
   ) : (
     <Fallback />
-  );
+  )
 }
 
 // export function WrapperQuadColumnChart({category, first, second, third, fourth,name}){

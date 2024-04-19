@@ -1,7 +1,7 @@
 export const tripData = [
   {
     category: "Region 1",
-    field: 100168,
+    field: 107384,
   },
   {
     category: "Region 2",
@@ -13,7 +13,7 @@ export const tripData = [
   },
   {
     category: "Others",
-    field: -1.26,
+    field: 12000,
   },
   {
     category: "Total",
@@ -24,7 +24,7 @@ export const tripData = [
  export const bikeData = [
    {
      category: 'Region 1',
-     field: 100168,
+     field: 64941,
    },
    {
      category: 'Region 2',
@@ -36,7 +36,7 @@ export const tripData = [
    },
    {
      category: 'Others',
-     field: -1.26,
+     field: 10000,
    },
    {
      category: 'Total',

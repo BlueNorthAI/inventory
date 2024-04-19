@@ -77,7 +77,7 @@ export default function TaskPage() {
       <div className="m-2">
         <div className="flex items-center  justify-between">
           <h2 className="text-3xl font-bold ml-4 p-2 text-transparent bg-clip-text   bg-gradient-to-r from-blue-700 via-sky-700 to-blue-700 font-display">
-            Control Tower - List of Actions
+            Nerve Center - List of Exception
           </h2>
         </div>
         <button
