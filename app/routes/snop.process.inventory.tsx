@@ -109,9 +109,9 @@ export default function InventoryIndex() {
               <TabsTrigger className="" value="R&B">
                 Redeploy and Balance
               </TabsTrigger>
-              <TabsTrigger className="" value="IncreaseSupply">
+              {/* <TabsTrigger className="" value="IncreaseSupply">
                 Increase Supply
-              </TabsTrigger>
+              </TabsTrigger> */}
               <TabsTrigger className="" value="simulation">
                 Simulation
               </TabsTrigger>
@@ -765,7 +765,7 @@ export default function InventoryIndex() {
               <div><Redeploy/></div>
             </TabsContent>
 
-            <TabsContent value="IncreaseSupply">
+            {/* <TabsContent value="IncreaseSupply">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
                   <div className="p-2">Increase Supply</div>
@@ -856,7 +856,7 @@ export default function InventoryIndex() {
                 </div>
               </div>
               <div>Executive Meeting</div>
-            </TabsContent>
+            </TabsContent> */}
             <TabsContent value="simulation">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">

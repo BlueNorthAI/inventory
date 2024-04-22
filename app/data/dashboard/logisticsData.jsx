@@ -20,6 +20,7 @@ export const meetingTabs = [
 export const kpiService_m = [
   {
     Name: 'Truck Waiting for Shipments',
+    sub: '# of Trucks',
     Value: '75%',
     Trend: 'up',
     TargetAch: 90,
@@ -30,15 +31,19 @@ export const kpiService_m = [
   },
   {
     Name: 'Shipments Waiting for Truck',
+    sub: '# of Shipments',
     Value: '75%',
     Trend: 'up',
     TargetAch: 90,
-    container: <WrapperMultiColumnColorChart seriesData={Shipments_Waiting_m} />,
+    container: (
+      <WrapperMultiColumnColorChart seriesData={Shipments_Waiting_m} />
+    ),
     status: 'Below Target',
     Analyze: '/snop/dashboard/analysis/orderAnalysis',
   },
   {
-    Name: 'Truck Detention',
+    Name: 'Truck Detention @ DC',
+    sub: '# of Trucks',
     Value: '75%',
     Trend: 'up',
     TargetAch: 90,
@@ -47,7 +52,8 @@ export const kpiService_m = [
     Analyze: '/snop/dashboard/analysis/orderAnalysis',
   },
   {
-    Name: 'Truck Detention',
+    Name: 'Truck Detention @ Carrier',
+    sub: '# of Trucks',
     Value: '75%',
     Trend: 'up',
     TargetAch: 90,

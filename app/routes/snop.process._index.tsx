@@ -85,9 +85,9 @@ export default function ProcessIndex() {
               <TabsTrigger value="Demand" className="relative">
                 Forecast Accuracy
               </TabsTrigger>
-              <TabsTrigger className="" value="New">
+              {/* <TabsTrigger className="" value="New">
                 Customer Forecasts
-              </TabsTrigger>
+              </TabsTrigger> */}
               <TabsTrigger className="" value="Consensus">
                 Demand Consensus
               </TabsTrigger>
@@ -216,7 +216,7 @@ export default function ProcessIndex() {
                 <DataTable data={tasks} columns={columns} />
               </div>
             </TabsContent>
-            <TabsContent value="New">
+            {/* <TabsContent value="New">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
                   <div className="p-2">New Product Review</div>
@@ -308,7 +308,7 @@ export default function ProcessIndex() {
               </div>
 
               <div>New Product Review</div>
-            </TabsContent>
+            </TabsContent> */}
             <TabsContent value="Consensus">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">

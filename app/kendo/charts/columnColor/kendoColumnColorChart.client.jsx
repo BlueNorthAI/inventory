@@ -18,6 +18,7 @@ export function ColumnColorChartContainer({ seriesData }) {
                 type="column"
                 field="data"
                 categoryField="categories"
+                labels={{ visible: true }}
               />
             </ChartSeries>
           </Chart>

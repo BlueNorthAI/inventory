@@ -70,9 +70,9 @@ const components = [
     iconcolr: 'text-blue-500',
   },
   {
-    title: 'New Product Review',
-    to: '/snop/process/product',
-    icon: ArrowTrendingUpIcon,
+    title: 'Supply Review',
+    to: '/snop/process/supply',
+    icon: CubeIcon,
   },
   {
     title: 'Inventory Review',
@@ -80,10 +80,11 @@ const components = [
     icon: ArchiveBoxArrowDownIcon,
   },
   {
-    title: 'Supply Review',
-    to: '/snop/process/supply',
-    icon: CubeIcon,
+    title: 'New Product Review',
+    to: '/snop/process/product',
+    icon: ArrowTrendingUpIcon,
   },
+
   {
     title: 'Demand Supply Balancing',
     to: '/snop/process/balance',
