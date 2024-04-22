@@ -19,9 +19,9 @@ export default function LogisticsDashboard() {
                         {kpi.Name}
                       </h3>
                     </div>
-                    <h3 className="text-sm mt-6 font-medium text-gray-600">
+                    <h2 className="text-sm mt-6 font-medium text-gray-600">
                       ({kpi.sub})
-                    </h3>
+                    </h2>
                   </div>
                   <div>{kpi.container}</div>
                 </div>
