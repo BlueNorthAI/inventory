@@ -3,8 +3,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { DataTableColumnHeader } from '~/components/datatable/data-table-column-header-inci'
 import { Badge } from '~/components/ui/badge'
 import { Checkbox } from '~/components/ui/checkbox'
-import { Button } from '~/components/ui/button'
-import { labels, priorities, statuses, dot } from '~/data/columndata/data'
+import { labels, statuses, dot } from '~/data/columndata/data'
 import { Task } from '~/data/columndata/schema'
 
 

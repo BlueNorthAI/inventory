@@ -44,30 +44,37 @@ const menus = [
 
 const senariomenus = [
   {
-    id: 7,
+    id: 4,
     name: 'Capacity Optimizer',
     to: '/snop/scenarioanalysis',
     icon: BarChartIcon,
     current: false,
   },
   {
-    id: 4,
+    id: 5,
     name: 'Scenario Planning',
     to: '/snop/scenarioplan',
     icon: MixIcon,
     current: true,
   },
   {
-    id: 3,
+    id: 6,
     name: 'Optimizer',
     to: '/snop/optimize',
     icon: PieChartIcon,
     current: true,
   },
   {
-    id: 5,
+    id: 7,
     name: 'Scenario Planning',
     to: '/snop/scenario',
+    icon: GearIcon,
+    current: true,
+  },
+  {
+    id: 8,
+    name: 'Inventory Optimizer',
+    to: '/snop/inventoryopt',
     icon: GearIcon,
     current: true,
   },

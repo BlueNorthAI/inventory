@@ -1,26 +1,12 @@
 import { ColumnDef } from '@tanstack/react-table'
 
 import { DataTableColumnHeader } from '~/components/datatable/data-table-column-header-inci'
-import { DataTableRowActions } from '~/components/datatable/data-table-row-actions-inci'
-import { DataTableRowActionsButton } from '~/components/datatable/data-table-row-actions-inci-button'
 import { Badge } from '~/components/ui/badge'
 import { Checkbox } from '~/components/ui/checkbox'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '~/components/ui/dialog'
-import { Input } from '~/components/ui/input'
 import { Button } from '~/components/ui/button'
-import { Label } from '~/components/ui/label'
-import { labels, priorities, statuses, dot } from '~/data/columndata/data'
+import { labels, statuses, dot } from '~/data/columndata/data'
 import { Task } from '~/data/columndata/schema'
 
-import { log } from 'console'
 import { Link } from '@remix-run/react'
 
 export const columns: ColumnDef<Task>[] = [

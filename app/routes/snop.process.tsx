@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react'
-import { Link, Outlet, NavLink } from '@remix-run/react'
+import { Fragment, useState } from 'react'
+import { Outlet, NavLink } from '@remix-run/react'
 
 import type { LinksFunction } from '@remix-run/node'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
@@ -10,19 +10,12 @@ import tailwindStyles from '~/styles/tailwind.css?url'
 import { Menu, Transition } from '@headlessui/react'
 import {
   BanknotesIcon,
-  DocumentMagnifyingGlassIcon,
   PresentationChartLineIcon,
   CubeIcon,
   ArchiveBoxArrowDownIcon,
-  ShoppingCartIcon,
-  CircleStackIcon,
-  SpeakerWaveIcon,
-  ArrowUpRightIcon,
   ScaleIcon,
   ArrowTrendingUpIcon,
-  ArchiveBoxIcon,
   TruckIcon,
-  ArrowRightCircleIcon,
   ChevronDownIcon,
   RocketLaunchIcon,
 } from '@heroicons/react/20/solid'
@@ -35,33 +28,11 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: customAgStyles },
   { rel: 'stylesheet', href: aggrid },
 ]
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 
-const frameworks = [
-  {
-    value: 'next.js',
-    label: 'Next.js',
-  },
-  {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
-  },
-]
 const components = [
   {
     title: 'Demand Review',
@@ -78,6 +49,11 @@ const components = [
     title: 'Inventory Review',
     to: '/snop/process/inventory',
     icon: ArchiveBoxArrowDownIcon,
+  },
+  {
+    title: 'Distribution Meeting',
+    to: '/snop/process/distribution',
+    icon: TruckIcon,
   },
   {
     title: 'New Product Review',
@@ -99,11 +75,6 @@ const components = [
     title: 'Executive Meeting',
     to: '/snop/process/executive',
     icon: PresentationChartLineIcon,
-  },
-  {
-    title: 'Distribution Meeting',
-    to: '/snop/process/distribution',
-    icon: TruckIcon,
   },
 ]
 
