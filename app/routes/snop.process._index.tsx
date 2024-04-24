@@ -46,7 +46,7 @@ export const loader = async () => {
   const demandData = tasks.filter(
     (task) => task.label === 'Demand Planning' && task.severity === 'High'
   )
-  console.log('demandData', demandData)
+  // console.log('demandData', demandData)
   return json({ tasks, demandData })
 }
 

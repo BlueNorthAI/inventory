@@ -127,7 +127,7 @@ export const columns: ColumnDef<Task>[] = [
       <DataTableColumnHeader column={column} title="Status" />
     ),
     cell: ({ row }) => {
-      console.log(row.getValue('status'))
+      // console.log(row.getValue('status'))
       const status = statuses.find(
         (status) => status.value === row.getValue('status')
       )

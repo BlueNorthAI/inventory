@@ -22,7 +22,6 @@ const ragCellClassRules: CellClassRules = {
 }
 
 const cellStyle = (params: CellClassParams) => {
-  console.log(params)
   const color = numberToColor(params)
   return {
     backgroundColor: color,
@@ -69,7 +68,7 @@ const cellClass = (params: CellClassParams) => {
 //   }
 // }
 const numberToColor = (params: object) => {
-  console.log(`params`, params)
+  // console.log(`params`, params)
   if (params.data.measure === 'Target Plan (Revenue)' || params.data.measure === 'Financial Forecast (Revenue)' || params.data.measure === 'POS (Revenue)' || params.data.measure === 'Weighted Sales Price') {
     return ''
   }
@@ -91,7 +90,7 @@ const ragRenderer = (params: CustomCellRendererProps) => {
 
 const numberParser = (params: ValueParserParams) => {
   const newValue = params.newValue
-  console.log(`newValue`, newValue)
+  // console.log(`newValue`, newValue)
   let valueAsNumber
   if (newValue === null || newValue === undefined || newValue === '') {
     valueAsNumber = null

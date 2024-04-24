@@ -65,7 +65,7 @@ export default function GridReact() {
       if (!event.newValue || event.newValue === event.oldValue) {
         return; // Do nothing if the value hasn't changed
       }
-      console.log("Cell value changed:", event);
+      // console.log("Cell value changed:", event);
 
       const formData = new FormData();
       formData.append("customer", event.data.customer);

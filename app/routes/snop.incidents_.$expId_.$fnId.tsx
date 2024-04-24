@@ -11,66 +11,108 @@ import { DataTable } from '~/components/datatable/data-table-link'
 import SimulationChart from './snop.chart'
 import DemandDashboard from '~/components/lowes/DemandDashboard'
 import LogisticsDashboard from '~/components/lowes/LogisticsDashboard'
-
-
+import {
+  ListBulletIcon,
+  ArchiveIcon,
+  Pencil1Icon,
+  TrashIcon,
+  CheckIcon,
+} from '@radix-ui/react-icons'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '~/components/ui/accordion'
+import { Checkbox } from '~/components/ui/checkbox'
+import { Button } from '~/components/blue/Button'
+const data = [
+  {
+    name: 'Add 4.0 hrs capacity to Make | Factory F34 on Jan 20 W4',
+    priceMonthly: 2,
+    priceYearly: 290,
+    limit: '$267,000',
+    measure: '$400,000',
+  },
+  {
+    name: 'Add 4.0 hrs capacity to Make | Factory F34 on Jan 20 W4',
+    priceMonthly: 2,
+    priceYearly: 290,
+    limit: '$267,000',
+    measure: '$400,000',
+  },
+]
 const plans = {
-  'Demand Planning': [{
-    name: 'Price drop',
-    priceMonthly: 2,
-    priceYearly: 290,
-    limit: 'Initiate Price drop',
-    measure: 'Consensus Forecast',
-  }, {
-    name: 'Rebate',
-    priceMonthly: 1,
-    priceYearly: 990,
-    limit: 'Introduce Mail In Rebate',
-    measure: 'Consensus Forecast',
-  }, {
-    name: 'Promotions',
-    priceMonthly: 1,
-    priceYearly: 2490,
-    limit: 'Introduce Promotion',
-    measure: 'Consensus Forecast',
-  }],
-  'Inventory': [{
-    name: 'Rebalance Inventory',
-    priceMonthly: 2,
-    priceYearly: 290,
-    limit: 'Move Inventory from DC Atlanta',
-    measure: 'On Hand Inventory',
-  }, {
-    name: 'Increase Supply',
-    priceMonthly: 1,
-    priceYearly: 990,
-    limit: 'Order from alternate vendor to ramp up supply',
-    measure: 'Procurement',
-  }, {
-    name: 'Shape demand',
-    priceMonthly: 1,
-    priceYearly: 2490,
-    limit: 'Cut down on Promotion',
-    measure: 'Consensus Forecast',
-  }],
-  'Logistics': [{
-    name: 'Notify DC Head to Expedite',
-    priceMonthly: 2,
-    priceYearly: 290,
-    limit: 'Initiate Price drop',
-    measure: 'Turnaround Time',
-  }, {
-    name: 'Ask Carrier update transit time',
-    priceMonthly: 1,
-    priceYearly: 990,
-    limit: 'Introduce Mail In Rebate',
-    measure: 'Transit Time',
-  }, {
-    name: 'Change inbound prioritization',
-    priceMonthly: 1,
-    priceYearly: 2490,
-    limit: 'Run the FIFO heuristic based scheduler with higher priority to inbound shipments',
-    measure: 'Turnaround Time',
-  }],
+  'Demand Planning': [
+    {
+      name: 'Price drop',
+      priceMonthly: 2,
+      priceYearly: 290,
+      limit: 'Initiate Price drop',
+      measure: 'Consensus Forecast',
+    },
+    {
+      name: 'Rebate',
+      priceMonthly: 1,
+      priceYearly: 990,
+      limit: 'Introduce Mail In Rebate',
+      measure: 'Consensus Forecast',
+    },
+    {
+      name: 'Promotions',
+      priceMonthly: 1,
+      priceYearly: 2490,
+      limit: 'Introduce Promotion',
+      measure: 'Consensus Forecast',
+    },
+  ],
+  Inventory: [
+    {
+      name: 'Rebalance Inventory',
+      priceMonthly: 2,
+      priceYearly: 290,
+      limit: 'Move Inventory from DC Atlanta',
+      measure: 'On Hand Inventory',
+    },
+    {
+      name: 'Increase Supply',
+      priceMonthly: 1,
+      priceYearly: 990,
+      limit: 'Order from alternate vendor to ramp up supply',
+      measure: 'Procurement',
+    },
+    {
+      name: 'Shape demand',
+      priceMonthly: 1,
+      priceYearly: 2490,
+      limit: 'Cut down on Promotion',
+      measure: 'Consensus Forecast',
+    },
+  ],
+  Logistics: [
+    {
+      name: 'Notify DC Head to Expedite',
+      priceMonthly: 2,
+      priceYearly: 290,
+      limit: 'Initiate Price drop',
+      measure: 'Turnaround Time',
+    },
+    {
+      name: 'Ask Carrier update transit time',
+      priceMonthly: 1,
+      priceYearly: 990,
+      limit: 'Introduce Mail In Rebate',
+      measure: 'Transit Time',
+    },
+    {
+      name: 'Change inbound prioritization',
+      priceMonthly: 1,
+      priceYearly: 2490,
+      limit:
+        'Run the FIFO heuristic based scheduler with higher priority to inbound shipments',
+      measure: 'Turnaround Time',
+    },
+  ],
 }
 
 async function getTasks() {
@@ -79,10 +121,9 @@ async function getTasks() {
 }
 
 export const loader = async () => {
-  const tasks = await getTasks() 
+  const tasks = await getTasks()
   return json({ tasks })
 }
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -92,7 +133,9 @@ export default function Example() {
   const { tasks } = useLoaderData()
   const params = useParams()
 
-  const [selected, setSelected] = useState(plans[params.fnId] || plans['Demand Planning'])
+  const [selected, setSelected] = useState(
+    plans[params.fnId] || plans['Demand Planning']
+  )
   console.log('use params', params)
 
   const exp = tasks.filter((task) => task.id === params.expId)[0]
@@ -107,7 +150,6 @@ export default function Example() {
     return null
   }
 
-  
   useEffect(() => {
     setSelected(plans[params.fnId] || plans['Demand Planning'])
   }, [params.fnId])
@@ -186,10 +228,351 @@ export default function Example() {
 
               <div className="py-2 grid grid-cols-2 gap-2">
                 <div className="mt-2">
-                  <span className="text-md block font-medium leading-6 text-gray-900">
-                    Option
-                  </span>
                   <div className="mt-2">
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="item-1">
+                        <AccordionTrigger>
+                          <div className="mx-2 flex justify-between  w-full ">
+                            <div className="flex items-center space-x-2">
+                              <span className="text-base font-semibold">
+                                Add Capacity
+                              </span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Button className={undefined}>Accept</Button>
+                              <ArchiveIcon className="h-4 w-4" />
+                              <Pencil1Icon className="h-4 w-4" />
+                              <TrashIcon className="h-4 w-4" />
+                            </div>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <RadioGroup value={selected} onChange={setSelected}>
+                            <div className="relative -space-y-px rounded-md bg-white">
+                              {data.map((plan, planIdx) => (
+                                <RadioGroup.Option
+                                  key={plan.name}
+                                  value={plan}
+                                  className={({ checked }) =>
+                                    classNames(
+                                      planIdx === 0
+                                        ? 'rounded-tl-md rounded-tr-md'
+                                        : '',
+                                      planIdx === plans.length - 1
+                                        ? 'rounded-bl-md rounded-br-md'
+                                        : '',
+                                      checked
+                                        ? 'z-10 border-sky-500 bg-sky-50'
+                                        : 'border-gray-200',
+                                      'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:grid md:grid-cols-4 md:pl-4 md:pr-6'
+                                    )
+                                  }
+                                >
+                                  {({ active, checked }) => (
+                                    <>
+                                      <span className="flex items-center text-sm">
+                                        <span
+                                          className={classNames(
+                                            checked
+                                              ? 'bg-sky-500 border-transparent'
+                                              : 'bg-white border-gray-300',
+                                            active
+                                              ? 'ring-2 ring-offset-2 ring-sky-500'
+                                              : '',
+                                            'h-4 w-4 rounded-md border flex items-center justify-center'
+                                          )}
+                                          aria-hidden="true"
+                                        >
+                                          <CheckIcon className="h-3 w-3 text-white items-center" />
+                                        </span>
+                                        <RadioGroup.Label
+                                          as="span"
+                                          className={classNames(
+                                            checked
+                                              ? 'text-indigo-900'
+                                              : 'text-gray-900',
+                                            'ml-3 font-medium'
+                                          )}
+                                        >
+                                          {plan.name}
+                                        </RadioGroup.Label>
+                                      </span>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className="ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-center"
+                                      >
+                                        <span
+                                          className={classNames(
+                                            checked
+                                              ? 'text-indigo-900'
+                                              : 'text-gray-900',
+                                            'font-medium'
+                                          )}
+                                        >
+                                          {plan.priceMonthly}
+                                        </span>{' '}
+                                      </RadioGroup.Description>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className={classNames(
+                                          checked
+                                            ? 'text-indigo-700'
+                                            : 'text-gray-500',
+                                          'ml-6 pl-1 text-sm w-full md:ml-0 md:pl-0 md:text-right'
+                                        )}
+                                      >
+                                        {plan.limit}
+                                      </RadioGroup.Description>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className={classNames(
+                                          checked
+                                            ? 'text-indigo-700'
+                                            : 'text-gray-500',
+                                          'ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-right'
+                                        )}
+                                      >
+                                        {plan.measure}
+                                      </RadioGroup.Description>
+                                    </>
+                                  )}
+                                </RadioGroup.Option>
+                              ))}
+                            </div>
+                          </RadioGroup>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="item-2">
+                        <AccordionTrigger>
+                          {' '}
+                          <div className="mx-2 flex justify-between  w-full ">
+                            <div className="flex items-center space-x-2">
+                              <ListBulletIcon className="h-4 w-4" />
+                              <span className="text-base font-semibold">
+                                Add Capacity
+                              </span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <span>Actions 2</span>
+                              <Button className={undefined}>Accept</Button>
+                              <ArchiveIcon className="h-4 w-4" />
+                              <Pencil1Icon className="h-4 w-4" />
+                              <TrashIcon className="h-4 w-4" />
+                            </div>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <RadioGroup value={selected} onChange={setSelected}>
+                            <div className="relative -space-y-px rounded-md bg-white">
+                              {plans[params.fnId].map((plan, planIdx) => (
+                                <RadioGroup.Option
+                                  key={plan.name}
+                                  value={plan}
+                                  className={({ checked }) =>
+                                    classNames(
+                                      planIdx === 0
+                                        ? 'rounded-tl-md rounded-tr-md'
+                                        : '',
+                                      planIdx === plans.length - 1
+                                        ? 'rounded-bl-md rounded-br-md'
+                                        : '',
+                                      checked
+                                        ? 'z-10 border-sky-500 bg-sky-50'
+                                        : 'border-gray-200',
+                                      'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:grid md:grid-cols-4 md:pl-4 md:pr-6'
+                                    )
+                                  }
+                                >
+                                  {({ active, checked }) => (
+                                    <>
+                                      <span className="flex items-center text-sm">
+                                        <span
+                                          className={classNames(
+                                            checked
+                                              ? 'bg-sky-500 border-transparent'
+                                              : 'bg-white border-gray-300',
+                                            active
+                                              ? 'ring-2 ring-offset-2 ring-sky-500'
+                                              : '',
+                                            'h-4 w-4 rounded-md border flex items-center justify-center'
+                                          )}
+                                          aria-hidden="true"
+                                        >
+                                          <CheckIcon className="h-3 w-3 text-white items-center" />
+                                        </span>
+                                        <RadioGroup.Label
+                                          as="span"
+                                          className={classNames(
+                                            checked
+                                              ? 'text-indigo-900'
+                                              : 'text-gray-900',
+                                            'ml-3 font-medium'
+                                          )}
+                                        >
+                                          {plan.name}
+                                        </RadioGroup.Label>
+                                      </span>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className="ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-center"
+                                      >
+                                        <span
+                                          className={classNames(
+                                            checked
+                                              ? 'text-indigo-900'
+                                              : 'text-gray-900',
+                                            'font-medium'
+                                          )}
+                                        >
+                                          {plan.priceMonthly}
+                                        </span>{' '}
+                                      </RadioGroup.Description>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className={classNames(
+                                          checked
+                                            ? 'text-indigo-700'
+                                            : 'text-gray-500',
+                                          'ml-6 pl-1 text-sm w-full md:ml-0 md:pl-0 md:text-right'
+                                        )}
+                                      >
+                                        {plan.limit}
+                                      </RadioGroup.Description>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className={classNames(
+                                          checked
+                                            ? 'text-indigo-700'
+                                            : 'text-gray-500',
+                                          'ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-right'
+                                        )}
+                                      >
+                                        {plan.measure}
+                                      </RadioGroup.Description>
+                                    </>
+                                  )}
+                                </RadioGroup.Option>
+                              ))}
+                            </div>
+                          </RadioGroup>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="item-3">
+                        <AccordionTrigger>
+                          {' '}
+                          <div className="mx-2 flex justify-between  w-full ">
+                            <div className="flex items-center space-x-2">
+                              <ListBulletIcon className="h-4 w-4" />
+                              <span className="text-base font-semibold">
+                                Add Capacity
+                              </span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <span>Actions 2</span>
+                              <Button className={undefined}>Accept</Button>
+                              <ArchiveIcon className="h-4 w-4" />
+                              <Pencil1Icon className="h-4 w-4" />
+                              <TrashIcon className="h-4 w-4" />
+                            </div>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <RadioGroup value={selected} onChange={setSelected}>
+                            <div className="relative -space-y-px rounded-md bg-white">
+                              {plans[params.fnId].map((plan, planIdx) => (
+                                <RadioGroup.Option
+                                  key={plan.name}
+                                  value={plan}
+                                  className={({ checked }) =>
+                                    classNames(
+                                      planIdx === 0
+                                        ? 'rounded-tl-md rounded-tr-md'
+                                        : '',
+                                      planIdx === plans.length - 1
+                                        ? 'rounded-bl-md rounded-br-md'
+                                        : '',
+                                      checked
+                                        ? 'z-10 border-sky-500 bg-sky-50'
+                                        : 'border-gray-200',
+                                      'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:grid md:grid-cols-4 md:pl-4 md:pr-6'
+                                    )
+                                  }
+                                >
+                                  {({ active, checked }) => (
+                                    <>
+                                      <span className="flex items-center text-sm">
+                                        <span
+                                          className={classNames(
+                                            checked
+                                              ? 'bg-sky-500 border-transparent'
+                                              : 'bg-white border-gray-300',
+                                            active
+                                              ? 'ring-2 ring-offset-2 ring-sky-500'
+                                              : '',
+                                            'h-4 w-4 rounded-md border flex items-center justify-center'
+                                          )}
+                                          aria-hidden="true"
+                                        >
+                                          <CheckIcon className="h-3 w-3 text-white items-center" />
+                                        </span>
+                                        <RadioGroup.Label
+                                          as="span"
+                                          className={classNames(
+                                            checked
+                                              ? 'text-indigo-900'
+                                              : 'text-gray-900',
+                                            'ml-3 font-medium'
+                                          )}
+                                        >
+                                          {plan.name}
+                                        </RadioGroup.Label>
+                                      </span>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className="ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-center"
+                                      >
+                                        <span
+                                          className={classNames(
+                                            checked
+                                              ? 'text-indigo-900'
+                                              : 'text-gray-900',
+                                            'font-medium'
+                                          )}
+                                        >
+                                          {plan.priceMonthly}
+                                        </span>{' '}
+                                      </RadioGroup.Description>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className={classNames(
+                                          checked
+                                            ? 'text-indigo-700'
+                                            : 'text-gray-500',
+                                          'ml-6 pl-1 text-sm w-full md:ml-0 md:pl-0 md:text-right'
+                                        )}
+                                      >
+                                        {plan.limit}
+                                      </RadioGroup.Description>
+                                      <RadioGroup.Description
+                                        as="span"
+                                        className={classNames(
+                                          checked
+                                            ? 'text-indigo-700'
+                                            : 'text-gray-500',
+                                          'ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-right'
+                                        )}
+                                      >
+                                        {plan.measure}
+                                      </RadioGroup.Description>
+                                    </>
+                                  )}
+                                </RadioGroup.Option>
+                              ))}
+                            </div>
+                          </RadioGroup>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
                     <RadioGroup value={selected} onChange={setSelected}>
                       <div className="relative -space-y-px rounded-md bg-white">
                         {plans[params.fnId].map((plan, planIdx) => (
@@ -322,7 +705,6 @@ export default function Example() {
                 </div>
                 <div className="mt-4">
                   {params.fnId === 'Inventory' && <SimulationChart />}
-
                   {params.fnId === 'Demand Planning' && <DemandDashboard />}
                   {params.fnId === 'Logistics' && <LogisticsDashboard />}
                 </div>

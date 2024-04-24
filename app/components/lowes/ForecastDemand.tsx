@@ -22,7 +22,7 @@ const ragCellClassRules: CellClassRules = {
 }
 
 const cellStyle = (params: CellClassParams) => {
-  console.log(params)
+  // console.log(params)
   const color = numberToColor(params)
   return {
     backgroundColor: color,

@@ -128,7 +128,7 @@ export default function ExpenseAnalysisRoute() {
 
   const emptyStyles = { background: '#ef4444' }
   const progressStyles = { background: '#22c55e' }
-  console.log(kpiService_m)
+  // console.log(kpiService_m)
 
   return (
     <>
