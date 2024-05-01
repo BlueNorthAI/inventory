@@ -3,9 +3,23 @@ import { Toaster } from "react-hot-toast";
 
 import { Header } from "~/components/header-inv";
 import { Providers } from "~/components/providers";
-import { SidebarDesktop } from "~/components/sidebar-desktop-snop";
+import { SidebarDesktop } from "~/components/sidebar-desktop-inv";
+import type { LinksFunction } from '@remix-run/node'
+import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
+import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
+import customAgStyles from '~/styles/custom-grid-styles.css?url'
+import aggrid from '~/styles/aggrid.css?url'
+import tailwindStyles from '~/styles/tailwind.css?url'
 
-export default function Index() {
+
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: tailwindStyles },
+  { rel: 'stylesheet', href: gridCommStyles },
+  { rel: 'stylesheet', href: themeStyles },
+  { rel: 'stylesheet', href: customAgStyles },
+  { rel: 'stylesheet', href: aggrid },
+]
+export default function InventoryIndex() {
   return (
     <div className="min-h-screen flex flex-col">
       <Toaster />

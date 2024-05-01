@@ -12,7 +12,7 @@ export async function loader({ request }) {
     // Fetching the subset of records for the specified page, including related dimension_master data
     // const data = await getLevelMaster();
     const data = generatedInventoryData;
-    console.log(data)
+
     // Fetching the total count of records in level_master
     // const totalCount = await prisma.level_master.count();
 

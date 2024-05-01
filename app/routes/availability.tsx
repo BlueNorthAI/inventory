@@ -3,9 +3,9 @@ import { Toaster } from "react-hot-toast";
 
 import { Header } from "~/components/header-inv";
 import { Providers } from "~/components/providers";
-import { SidebarDesktop } from "~/components/sidebar-desktop-snop";
+import { SidebarDesktop } from "~/components/sidebar-desktop-ava";
 
-export default function Index() {
+export default function AvailabilityIndex() {
   return (
     <div className="min-h-screen flex flex-col">
       <Toaster />
@@ -19,12 +19,12 @@ export default function Index() {
         <main className="flex flex-col flex-1">
           <div className="relative flex flex-1 overflow-hidden">
             <SidebarDesktop />
-            <div className="group flex-1  overflow-auto pl-0 animate-in duration-300 ease-in-out peer-[[data-state=open]]:lg:pl-[80px] peer-[[data-state=open]]:xl:pl-[80px] bg-slate-50" >
+            <div className="group flex-1  overflow-auto pl-0 animate-in duration-300 ease-in-out peer-[[data-state=open]]:lg:pl-[80px] peer-[[data-state=open]]:xl:pl-[80px] bg-slate-50">
               <Outlet />
             </div>
           </div>
         </main>
       </Providers>
     </div>
-  );
+  )
 }

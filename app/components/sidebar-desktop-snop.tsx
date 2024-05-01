@@ -6,10 +6,6 @@ import {
   BarChartIcon,
   ExclamationTriangleIcon,
   LoopIcon,
-  CameraIcon,
-  Component1Icon,
-  RocketIcon,
-  ImageIcon
 } from '@radix-ui/react-icons'
 import { NavLink } from '@remix-run/react'
 import { Separator } from './ui/separator'
@@ -17,32 +13,31 @@ import * as React from 'react'
 
 import { useSidebar } from '~/lib/hooks/use-sidebar'
 import { cn } from '~/lib/utils'
-import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
-function classNames(...classes: string[]) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 const menus = [
   {
     id: 1,
-    name: 'Inventory Optimizer',
-    to: '/inventory/inventoryopt',
+    name: 'Master Data',
+    to: '/snop/master',
     icon: CubeIcon,
-    current: true,
+    current: false,
   },
 
   {
     id: 2,
-    name: 'Current Inventory',
-    to: '/inventory/current',
+    name: 'S&OP Process',
+    to: '/snop/process',
     icon: LoopIcon,
     current: false,
   },
   {
     id: 3,
-    name: 'Recommendation',
-    to: '/inventory/recommend',
+    name: 'Exceptions',
+    to: '/snop/incidents',
     icon: ExclamationTriangleIcon,
     current: false,
   },
@@ -51,68 +46,49 @@ const menus = [
 const senariomenus = [
   {
     id: 4,
-    name: 'Root Cause Analysis',
-    to: '/inventory/flowchart',
+    name: 'Capacity Optimizer',
+    to: '/snop/scenarioanalysis',
     icon: BarChartIcon,
     current: false,
   },
   {
     id: 5,
-    name: 'Backlog Analyzer',
-    to: '/inventory/block',
+    name: 'Scenario Planning',
+    to: '/snop/scenarioplan',
     icon: MixIcon,
-    current: false,
+    current: true,
   },
   {
     id: 6,
-    name: 'SKU Service',
-    to: '/inventory/skuservice',
+    name: 'Optimizer',
+    to: '/snop/optimize',
     icon: PieChartIcon,
-    current: false,
+    current: true,
   },
   {
     id: 7,
-    name: 'Inventory On Hand',
-    to: '/inventory/onhand',
+    name: 'Scenario Planning',
+    to: '/snop/scenario',
     icon: GearIcon,
-    current: false,
+    current: true,
   },
   {
     id: 8,
-    name: 'Inventory Projection',
-    to: '/inventory/invpro',
-    icon: CameraIcon,
-    current: false,
+    name: 'Inventory Optimizer',
+    to: '/snop/inventoryopt',
+    icon: GearIcon,
+    current: true,
   },
-  {
-    id: 9,
-    name: 'Excess-Deficit',
-    to: '/inventory/excess',
-    icon: Component1Icon,
-    current: false,
-  },
-  {
-    id: 10,
-    name: 'Demand Shaping',
-    to: '/inventory/demand',
-    icon: CubeIcon,
-    current: false,
-  },
-  {
-    id: 11,
-    name: 'Redeploy and Balance',
-    to: '/inventory/redeploy',
-    icon: RocketIcon,
-    current: false,
-  },
-  {
-    id: 12,
-    name: 'Simulation',
-    to: '/inventory/simulation',
-    icon: ImageIcon,
-    current: false,
-  },
+  // {
+  //   id: 6,
+  //   name: 'Truck',
+  //   to: '/snop/truck',
+  //   icon: BarChartIcon,
+  //   current: false,
+  // },
 ]
+
+
 
 export interface SidebarProps extends React.ComponentProps<'div'> {
   children: React.ReactNode
@@ -139,8 +115,8 @@ export function SidebarDesktop() {
         <div className="flex flex-col overflow-y-auto">
           <div className="flex-1 mt-4">
             <nav aria-label="Sidebar" className="flex items-center">
-              <div className="static w-full space-y-2 px-2">
-                {senariomenus.map((item) => (
+              <div className="static  w-full space-y-2 px-2 ">
+                {menus.map((item) => (
                   <NavLink
                     to={item.to}
                     key={item.id}
@@ -161,7 +137,7 @@ export function SidebarDesktop() {
                   </NavLink>
                 ))}
                 <Separator className="my-4" />
-                {menus.map((item) => (
+                {senariomenus.map((item) => (
                   <NavLink
                     to={item.to}
                     key={item.id}
