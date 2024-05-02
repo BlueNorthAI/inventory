@@ -34,6 +34,7 @@ import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandato
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import DemandPlanning from '~/components/lowes/DemandPlanning'
 import ConsensusForecast from '~/components/lowes/ConsensusForecast'
+import ForecastDemand from '~/components/lowes/ForecastDemand'
 import { cn } from '~/lib/utils'
 
 
@@ -214,7 +215,7 @@ export default function ProcessIndex() {
               </div>
 
               <div>
-                <DataTable data={tasks} columns={columns} />
+                <ForecastDemand />
               </div>
             </TabsContent>
             {/* <TabsContent value="New">

@@ -1,4 +1,4 @@
-const stationData = [
+export const stationData = [
   { name: 'Sligo' },
   { name: 'Collooney' },
   { name: 'Ballina' },

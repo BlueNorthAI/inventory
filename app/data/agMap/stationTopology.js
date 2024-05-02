@@ -1,5 +1,5 @@
 // https://libguides.ucd.ie/gisguide/FindSpatialData
-const stationTopology = {
+export const stationTopology = {
   type: 'FeatureCollection',
   features: [
     {

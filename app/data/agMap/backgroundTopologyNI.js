@@ -1,5 +1,5 @@
 // https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/countries
-const backgroundTopologyNI = {
+export const backgroundTopologyNI = {
   type: 'FeatureCollection',
   features: [
     {

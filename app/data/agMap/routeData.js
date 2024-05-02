@@ -1,4 +1,4 @@
-const routeData = [
+export const routeData = [
   { name: 'Tipperary-Waterford' },
   { name: 'Kilkenny-Waterford' },
   { name: 'New Ross-Waterford' },

@@ -1,15 +1,15 @@
 import React, {  useState } from 'react'
 
 import { AgChartsReact } from 'ag-charts-react'
-import backgroundTopology from './backgroundTopology'
-import backgroundTopologyNI from './backgroundTopologyNI'
-import routeData from './routeData'
-import routeTopology from './routeTopology'
-import stationData from './stationData'
-import stationTopology from './stationTopology'
+import { backgroundTopology } from './backgroundTopology'
+import {backgroundTopologyNI} from './backgroundTopologyNI'
+import {routeData} from './routeData'
+import {routeTopology} from './routeTopology'
+import {stationData} from './stationData'
+import {stationTopology} from './stationTopology'
 import 'ag-charts-enterprise'
 
-export function AgMap() {
+export default function AgMap() {
   const [options, setOptions] = useState({
     series: [
       {
