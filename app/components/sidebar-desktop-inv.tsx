@@ -9,8 +9,10 @@ import {
   CameraIcon,
   Component1Icon,
   RocketIcon,
-  ImageIcon
+  ImageIcon,
+  ViewGridIcon
 } from '@radix-ui/react-icons'
+import { ChartBarSquareIcon } from '@heroicons/react/24/outline'
 import { NavLink } from '@remix-run/react'
 import { Separator } from './ui/separator'
 import * as React from 'react'
@@ -51,67 +53,89 @@ const menus = [
 const senariomenus = [
   {
     id: 4,
-    name: 'Root Cause Analysis',
-    to: '/inventory/flowchart',
-    icon: BarChartIcon,
+    name: 'Dashboard',
+    to: '/inventory/dashboard',
+    icon: CubeIcon,
     current: false,
   },
   {
     id: 5,
-    name: 'Backlog Analyzer',
-    to: '/inventory/block',
-    icon: MixIcon,
+    name: 'Events',
+    to: '/inventory/meeting',
+    icon: ViewGridIcon,
+    current: false,
+  },
+  {
+    id: 9,
+    name: 'Inventory On Hand',
+    to: '/inventory/onhand',
+    icon: Component1Icon,
+    current: false,
+  },
+  {
+    id: 15,
+    name: 'Scenario Analyzer',
+    to: '/inventory/scenarioanalysis',
+    icon: BarChartIcon,
     current: false,
   },
   {
     id: 6,
+    name: 'Root Cause Analysis',
+    to: '/inventory/flowchart',
+    icon: RocketIcon,
+    current: false,
+  },
+  {
+    id: 7,
+    name: 'Backlog Analyzer',
+    to: '/inventory/back',
+    icon: MixIcon,
+    current: false,
+  },
+  {
+    id: 8,
     name: 'SKU Service',
     to: '/inventory/skuservice',
     icon: PieChartIcon,
     current: false,
   },
-  {
-    id: 7,
-    name: 'Inventory On Hand',
-    to: '/inventory/onhand',
-    icon: GearIcon,
-    current: false,
-  },
-  {
-    id: 8,
-    name: 'Inventory Projection',
-    to: '/inventory/invpro',
-    icon: CameraIcon,
-    current: false,
-  },
-  {
-    id: 9,
-    name: 'Excess-Deficit',
-    to: '/inventory/excess',
-    icon: Component1Icon,
-    current: false,
-  },
-  {
-    id: 10,
-    name: 'Demand Shaping',
-    to: '/inventory/demand',
-    icon: CubeIcon,
-    current: false,
-  },
-  {
-    id: 11,
-    name: 'Redeploy and Balance',
-    to: '/inventory/redeploy',
-    icon: RocketIcon,
-    current: false,
-  },
-  {
-    id: 12,
-    name: 'Simulation',
-    to: '/inventory/simulation',
-    icon: ImageIcon,
-    current: false,
-  },
+
+  // {
+  //   id: 10,
+  //   name: 'Inventory Projection',
+  //   to: '/inventory/invpro',
+  //   icon: CameraIcon,
+  //   current: false,
+  // },
+  // {
+  //   id: 11,
+  //   name: 'Excess-Deficit',
+  //   to: '/inventory/excess',
+  //   icon: Component1Icon,
+  //   current: false,
+  // },
+  // {
+  //   id: 12,
+  //   name: 'Demand Shaping',
+  //   to: '/inventory/demand',
+  //   icon: CubeIcon,
+  //   current: false,
+  // },
+  // {
+  //   id: 13,
+  //   name: 'Redeploy and Balance',
+  //   to: '/inventory/redeploy',
+  //   icon: RocketIcon,
+  //   current: false,
+  // },
+  // {
+  //   id: 14,
+  //   name: 'Simulation',
+  //   to: '/inventory/simulation',
+  //   icon: ImageIcon,
+  //   current: false,
+  // },
 ]
 
 export interface SidebarProps extends React.ComponentProps<'div'> {
@@ -153,7 +177,7 @@ export function SidebarDesktop() {
                       )
                     }
                   >
-                    <item.icon className="h-6 w-6" aria-hidden="true" />
+                    <item.icon className="h-4 w-4" aria-hidden="true" />
 
                     <h2 className="absolute left-48 z-10 w-0 overflow-hidden whitespace-pre rounded-md bg-sky-50 px-0 py-0 font-semibold text-sky-500 drop-shadow-lg group-hover:left-14 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ">
                       {item?.name}
@@ -174,7 +198,7 @@ export function SidebarDesktop() {
                       )
                     }
                   >
-                    <item.icon className="h-6 w-6" aria-hidden="true" />
+                    <item.icon className="h-4 w-4" aria-hidden="true" />
 
                     <h2 className="absolute left-48 z-10 w-0 overflow-hidden whitespace-pre rounded-md bg-sky-50 px-0 py-0 font-semibold text-sky-500 drop-shadow-lg group-hover:left-14 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ">
                       {item?.name}

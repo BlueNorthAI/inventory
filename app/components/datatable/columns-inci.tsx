@@ -194,7 +194,7 @@ export const columns: ColumnDef<Task>[] = [
           to={`/snop/incidents/${row.original.id}/${row.original.label}`}
           className="flex space-x-2"
         >
-          <Button variant="outline">Open Exception</Button>
+          <Button variant="outline">Open Event</Button>
         </Link>
       )
     },

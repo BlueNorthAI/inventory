@@ -43,6 +43,7 @@ const menus = [
 ]
 
 const senariomenus = [
+  
   {
     id: 4,
     name: 'Capacity Optimizer',

@@ -404,7 +404,7 @@ export default function Flowchart() {
       <div className="m-4">
         <div className="w-100 my-2 flex  justify-between p-4 rounded-lg border bg-white">
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-sky-700 to-blue-700 font-display">
-            Slow Moving Inventory Optimizer
+            Availability Analytics
           </h2>
 
           <div className="flex items-center justify-end"></div>
@@ -417,7 +417,7 @@ export default function Flowchart() {
           </div>
         </div>
 
-        <div className="border my-2  rounded-lg">
+        <div className="border  rounded-lg">
           <ReactFlow
             nodes={nodes}
             edges={edges}

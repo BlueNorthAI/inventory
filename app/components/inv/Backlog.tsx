@@ -116,19 +116,19 @@ export default function NetworkInventory() {
 
   return (
     <>
-      <div className="mt-2">
-        <div className=" text-blue-900 rounded-lg border">
+     
+        <div className=" text-blue-900 rounded-b-lg border">
           <div className="space-y-1 p-2 ">
             {/* <CardTitle className="text-2xl text-center">
               Product Lifecycle and Inv Distribution
             </CardTitle> */}
-            <div className="border-b" />
+            {/* <div className="border-b" /> */}
           </div>
           <div className="h-[450px]">
             <AgChartsReact options={stackBar} />
           </div>
         </div>
-      </div>
+   
     </>
   )
 }

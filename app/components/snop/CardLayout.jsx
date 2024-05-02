@@ -17,7 +17,7 @@ export default function CardLayout({ kpiData }) {
       <div className="h-full">
         <ul
       
-          className="mx-4 my-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 "
+          className="my-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 "
         >
           {kpiData.map((kpi) => (
             <li

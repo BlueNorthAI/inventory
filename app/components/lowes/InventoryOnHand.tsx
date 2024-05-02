@@ -322,7 +322,7 @@ export default function InventoryOnHand() {
   }, [fetcher.data])
 
   return (
-    <div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
+    <div className="ag-theme-quartz h-[750px] w-full overflow-y-auto" >
       <Form method="post">
         <AgGridReact
           ref={gridRef}

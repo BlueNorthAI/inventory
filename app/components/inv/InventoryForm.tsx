@@ -41,15 +41,14 @@ function DemoContainer({
 }
 
 // eslint-disable-next-line react/prop-types
-export default function ScenarioForm({ truckData }) {
-
+export default function InventoryForm({ truckData }) {
   return (
-    <div className="m-2">
+
       <Form method="post">
-        <div className="bg-white mx-2 shadow-md rounded-b-lg">
+        <div className="bg-white shadow-md rounded-b-lg">
           <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
             <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-              <div className="p-2">Capacity & Inventory Optimizer</div>
+              <div className="p-2">Inventory Scenario Analyzer</div>
             </div>
           </div>
           <div className="mt-2 items-start justify-center gap-6 rounded-lg p-4 md:grid lg:grid-cols-2 xl:grid-cols-2">
@@ -110,79 +109,45 @@ export default function ScenarioForm({ truckData }) {
                         </h1>
                       </CardTitle>
 
-                      <Tabs defaultValue="Capacity" className="mt-2">
-                        <TabsList className="">
-                          <TabsTrigger className="" value="Capacity">
-                            Capacity
-                          </TabsTrigger>
-                          <TabsTrigger className="" value="Demand">
-                            Demand
-                          </TabsTrigger>
-                          <TabsTrigger className="" value="Logistics">
-                            Logistics
-                          </TabsTrigger>
-                          <TabsTrigger value="Inventory" className="relative ">
-                            Inventory
-                          </TabsTrigger>
-                        </TabsList>
-                        <div className="my-2 border-b" />
-                        <TabsContent value="Inventory">
-                          <div>
-                            <CardContent className="grid gap-4">
-                              <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                {stats.map((item) => (
-                                  <div
-                                    key={item.name}
-                                    className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
-                                  >
-                                    <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
-                                      {item.stat}
-                                    </dd>
-                                    <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
-                                      {item.name}
-                                    </dt>
-                                  </div>
-                                ))}
-                              </dl>
+                      <div className="my-2 border-b" />
 
-                              <ul className="grid grid-cols-1 gap-2 mt-2">
-                                {kpiService_m.map((kpi) => (
-                                  <li
-                                    key={kpi.Name}
-                                    className="col-span-1 flex flex-col divide-y divide-white"
-                                  >
-                                    <div className="relative flex flex-1 flex-col p-2">
-                                      <div className="flex items-baseline gap-2">
-                                        <h3 className="text-base font-medium text-gray-900">
-                                          {kpi.Name}
-                                        </h3>
-                                      </div>
-                                      <div className="mt-2">
-                                        {kpi.container}
-                                      </div>
-                                    </div>
-                                  </li>
-                                ))}
-                              </ul>
-                            </CardContent>
-                          </div>
-                        </TabsContent>
-                        <TabsContent value="Capacity">
-                          <div>
-                            <CapacityChart />
-                          </div>
-                        </TabsContent>
-                        <TabsContent value="Demand">
-                          <div>
-                            <DemandHeatChart />
-                          </div>
-                        </TabsContent>
-                        <TabsContent value="Logistics">
-                          <div>
-                            <LogisticsChart />
-                          </div>
-                        </TabsContent>
-                      </Tabs>
+                      <div>
+                        <CardContent className="grid gap-4">
+                          <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            {stats.map((item) => (
+                              <div
+                                key={item.name}
+                                className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
+                              >
+                                <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
+                                  {item.stat}
+                                </dd>
+                                <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
+                                  {item.name}
+                                </dt>
+                              </div>
+                            ))}
+                          </dl>
+
+                          <ul className="grid grid-cols-1 gap-2 mt-2">
+                            {kpiService_m.map((kpi) => (
+                              <li
+                                key={kpi.Name}
+                                className="col-span-1 flex flex-col divide-y divide-white"
+                              >
+                                <div className="relative flex flex-1 flex-col p-2">
+                                  <div className="flex items-baseline gap-2">
+                                    <h3 className="text-base font-medium text-gray-900">
+                                      {kpi.Name}
+                                    </h3>
+                                  </div>
+                                  <div className="mt-2">{kpi.container}</div>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </div>
                     </div>
                   </CardHeader>
                 </Card>
@@ -191,6 +156,6 @@ export default function ScenarioForm({ truckData }) {
           </div>
         </div>
       </Form>
-    </div>
+  
   )
 }

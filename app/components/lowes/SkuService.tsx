@@ -55,10 +55,10 @@ import {
 
 const inventory = [
   {
-    category: 'FFs Respules (Suspension)',
+    category: 'SKU Group 1',
     items: [
       {
-        SapName: 'Budecort Rsepu 0.5',
+        SapName: 'SKU 1',
         SapCode: '32006820',
         Stn1: 'bg-green-500',
         Stn2: 'bg-green-400',
@@ -72,10 +72,10 @@ const inventory = [
     ],
   },
   {
-    category: 'Liquids',
+    category: 'SKU Group 2',
     items: [
       {
-        SapName: 'Axalin 100ml New Formulation',
+        SapName: 'SKU 2',
         SapCode: '32006766',
         Stn1: 'bg-green-500',
         Stn2: 'bg-green-400',
@@ -89,7 +89,7 @@ const inventory = [
     ],
   },
   {
-    category: 'Tablets',
+    category: 'SKU Group 3',
     items: [
       {
         SapName: 'Sku 1',
@@ -163,7 +163,7 @@ export default function LogisticsChart() {
                       {index === 0 && (
                         <TableCell
                           rowSpan={category.items.length}
-                          className="font-medium"
+                          className="font-medium min-w-[120px]"
                         >
                           {category.category}
                         </TableCell>

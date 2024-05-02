@@ -13,11 +13,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '~/components/ui/tooltip'
-
-import { type LinksFunction } from '@remix-run/node'
-import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
-import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
-import Backlog from '~/components/inv/Backlog'
+import CardLayout from '~/components/snop/CardLayout'
+import { kpiService_m } from '~/data/dashboard/inventoryData'
 
 export function Icontooltip() {
   return (
@@ -87,18 +84,14 @@ export function Icontooltip() {
   )
 }
 
-export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: gridCommStyles },
-  { rel: 'stylesheet', href: themeStyles },
-]
 
 export default function Flowchart() {
   return (
     <>
       <div className="m-4">
-        <div className="w-100 m-2 flex  justify-between p-4 rounded-lg border bg-white">
+        <div className="w-100 my-2 flex  justify-between p-4 rounded-lg border bg-white">
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-sky-700 to-blue-700 font-display">
-            Slow Moving Inventory Optimizer
+            Availability Analytics
           </h2>
 
           <div className="flex items-center justify-end"></div>
@@ -106,12 +99,16 @@ export default function Flowchart() {
 
         <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
           <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-            <div className="p-2">Backlog Analyzer</div>
+            <div className="p-2">Inventory Dashboard</div>
             <Icontooltip />
           </div>
         </div>
+
         <div>
-          <Backlog />
+          {' '}
+          <main>
+            <CardLayout kpiData={kpiService_m} />
+          </main>
         </div>
       </div>
     </>

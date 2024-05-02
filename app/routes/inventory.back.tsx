@@ -1,4 +1,3 @@
-import React, { useCallback } from 'react'
 import { Button } from '~/components/ui/button'
 
 import { PrinterIcon } from '@heroicons/react/24/outline'
@@ -15,21 +14,11 @@ import {
   TooltipTrigger,
 } from '~/components/ui/tooltip'
 
-import { json, type LinksFunction } from '@remix-run/node'
+import { type LinksFunction } from '@remix-run/node'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
-import ReactFlow, {
-  useNodesState,
-  useEdgesState,
-  addEdge,
-  Controls,
-  MarkerType,
-} from 'reactflow'
+import Backlog from '~/components/inv/Backlog'
 
-import 'reactflow/dist/base.css'
-
-
-import Skuservice from '~/components/lowes/SkuService'
 export function Icontooltip() {
   return (
     <div className="m-2 space-x-1">
@@ -104,7 +93,6 @@ export const links: LinksFunction = () => [
 ]
 
 export default function Flowchart() {
-
   return (
     <>
       <div className="m-4">
@@ -116,14 +104,14 @@ export default function Flowchart() {
           <div className="flex items-center justify-end"></div>
         </div>
 
-        <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-          <div className="flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-            <div className="p-2">Service-Prediction</div>
+        <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500  p-0.5">
+          <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+            <div className="p-2">Backlog Analyzer</div>
             <Icontooltip />
           </div>
         </div>
         <div>
-          <Skuservice />
+          <Backlog />
         </div>
       </div>
     </>

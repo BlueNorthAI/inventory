@@ -42,6 +42,25 @@ const data = [
     measure: '$400,000',
   },
 ]
+const rebalancedata = [
+  {
+    name: 'Move 475 units from DC Atlanta to DC Dallas',
+    priceMonthly: '$6,500',
+    priceYearly: '66000',
+    limit: '$168,000',
+    measure: '$700,000',
+  },
+]
+const shapedata = [
+  {
+    name: 'Consistent under-forecasting observed for SKU 1234',
+    priceMonthly: 0.75,
+    priceYearly: 0.25,
+    limit: '$168,000',
+    measure: '$700,000',
+  },
+]
+
 const plans = {
   'Demand Planning': [
     {
@@ -235,7 +254,7 @@ export default function Example() {
                           <div className="mx-2 flex justify-between  w-full ">
                             <div className="flex items-center space-x-2">
                               <span className="text-base font-semibold">
-                                Add Capacity
+                                Increase Supply
                               </span>
                             </div>
                             <div className="flex items-center space-x-2">
@@ -344,16 +363,13 @@ export default function Example() {
                       </AccordionItem>
                       <AccordionItem value="item-2">
                         <AccordionTrigger>
-                          {' '}
                           <div className="mx-2 flex justify-between  w-full ">
                             <div className="flex items-center space-x-2">
-                              <ListBulletIcon className="h-4 w-4" />
                               <span className="text-base font-semibold">
-                                Add Capacity
+                                Rebalance Inventory
                               </span>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <span>Actions 2</span>
                               <Button className={undefined}>Accept</Button>
                               <ArchiveIcon className="h-4 w-4" />
                               <Pencil1Icon className="h-4 w-4" />
@@ -364,7 +380,7 @@ export default function Example() {
                         <AccordionContent>
                           <RadioGroup value={selected} onChange={setSelected}>
                             <div className="relative -space-y-px rounded-md bg-white">
-                              {plans[params.fnId].map((plan, planIdx) => (
+                              {rebalancedata.map((plan, planIdx) => (
                                 <RadioGroup.Option
                                   key={plan.name}
                                   value={plan}
@@ -459,16 +475,13 @@ export default function Example() {
                       </AccordionItem>
                       <AccordionItem value="item-3">
                         <AccordionTrigger>
-                          {' '}
                           <div className="mx-2 flex justify-between  w-full ">
                             <div className="flex items-center space-x-2">
-                              <ListBulletIcon className="h-4 w-4" />
                               <span className="text-base font-semibold">
-                                Add Capacity
+                                Shape Demand
                               </span>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <span>Actions 2</span>
                               <Button className={undefined}>Accept</Button>
                               <ArchiveIcon className="h-4 w-4" />
                               <Pencil1Icon className="h-4 w-4" />
@@ -479,7 +492,7 @@ export default function Example() {
                         <AccordionContent>
                           <RadioGroup value={selected} onChange={setSelected}>
                             <div className="relative -space-y-px rounded-md bg-white">
-                              {plans[params.fnId].map((plan, planIdx) => (
+                              {shapedata.map((plan, planIdx) => (
                                 <RadioGroup.Option
                                   key={plan.name}
                                   value={plan}
@@ -573,7 +586,7 @@ export default function Example() {
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
-                    <RadioGroup value={selected} onChange={setSelected}>
+                    {/* <RadioGroup value={selected} onChange={setSelected}>
                       <div className="relative -space-y-px rounded-md bg-white">
                         {plans[params.fnId].map((plan, planIdx) => (
                           <RadioGroup.Option
@@ -665,7 +678,7 @@ export default function Example() {
                           </RadioGroup.Option>
                         ))}
                       </div>
-                    </RadioGroup>
+                    </RadioGroup> */}
                   </div>
                   <div className="">
                     <div className=" py-2">

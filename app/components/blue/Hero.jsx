@@ -3,7 +3,7 @@ import { HeroBackground } from "./HeroBackground";
 import blurCyanImage from "../../images/blur-cyan.png";
 import blurIndigoImage from "../../images/blur-indigo.png";
 import Cards from "./Cards";
-
+import { Link } from '@remix-run/react'
 
 export function Hero() {
   return (
@@ -27,9 +27,16 @@ export function Hero() {
                 Execution
               </p>
               <div className="mt-8 flex justify-center gap-4 ">
-                <Button href="/home">Get started</Button>
-                <Button href="/" variant="secondary">
+                {/* <Button href="/home">Get started</Button> */}
+
+                {/* <Button href="/" variant="secondary">
                   Generative AI Capabilities
+                </Button> */}
+                <Button variant="secondary" to="/snop/master">
+                  Sales & Operation Planning
+                </Button>
+                <Button>
+                  <Link to="/inventory/dashboard">Availability Analytics</Link>
                 </Button>
               </div>
             </div>
@@ -60,5 +67,5 @@ export function Hero() {
         <Cards />
       </div>
     </div>
-  );
+  )
 }

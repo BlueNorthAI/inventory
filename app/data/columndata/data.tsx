@@ -80,7 +80,7 @@ export const statuses = [
   },
   {
     value: 'todo',
-    label: 'Open Exception',
+    label: 'Pending',
     icon: CircleIcon,
     textClr: 'text-indigo-500',
   },

@@ -1,5 +1,5 @@
 // import WrapperGrid from '~/kendo/grid/WrapperGrid'
-import { carData } from "~/data/dashboard/carData.js";
+
 import WrapperMultiAreaChart from "~/kendo/charts/area/WrapperAreaChart";
 import WrapperMultiLineChart from "~/kendo/charts/line/WrapperLineChart";
 import WrapperMultiBarChart from "~/kendo/charts/bar/WrapperBarChart";
@@ -42,7 +42,7 @@ export const kpiService_m = [
     TargetAch: 83,
     container: <WrapperPieChart series={handbalance_m} />,
     status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    Analyze: "/inventory/analysis/inventoryAnalysis",
   },
   {
     Name: "Avg Inventory Valuation",
@@ -56,7 +56,7 @@ export const kpiService_m = [
       />
     ),
     status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    Analyze: "/inventory/analysis/inventoryAnalysis",
   },
   {
     Name: "MAPE",
@@ -70,7 +70,7 @@ export const kpiService_m = [
       />
     ),
     status: "On Track",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    Analyze: "/inventory/analysis/inventoryAnalysis",
   },
   {
     Name: "Unit Cost",
@@ -84,7 +84,7 @@ export const kpiService_m = [
       />
     ),
     status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    Analyze: "/inventory/analysis/invcostAnalysis",
   },
   {
     Name: "Resource Cost",
@@ -98,7 +98,7 @@ export const kpiService_m = [
       />
     ),
     status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    Analyze: "/inventory/analysis/invcostAnalysis",
   },
   {
     Name: "Overhead Cost",
@@ -112,7 +112,7 @@ export const kpiService_m = [
       />
     ),
     status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    Analyze: "/inventory/analysis/invcostAnalysis",
   },
   {
     Name: "Material Cost",
@@ -126,7 +126,7 @@ export const kpiService_m = [
       />
     ),
     status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    Analyze: "/inventory/analysis/invcostAnalysis",
   },
   {
     Name: "Inventory Turns",
@@ -140,24 +140,24 @@ export const kpiService_m = [
       />
     ),
     status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    Analyze: "/inventory/analysis/inventoryAnalysis",
   },
 ];
 
 export const kpiService_q = [
   {
-    Name: "On Hand Balance",
-    Value: "$8.46B",
-    Trend: "up",
+    Name: 'On Hand Balance',
+    Value: '$8.46B',
+    Trend: 'up',
     TargetAch: 83,
     container: <WrapperPieChart series={handbalance_m} />,
-    status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    status: 'Above Target',
+    Analyze: '/inventory/analysis/inventoryAnalysis',
   },
   {
-    Name: "Avg Inventory Valuation",
-    Value: "$233.57M",
-    Trend: "up",
+    Name: 'Avg Inventory Valuation',
+    Value: '$233.57M',
+    Trend: 'up',
     TargetAch: 80,
     container: (
       <WrapperMultiBarChart
@@ -165,13 +165,13 @@ export const kpiService_q = [
         series={avgInventorySeries_m}
       />
     ),
-    status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    status: 'Below Target',
+    Analyze: '/inventory/analysis/inventoryAnalysis',
   },
   {
-    Name: "MAPE",
-    Value: "24%",
-    Trend: "down",
+    Name: 'MAPE',
+    Value: '24%',
+    Trend: 'down',
     TargetAch: 0,
     container: (
       <WrapperMultiLineChart
@@ -179,13 +179,13 @@ export const kpiService_q = [
         series={mapeSeries_m}
       />
     ),
-    status: "On Track",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    status: 'On Track',
+    Analyze: '/inventory/analysis/inventoryAnalysis',
   },
   {
-    Name: "Unit Cost",
-    Value: "$52.37K",
-    Trend: "down",
+    Name: 'Unit Cost',
+    Value: '$52.37K',
+    Trend: 'down',
     TargetAch: 10,
     container: (
       <WrapperMultiLineChart
@@ -193,13 +193,13 @@ export const kpiService_q = [
         series={unitSeries_m}
       />
     ),
-    status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    status: 'Below Target',
+    Analyze: '/inventory/analysis/invcostAnalysis',
   },
   {
-    Name: "Resource Cost",
-    Value: "$24.94M",
-    Trend: "up",
+    Name: 'Resource Cost',
+    Value: '$24.94M',
+    Trend: 'up',
     TargetAch: 90,
     container: (
       <WrapperMultiAreaChart
@@ -207,13 +207,13 @@ export const kpiService_q = [
         series={resourceSeries_m}
       />
     ),
-    status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    status: 'Above Target',
+    Analyze: '/inventory/analysis/invcostAnalysis',
   },
   {
-    Name: "Overhead Cost",
-    Value: "$2.74M",
-    Trend: "down",
+    Name: 'Overhead Cost',
+    Value: '$2.74M',
+    Trend: 'down',
     TargetAch: 90,
     container: (
       <WrapperMultiLineChart
@@ -221,13 +221,13 @@ export const kpiService_q = [
         series={overheadSeries_m}
       />
     ),
-    status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    status: 'Below Target',
+    Analyze: '/inventory/analysis/invcostAnalysis',
   },
   {
-    Name: "Material Cost",
-    Value: "$4.17B",
-    Trend: "up",
+    Name: 'Material Cost',
+    Value: '$4.17B',
+    Trend: 'up',
     TargetAch: 77,
     container: (
       <WrapperMultiBarChart
@@ -235,13 +235,13 @@ export const kpiService_q = [
         series={materialSeries_m}
       />
     ),
-    status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    status: 'Below Target',
+    Analyze: '/inventory/analysis/invcostAnalysis',
   },
   {
-    Name: "Inventory Turns",
-    Value: "7",
-    Trend: "up",
+    Name: 'Inventory Turns',
+    Value: '7',
+    Trend: 'up',
     TargetAch: 95,
     container: (
       <WrapperMultiBarChart
@@ -249,25 +249,25 @@ export const kpiService_q = [
         series={turnsSeries_m}
       />
     ),
-    status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    status: 'Above Target',
+    Analyze: '/inventory/analysis/inventoryAnalysis',
   },
-];
+]
 
 export const kpiService_y = [
   {
-    Name: "On Hand Balance",
-    Value: "$8.46B",
-    Trend: "up",
+    Name: 'On Hand Balance',
+    Value: '$8.46B',
+    Trend: 'up',
     TargetAch: 83,
     container: <WrapperPieChart series={handbalance_m} />,
-    status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    status: 'Above Target',
+    Analyze: '/inventory/analysis/inventoryAnalysis',
   },
   {
-    Name: "Avg Inventory Valuation",
-    Value: "$233.57M",
-    Trend: "up",
+    Name: 'Avg Inventory Valuation',
+    Value: '$233.57M',
+    Trend: 'up',
     TargetAch: 80,
     container: (
       <WrapperMultiBarChart
@@ -275,13 +275,13 @@ export const kpiService_y = [
         series={avgInventorySeries_m}
       />
     ),
-    status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    status: 'Below Target',
+    Analyze: '/inventory/analysis/inventoryAnalysis',
   },
   {
-    Name: "MAPE",
-    Value: "24%",
-    Trend: "down",
+    Name: 'MAPE',
+    Value: '24%',
+    Trend: 'down',
     TargetAch: 0,
     container: (
       <WrapperMultiLineChart
@@ -289,13 +289,13 @@ export const kpiService_y = [
         series={mapeSeries_m}
       />
     ),
-    status: "On Track",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    status: 'On Track',
+    Analyze: '/inventory/analysis/inventoryAnalysis',
   },
   {
-    Name: "Unit Cost",
-    Value: "$52.37K",
-    Trend: "down",
+    Name: 'Unit Cost',
+    Value: '$52.37K',
+    Trend: 'down',
     TargetAch: 10,
     container: (
       <WrapperMultiLineChart
@@ -303,13 +303,13 @@ export const kpiService_y = [
         series={unitSeries_m}
       />
     ),
-    status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    status: 'Below Target',
+    Analyze: '/inventory/analysis/invcostAnalysis',
   },
   {
-    Name: "Resource Cost",
-    Value: "$24.94M",
-    Trend: "up",
+    Name: 'Resource Cost',
+    Value: '$24.94M',
+    Trend: 'up',
     TargetAch: 90,
     container: (
       <WrapperMultiAreaChart
@@ -317,13 +317,13 @@ export const kpiService_y = [
         series={resourceSeries_m}
       />
     ),
-    status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    status: 'Above Target',
+    Analyze: '/inventory/analysis/invcostAnalysis',
   },
   {
-    Name: "Overhead Cost",
-    Value: "$2.74M",
-    Trend: "down",
+    Name: 'Overhead Cost',
+    Value: '$2.74M',
+    Trend: 'down',
     TargetAch: 90,
     container: (
       <WrapperMultiLineChart
@@ -331,13 +331,13 @@ export const kpiService_y = [
         series={overheadSeries_m}
       />
     ),
-    status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    status: 'Below Target',
+    Analyze: '/inventory/analysis/invcostAnalysis',
   },
   {
-    Name: "Material Cost",
-    Value: "$4.17B",
-    Trend: "up",
+    Name: 'Material Cost',
+    Value: '$4.17B',
+    Trend: 'up',
     TargetAch: 77,
     container: (
       <WrapperMultiBarChart
@@ -345,13 +345,13 @@ export const kpiService_y = [
         series={materialSeries_m}
       />
     ),
-    status: "Below Target",
-    Analyze: "/snop/dashboard/analysis/invcostAnalysis",
+    status: 'Below Target',
+    Analyze: '/inventory/analysis/invcostAnalysis',
   },
   {
-    Name: "Inventory Turns",
-    Value: "7",
-    Trend: "up",
+    Name: 'Inventory Turns',
+    Value: '7',
+    Trend: 'up',
     TargetAch: 95,
     container: (
       <WrapperMultiBarChart
@@ -359,7 +359,7 @@ export const kpiService_y = [
         series={turnsSeries_m}
       />
     ),
-    status: "Above Target",
-    Analyze: "/snop/dashboard/analysis/inventoryAnalysis",
+    status: 'Above Target',
+    Analyze: '/inventory/analysis/inventoryAnalysis',
   },
-];
+]
