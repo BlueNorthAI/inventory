@@ -37,38 +37,32 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 export default function Agmap() {
   const [position, setPosition] = React.useState('bottom')
 
   return (
     <div>
-
       <div className="m-4">
-
         <DemoContainer>
           <Tabs defaultValue="network" className="">
             <TabsList className="">
               <TabsTrigger value="network" className="relative uppercase">
-                Network
+                Overall Performance
               </TabsTrigger>
-              <TabsTrigger className="" value="dc">
-                DC
+              <TabsTrigger className="uppercase" value="dc">
+                Order
               </TabsTrigger>
               <TabsTrigger className="uppercase" value="order">
-                ORDER MANAGEMENT
+                Service
               </TabsTrigger>
-              <TabsTrigger className="" value="Metrics">
-                SKU
+              <TabsTrigger className="uppercase" value="Metrics">
+                Inventory
               </TabsTrigger>
-              <TabsTrigger className="" value="Attributes">
-                SUPPLY MANAGEMENT
+              <TabsTrigger className="uppercase" value="Attributes">
+                Cost
               </TabsTrigger>
-              <TabsTrigger className="" value="Attributes">
-                CARRIER
-              </TabsTrigger>
-              <TabsTrigger className="" value="Attributes">
-                EQUIPEMENT
+              <TabsTrigger className="uppercase" value="Attributes">
+                Finance
               </TabsTrigger>
               <TabsTrigger className="uppercase" value="Attributes">
                 Labor
@@ -151,6 +145,9 @@ export default function Agmap() {
                           onValueChange={setPosition}
                         >
                           <DropdownMenuRadioItem value="top">
+                            Daily
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="bottom">
                             Weekly
                           </DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="bottom">

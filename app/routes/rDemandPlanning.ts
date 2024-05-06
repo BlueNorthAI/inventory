@@ -1,6 +1,4 @@
 import { json } from '@remix-run/node'
-import { prisma } from '~/db.server'
-import { getLevelMaster } from '~/models/snop.server'
 
 export async function loader({ request }) {
   console.log('inside loader', request.url)

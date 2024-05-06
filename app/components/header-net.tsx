@@ -1,13 +1,6 @@
-import { Link } from "@remix-run/react";
 import React from "react";
-import { SidebarList } from "~/components/sidebar-list-inv";
-import { Button } from "~/components/ui/button";
-import {
-  IconNextChat,
-  IconSeparator,
-  IconGitHub,
-  IconVercel,
-} from "~/components/ui/icons";
+import clsx from 'clsx'
+import { NavLink,Link, Outlet, useLoaderData, useMatches } from '@remix-run/react'
 import { NavigationMenuLink } from "~/components/ui/navigation-menu";
 import { cn } from "~/lib/utils";
 import { useUser } from "~/utils";
@@ -15,16 +8,6 @@ import { useUser } from "~/utils";
 // import { SidebarMobile } from "./sidebar-mobile";
 import { SidebarToggle } from "./sidebar-toggle-inv";
 
-const navigation = [
-  { name: 'NETWORK', to: 'overview', current: true },
-  { name: 'DC', to: 'demand', current: false },
-  { name: 'ORDER MANAGEMENT', to: 'supply', current: false },
-  { name: 'SKU', to: 'inventory', current: false },
-  { name: 'SUPPLY MANAGEMENT', to: 'spend', current: false },
-  { name: 'CARRIER', to: 'finance', current: false },
-  { name: 'EQUIPMENT', to: 'sales', current: false },
-  { name: 'LABOR', to: 'campaign', current: false },
-]
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -53,6 +36,40 @@ const ListItem = React.forwardRef<
 });
 ListItem.displayName = "ListItem";
 
+const navigation = [
+  { name: 'Network', to: '/network/overall', current: true },
+  { name: 'DC', to: '/network/dc', current: false },
+  { name: 'Order Management', to: '/network/order', current: false },
+  { name: 'SKU', to: '/network/sku', current: false },
+  { name: 'Supply Management', to: '/network/supply', current: false },
+  { name: 'Carrier', to: '/network/carrier', current: false },
+  { name: 'Equipment', to: '/network/equip', current: false },
+  { name: 'Labor', to: '/network/labor', current: false },
+  { name: 'Inventory', to: '/network/inventory', current: false },
+]
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
+function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
+  return (
+    <NavLink
+      to={to}
+      prefetch="intent"
+      className={({ isActive }) =>
+        clsx(
+          'rounded-md px-2 py-2 text-sm font-semibold uppercase',
+          isActive
+            ? 'py-2 bg-sky-500 text-white  bg-opacity-75 border border-sky-500'
+            : 'text-white hover:bg-blue-900 hover:bg-opacity-75'
+        )
+      }
+      aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
+    >
+      {children}
+    </NavLink>
+  )
+}
 function UserOrLogin() {
   // const user = useUser();
   // const user = "shrikanth@bluenorthai.com"
@@ -77,6 +94,23 @@ export function Header() {
           <SidebarToggle />
         </React.Suspense>
       </div>
+
+      <nav className="">
+        <div className="w-full">
+          <div className="flex items-center justify-center">
+            <div className="flex items-center">
+              <div className=" flex items-baseline space-x-4 ">
+                {navigation.map((item) => (
+                  <NavItem to={item.to} key={item.name}>
+                  {item.name}
+                  </NavItem>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       <div className="flex items-center justify-end ">
         <button className="text-white font-semibold  p-1 flex items-center  ">
           <img
@@ -90,5 +124,5 @@ export function Header() {
         </button>
       </div>
     </header>
-  );
+  )
 }

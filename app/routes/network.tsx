@@ -7,7 +7,7 @@ import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import customAgStyles from '~/styles/custom-grid-styles.css?url'
 import aggrid from '~/styles/aggrid.css?url'
 import tailwindStyles from '~/styles/tailwind.css?url'
-import { Header } from "~/components/header-inv";
+import { Header } from "~/components/header-net";
 import { Providers } from "~/components/providers";
 import { SidebarDesktop } from "~/components/sidebar-desktop-snop";
 

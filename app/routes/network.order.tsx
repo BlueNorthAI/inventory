@@ -37,15 +37,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 export default function Agmap() {
   const [position, setPosition] = React.useState('bottom')
 
   return (
     <div>
-
       <div className="m-4">
-
         <DemoContainer>
           <Tabs defaultValue="network" className="">
             <TabsList className="">
