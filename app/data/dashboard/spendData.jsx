@@ -1,5 +1,4 @@
 import WrapperGrid from "~/kendo/grid/WrapperGrid";
-import { carData } from "~/data/dashboard/carData.js";
 
 import WrapperMultiLineChart from "~/kendo/charts/line/WrapperLineChart";
 import WrapperMultiColumnChart from "~/kendo/charts/column/WrapperColumnChart";

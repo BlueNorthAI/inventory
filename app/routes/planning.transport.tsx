@@ -1,9 +1,6 @@
 import React, { useState, Fragment } from 'react'
-import AgMap from '../data/agMap/Map'
 import UsMap from '../data/agMap/usmap/Map'
-import WorldMap from '../data/agMap/mapsink/Map'
 import { Button } from '~/components/ui/button'
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
 import {
   DropdownMenu,
@@ -16,8 +13,7 @@ import {
 } from '~/components/ui/dropdown-menu'
 
 import { cn } from '~/lib/utils'
-import OrderMangement from '~/components/lowes/OrderMangement'
-import SupplyManagement from '~/components/lowes/SupplyManagement'
+import OrderMangement from '~/components/network/OrderMangement'
 
 function DemoContainer({
   className,
@@ -33,9 +29,6 @@ function DemoContainer({
     />
   )
 }
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function Agmap() {
   const [position, setPosition] = React.useState('bottom')
@@ -44,32 +37,22 @@ export default function Agmap() {
     <div>
       <div className="m-4">
         <DemoContainer>
-          <Tabs defaultValue="network" className="">
+          <Tabs defaultValue="store" className="">
             <TabsList className="">
-              <TabsTrigger value="network" className="relative uppercase">
-                Overall Performance
+              <TabsTrigger value="store" className="relative uppercase">
+                Overall
               </TabsTrigger>
               <TabsTrigger className="uppercase" value="dc">
-                Order
+                Fill rate
               </TabsTrigger>
-              <TabsTrigger className="uppercase" value="order">
-                Service
+              <TabsTrigger className="uppercase" value="supplier">
+                Backorder
               </TabsTrigger>
-              <TabsTrigger className="uppercase" value="Metrics">
-                Inventory
-              </TabsTrigger>
-              <TabsTrigger className="uppercase" value="Attributes">
-                Cost
-              </TabsTrigger>
-              <TabsTrigger className="uppercase" value="Attributes">
-                Finance
-              </TabsTrigger>
-              <TabsTrigger className="uppercase" value="Attributes">
-                Labor
+              <TabsTrigger className="uppercase" value="supplier">
+                Carrier Service
               </TabsTrigger>
             </TabsList>
-
-            <TabsContent value="network">
+            <TabsContent value="store">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
                   <div className="p-2">Demand Review</div>
@@ -186,11 +169,11 @@ export default function Agmap() {
                   </div>
                 </div>
               </div>
-              <div className="bg-black">
+              <div>
                 <UsMap />
               </div>
             </TabsContent>
-            <TabsContent value="order">
+            <TabsContent value="supplier">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
                   <div className="p-2">Order Management</div>
@@ -201,21 +184,9 @@ export default function Agmap() {
                 <OrderMangement />
               </div>
             </TabsContent>
-            <TabsContent value="Attributes">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Supply Management</div>
-                </div>
-              </div>
-              <div>
-                <SupplyManagement />
-              </div>
-            </TabsContent>
           </Tabs>
         </DemoContainer>
       </div>
-
-      {/* <WorldMap /> */}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node'
-import { generatedAccuracyData } from '~/data/network/supplyManagement'
+import { generatedCarrierData } from '~/data/agGrid/network/executionCarrier'
 export async function loader({ request }) {
   // const url = new URL(request.url);
   // // const page = Number(url.searchParams.get("page")) || 1;
@@ -10,8 +10,8 @@ export async function loader({ request }) {
   try {
     // Fetching the subset of records for the specified page, including related dimension_master data
     // const data = await getLevelMaster();
-    const data = generatedAccuracyData
-
+    const data = generatedCarrierData
+  
     // Fetching the total count of records in level_master
     // const totalCount = await prisma.level_master.count();
 

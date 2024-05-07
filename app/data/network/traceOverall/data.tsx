@@ -73,28 +73,28 @@ export const labels = [
 
 export const statuses = [
   {
-    value: 'backlog',
-    label: 'Backlog',
+    value: 'Delivered',
+    label: 'Delivered',
     icon: QuestionMarkCircledIcon,
-    textClr: 'text-red-500',
+    textClr: 'text-indigo-500',
   },
   {
-    value: 'todo',
+    value: 'Pending',
     label: 'Pending',
     icon: CircleIcon,
-    textClr: 'text-indigo-500',
+    textClr: 'text-orange-500',
+  },
+  {
+    value: 'Shipped',
+    label: 'Shipped',
+    icon: CheckCircledIcon,
+    textClr: 'text-green-800',
   },
   {
     value: 'in progress',
     label: 'In Progress',
     icon: StopwatchIcon,
     textClr: 'text-orange-400',
-  },
-  {
-    value: 'done',
-    label: 'Resolved',
-    icon: CheckCircledIcon,
-    textClr: 'text-green-800',
   },
   {
     value: 'canceled',

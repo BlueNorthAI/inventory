@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
+import daisyui from "daisyui"
 module.exports = {
   darkMode: ['class'],
   important: true,
@@ -39,5 +39,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), daisyui],
 }

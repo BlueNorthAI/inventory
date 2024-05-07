@@ -32,12 +32,14 @@ export function Hero() {
                 {/* <Button href="/" variant="secondary">
                   Generative AI Capabilities
                 </Button> */}
-                <Button variant="secondary" >
-                  <Link to="/snop/master">Availability Analytics</Link>{' '}
-                  Sales & Operation Planning
+                <Button variant="secondary">
+                  <Link to="/snop/master">Sales & Operation Planning</Link>
                 </Button>
                 <Button>
                   <Link to="/inventory/dashboard">Availability Analytics</Link>
+                </Button>
+                <Button>
+                  <Link to="/network/overall">e2e Supply Chain</Link>
                 </Button>
               </div>
             </div>

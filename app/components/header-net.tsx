@@ -37,15 +37,11 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem";
 
 const navigation = [
-  { name: 'Network', to: '/network/overall', current: true },
-  { name: 'DC', to: '/network/dc', current: false },
-  { name: 'Order Management', to: '/network/order', current: false },
-  { name: 'SKU', to: '/network/sku', current: false },
-  { name: 'Supply Management', to: '/network/supply', current: false },
-  { name: 'Carrier', to: '/network/carrier', current: false },
-  { name: 'Equipment', to: '/network/equip', current: false },
-  { name: 'Labor', to: '/network/labor', current: false },
-  { name: 'Inventory', to: '/network/inventory', current: false },
+  { name: 'Network', to: '/network/config', current: true },
+  { name: 'Track & Trace', to: '/track/order', current: false },
+  { name: 'Events', to: '/events/demand', current: false },
+  { name: 'Planning', to: '/planning/demand', current: false },
+  { name: 'Execution', to: '/execution/store', current: false },
 ]
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

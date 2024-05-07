@@ -16,8 +16,8 @@ import {
 } from '~/components/ui/dropdown-menu'
 
 import { cn } from '~/lib/utils'
-import OrderMangement from '~/components/lowes/OrderMangement'
-import SupplyManagement from '~/components/lowes/SupplyManagement'
+import OrderMangement from '~/components/network/OrderMangement'
+import SupplyManagement from '~/components/network/SupplyManagement'
 
 function DemoContainer({
   className,
@@ -37,15 +37,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 export default function Agmap() {
   const [position, setPosition] = React.useState('bottom')
 
   return (
     <div>
-
       <div className="m-4">
-
         <DemoContainer>
           <Tabs defaultValue="network" className="">
             <TabsList className="">

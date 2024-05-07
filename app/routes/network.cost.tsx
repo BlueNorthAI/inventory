@@ -1,9 +1,6 @@
 import React, { useState, Fragment } from 'react'
-import AgMap from '../data/agMap/Map'
 import UsMap from '../data/agMap/usmap/Map'
-import WorldMap from '../data/agMap/mapsink/Map'
 import { Button } from '~/components/ui/button'
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
 import {
   DropdownMenu,
@@ -14,10 +11,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu'
-
+import CardLayout from '~/components/snop/CardLayout'
+import { kpiService_m } from '~/data/dashboard/spendData'
 import { cn } from '~/lib/utils'
-import OrderMangement from '~/components/lowes/OrderMangement'
-import SupplyManagement from '~/components/lowes/SupplyManagement'
+import OrderMangement from '~/components/network/OrderMangement'
 
 function DemoContainer({
   className,
@@ -33,9 +30,6 @@ function DemoContainer({
     />
   )
 }
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function Agmap() {
   const [position, setPosition] = React.useState('bottom')
@@ -44,38 +38,31 @@ export default function Agmap() {
     <div>
       <div className="m-4">
         <DemoContainer>
-          <Tabs defaultValue="network" className="">
+          <Tabs defaultValue="Overall" className="">
             <TabsList className="">
-              <TabsTrigger value="network" className="relative uppercase">
-                Network
+              <TabsTrigger value="Overall" className="relative uppercase">
+                Overall
               </TabsTrigger>
-              <TabsTrigger className="" value="dc">
-                DC
+              <TabsTrigger className="uppercase" value="Shelf">
+                Shelf Replenishment
               </TabsTrigger>
-              <TabsTrigger className="uppercase" value="order">
-                ORDER MANAGEMENT
+              <TabsTrigger className="uppercase" value="Warehousing">
+                Warehousing
               </TabsTrigger>
-              <TabsTrigger className="" value="Metrics">
-                SKU
+              <TabsTrigger className="uppercase" value="Transportation">
+                Transportation
               </TabsTrigger>
-              <TabsTrigger className="" value="Attributes">
-                SUPPLY MANAGEMENT
+              <TabsTrigger className="uppercase" value="Ordering">
+                Ordering
               </TabsTrigger>
-              <TabsTrigger className="" value="Attributes">
-                CARRIER
-              </TabsTrigger>
-              <TabsTrigger className="" value="Attributes">
-                EQUIPEMENT
-              </TabsTrigger>
-              <TabsTrigger className="uppercase" value="Attributes">
-                Labor
+              <TabsTrigger className="uppercase" value="supplier">
+                Obsolescence
               </TabsTrigger>
             </TabsList>
-
-            <TabsContent value="network">
+            <TabsContent value="Overall">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Demand Review</div>
+                  <div className="p-2">Key Cost KPIs</div>
                   <div className="m-2 space-x-1">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -127,11 +114,11 @@ export default function Agmap() {
                   </div>
                 </div>
               </div>
-              <div className="bg-black">
-                <UsMap />
+              <div className="">
+                <CardLayout kpiData={kpiService_m} />
               </div>
             </TabsContent>
-            <TabsContent value="dc">
+            <TabsContent value="Shelf">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
                   <div className="p-2">Demand Review</div>
@@ -148,6 +135,9 @@ export default function Agmap() {
                           onValueChange={setPosition}
                         >
                           <DropdownMenuRadioItem value="top">
+                            Daily
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="bottom">
                             Weekly
                           </DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="bottom">
@@ -186,11 +176,11 @@ export default function Agmap() {
                   </div>
                 </div>
               </div>
-              <div className="bg-black">
+              <div>
                 <UsMap />
               </div>
             </TabsContent>
-            <TabsContent value="order">
+            <TabsContent value="Warehousing">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
                   <div className="p-2">Order Management</div>
@@ -201,21 +191,42 @@ export default function Agmap() {
                 <OrderMangement />
               </div>
             </TabsContent>
-            <TabsContent value="Attributes">
+            <TabsContent value="Transportation">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Supply Management</div>
+                  <div className="p-2">Order Management</div>
                 </div>
               </div>
+
               <div>
-                <SupplyManagement />
+                <OrderMangement />
+              </div>
+            </TabsContent>
+            <TabsContent value="Ordering">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Order Management</div>
+                </div>
+              </div>
+
+              <div>
+                <OrderMangement />
+              </div>
+            </TabsContent>
+            <TabsContent value="supplier">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Order Management</div>
+                </div>
+              </div>
+
+              <div>
+                <OrderMangement />
               </div>
             </TabsContent>
           </Tabs>
         </DemoContainer>
       </div>
-
-      {/* <WorldMap /> */}
     </div>
   )
 }
