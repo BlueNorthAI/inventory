@@ -196,7 +196,7 @@ const options = {
       Store
     </div>
     <div class="ag-chart-tooltip-content">
-      <a href="/execution/supplier">${params.datum.name}</a>
+      <a href="/execution/supplier">${params.datum.name} <br> Order Fulfillment Rate: 37.43% <br> Average Lead Time: 2 <br> Product Quality Score: 46.8% <br> Return Rate: 1.57% <br> Production Capacity Utilization: 5.21% <br> Cost per Unit Produced: 39.53</a>
     </div>`,
 
         interaction: {
@@ -204,58 +204,60 @@ const options = {
         },
       },
     },
-
-    // {
-    //   type: 'map-marker',
-    //   legendItemName: 'Markers',
-    //   title: 'DC Locations',
-    //   data: [
-    //     { name: 'New York', long: -73.9249, lat: 40.6943 },
-    //     { name: 'Los Angeles', long: -118.4068, lat: 34.1141 },
-    //     { name: 'Chicago', long: -87.6866, lat: 41.8375 },
-    //     { long: -80.2101, lat: 25.784, name: 'Miami' },
-    //     { long: -95.3885, lat: 29.786, name: 'Houston' },
-    //     { long: -96.7667, lat: 32.7935, name: 'Dallas' },
-    //     { long: -122.3244, lat: 47.6211, name: 'Seattle' },
-    //     { name: 'Wyoming', long: -109.080842, lat: 45.002073 },
-    //   ],
-    //   latitudeKey: 'lat',
-    //   longitudeKey: 'long',
-
-    //   labelName: 'Name',
-    //   label: { enabled: false },
-    //   shape: 'pin',
-    //   //     type MarkerShape =
-    //   //   'circle'
-    //   // | 'cross'
-    //   // | 'diamond'
-    //   // | 'heart'
-    //   // | 'plus'
-    //   // | 'pin'
-    //   // | 'square'
-    //   // | 'star'
-    //   // | 'triangle'
-    //   // | any;
-    //   size: 20,
-    //   fill: '#22c55e',
-    //   fillOpacity: 1,
-    //   strokeWidth: 0,
-    //   tooltip: {
-    //     renderer: (
-    //       params
-    //     ) => `<div class="ag-chart-tooltip-title" style="background-color: #fb923c">
-    //   Supplier
-    // </div>
-    // <div class="ag-chart-tooltip-content">
-    //   <a href="/snop/master">${params.datum.name}</a>
-    // </div>`,
-
-    //     interaction: {
-    //       enabled: true,
-    //     },
-    //   },
-    // },
+  
   ],
+
+
+  // {
+  //   type: 'map-marker',
+  //   legendItemName: 'Markers',
+  //   title: 'DC Locations',
+  //   data: [
+  //     { name: 'New York', long: -73.9249, lat: 40.6943 },
+  //     { name: 'Los Angeles', long: -118.4068, lat: 34.1141 },
+  //     { name: 'Chicago', long: -87.6866, lat: 41.8375 },
+  //     { long: -80.2101, lat: 25.784, name: 'Miami' },
+  //     { long: -95.3885, lat: 29.786, name: 'Houston' },
+  //     { long: -96.7667, lat: 32.7935, name: 'Dallas' },
+  //     { long: -122.3244, lat: 47.6211, name: 'Seattle' },
+  //     { name: 'Wyoming', long: -109.080842, lat: 45.002073 },
+  //   ],
+  //   latitudeKey: 'lat',
+  //   longitudeKey: 'long',
+
+  //   labelName: 'Name',
+  //   label: { enabled: false },
+  //   shape: 'pin',
+  //   //     type MarkerShape =
+  //   //   'circle'
+  //   // | 'cross'
+  //   // | 'diamond'
+  //   // | 'heart'
+  //   // | 'plus'
+  //   // | 'pin'
+  //   // | 'square'
+  //   // | 'star'
+  //   // | 'triangle'
+  //   // | any;
+  //   size: 20,
+  //   fill: '#22c55e',
+  //   fillOpacity: 1,
+  //   strokeWidth: 0,
+  //   tooltip: {
+  //     renderer: (
+  //       params
+  //     ) => `<div class="ag-chart-tooltip-title" style="background-color: #fb923c">
+  //   Supplier
+  // </div>
+  // <div class="ag-chart-tooltip-content">
+  //   <a href="/snop/master">${params.datum.name}</a>
+  // </div>`,
+
+  //     interaction: {
+  //       enabled: true,
+  //     },
+  //   },
+  // },
 }
 export default function StoreMap() {
     const emptyStyles = { background: '#ef4444' }

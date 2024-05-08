@@ -192,9 +192,11 @@ export const columns: ColumnDef<Task>[] = [
       return (
         <Link
           to={`/snop/incidents/${row.original.id}/${row.original.label}`}
-          className="flex space-x-2"
+          className="flex space-x-2 "
         >
-          <Button variant="outline">Open Event</Button>
+          <Button className="bg-yellow-50 border border-yellow-300 text-yellow-700 hover:bg-yellow-100">
+            Open Event
+          </Button>
         </Link>
       )
     },

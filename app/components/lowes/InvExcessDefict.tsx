@@ -28,44 +28,7 @@ const sortOptions = [
   { name: 'Best Rating', href: '#', current: false },
   { name: 'Newest', href: '#', current: false },
 ]
-const filters = [
-  {
-    id: 'year',
-    name: 'Year',
-    options: [
-      { value: 'new-arrivals', label: 'All New Arrivals', checked: false },
-      { value: 'tees', label: 'Tees', checked: false },
-      { value: 'all', label: 'All', checked: true },
-    ],
-  },
-  {
-    id: 'quarter',
-    name: 'Quarter',
-    options: [
-      { value: 'all', label: 'All', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: false },
-    ],
-  },
-  {
-    id: 'region',
-    name: 'Region',
-    options: [
-      { value: 's', label: 'S', checked: false },
-      { value: 'm', label: 'M', checked: false },
-      { value: 'l', label: 'L', checked: false },
-    ],
-  },
-  {
-    id: 'country',
-    name: 'Country',
-    options: [
-      { value: 'all', label: 'All', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: false },
-    ],
-  },
-]
+
 
 const activeFilters = [{ value: 'objects', label: 'Objects' }]
 const inventory = [

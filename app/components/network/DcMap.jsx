@@ -196,7 +196,7 @@ const options = {
       DC Location
     </div>
     <div class="ag-chart-tooltip-content">
-      <a href="/execution/dc">${params.datum.name}</a>
+      <a href="/execution/dc">${params.datum.name} <br> Shipment Volume: 806 <br> D+X: 958 <br> Open items: 1,098 <br> Cost per Shipment: 238</a>
     </div>`,
 
         interaction: {

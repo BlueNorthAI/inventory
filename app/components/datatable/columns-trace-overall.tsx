@@ -182,7 +182,7 @@ export const columns: ColumnDef<Task>[] = [
           to={`/track/order/${row.original.orderId}`}
           className="flex space-x-2"
         >
-          <Button variant="outline">Open Order</Button>
+          <Button className='bg-yellow-50 border border-yellow-300 text-yellow-700 hover:bg-yellow-100'>Open Order</Button>
         </Link>
       )
     },

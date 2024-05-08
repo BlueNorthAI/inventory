@@ -165,13 +165,13 @@ const options = {
     //   fillOpacity: 1,
     //   strokeWidth: 0,
     // },
-    { 
+    {
       type: 'map-marker',
       topology: capitals,
       data: capitals.features.map((t) => {
         return { name: t.properties.name }
       }),
-     
+
       idKey: 'name',
       shape: 'pin',
       //     type MarkerShape =
@@ -192,11 +192,11 @@ const options = {
       tooltip: {
         renderer: (
           params
-        ) => `<div class="ag-chart-tooltip-title" style="background-color: #fb923c">
-      Store
+        ) => `<div class="ag-chart-tooltip-title" style="background-color: #EF5450">
+      Store 
     </div>
     <div class="ag-chart-tooltip-content">
-      <a href="/execution/store">${params.datum.name}</a>
+      <a href="/execution/store">${params.datum.name} <br> Daily Sales (units): 318 <br> Daily Sales (Revenue) : 9,771<br> Inventory Level: 314 <br> Customer Foot Traffic: 250 <br> Staff Workig Hours: 195 <br> Promotional Activity Effectiveness: 62</a>
     </div>`,
 
         interaction: {

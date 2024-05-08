@@ -143,6 +143,7 @@ const options = {
       type: 'map-marker',
       legendItemName: 'Markers',
       title: 'DC Locations',
+      
       data: [
         { name: 'New York', long: -73.9249, lat: 40.6943 },
         { name: 'Los Angeles', long: -118.4068, lat: 34.1141 },
@@ -178,10 +179,10 @@ const options = {
         renderer: (
           params
         ) => `<div class="ag-chart-tooltip-title" style="background-color: #fb923c">
-      DC Location
+      Service
     </div>
     <div class="ag-chart-tooltip-content">
-      <a href="/snop/master">${params.datum.name}</a>
+      <a ">${params.datum.name} <br> Fill Rate <br> Back Order </a>
     </div>`,
 
         interaction: {

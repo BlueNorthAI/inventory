@@ -78,17 +78,22 @@ export function Header() {
         </React.Suspense>
       </div>
       <div className="flex items-center justify-end ">
-        <button className="text-white font-semibold  p-1 flex items-center  ">
-          <img
-            className="cursor-poniter  h-12 w-15"
-            src="/assets/lowes.png"
-            width={80}
-            height={70}
-            alt="logo"
-          />
-          {/* <IconGitHub /> */}
-        </button>
+        <div className="flex items-center justify-end ">
+          <Link
+            to="/events/demand"
+            className="text-white font-semibold  p-1 flex items-center  "
+          >
+            <img
+              className="cursor-poniter  h-12 w-15"
+              src="/assets/lowes.png"
+              width={80}
+              height={70}
+              alt="logo"
+            />
+            {/* <IconGitHub /> */}
+          </Link>
+        </div>
       </div>
     </header>
-  );
+  )
 }

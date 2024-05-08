@@ -32,7 +32,7 @@ const cellStyle = (params) => {
 }
 
 const numberToColor = (params) => {
-  console.log(`params`, params)
+  // console.log(`params`, params)
   if (
     params.data.measure === 'Shipment Volume' ||
     params.data.measure === 'On time delivery' ||

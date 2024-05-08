@@ -98,7 +98,7 @@ export function Header() {
               <div className=" flex items-baseline space-x-4 ">
                 {navigation.map((item) => (
                   <NavItem to={item.to} key={item.name}>
-                  {item.name}
+                    {item.name}
                   </NavItem>
                 ))}
               </div>
@@ -108,7 +108,10 @@ export function Header() {
       </nav>
 
       <div className="flex items-center justify-end ">
-        <button className="text-white font-semibold  p-1 flex items-center  ">
+        <Link
+          to="/events/demand"
+          className="text-white font-semibold  p-1 flex items-center  "
+        >
           <img
             className="cursor-poniter  h-12 w-15"
             src="/assets/lowes.png"
@@ -117,7 +120,7 @@ export function Header() {
             alt="logo"
           />
           {/* <IconGitHub /> */}
-        </button>
+        </Link>
       </div>
     </header>
   )
