@@ -1,6 +1,6 @@
+import * as React from 'react'
 import {
   CubeIcon,
-  GearIcon,
   PieChartIcon,
   MixIcon,
   BarChartIcon,
@@ -9,17 +9,12 @@ import {
   CameraIcon,
   Component1Icon,
   RocketIcon,
-  ImageIcon,
-  ViewGridIcon
+  ViewGridIcon,
 } from '@radix-ui/react-icons'
-import { ChartBarSquareIcon } from '@heroicons/react/24/outline'
 import { NavLink } from '@remix-run/react'
 import { Separator } from './ui/separator'
-import * as React from 'react'
-
 import { useSidebar } from '~/lib/hooks/use-sidebar'
 import { cn } from '~/lib/utils'
-import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -101,41 +96,42 @@ const senariomenus = [
     current: false,
   },
 
-  // {
-  //   id: 10,
-  //   name: 'Inventory Projection',
-  //   to: '/inventory/invpro',
-  //   icon: CameraIcon,
-  //   current: false,
-  // },
-  // {
-  //   id: 11,
-  //   name: 'Excess-Deficit',
-  //   to: '/inventory/excess',
-  //   icon: Component1Icon,
-  //   current: false,
-  // },
-  // {
-  //   id: 12,
-  //   name: 'Demand Shaping',
-  //   to: '/inventory/demand',
-  //   icon: CubeIcon,
-  //   current: false,
-  // },
-  // {
-  //   id: 13,
-  //   name: 'Redeploy and Balance',
-  //   to: '/inventory/redeploy',
-  //   icon: RocketIcon,
-  //   current: false,
-  // },
-  // {
-  //   id: 14,
-  //   name: 'Simulation',
-  //   to: '/inventory/simulation',
-  //   icon: ImageIcon,
-  //   current: false,
-  // },
+  {
+    id: 10,
+    name: 'Input Data',
+    to: '/inventory/input',
+    icon: CameraIcon,
+    current: false,
+  },
+  {
+    id: 11,
+    name: 'Scenario Planning',
+    to: '/inventory/scenario',
+    icon: CameraIcon,
+    current: false,
+  },
+
+  {
+    id: 12,
+    name: 'Optimization',
+    to: '/inventory/optimize',
+    icon: Component1Icon,
+    current: false,
+  },
+  {
+    id: 12,
+    name: 'Optimization',
+    to: '/inventory/optimize2',
+    icon: Component1Icon,
+    current: false,
+  },
+  {
+    id: 12,
+    name: 'Optimization',
+    to: '/inventory/country',
+    icon: Component1Icon,
+    current: false,
+  },
 ]
 
 export interface SidebarProps extends React.ComponentProps<'div'> {
@@ -154,7 +150,6 @@ export function Sidebar({ className, children }: SidebarProps) {
     </div>
   )
 }
-
 
 export function SidebarDesktop() {
   return (
@@ -208,32 +203,7 @@ export function SidebarDesktop() {
               </div>
             </nav>
           </div>
-          {/* <div className="">
-              <Link to="/snop/appbar">
-                <div
-                  className={classNames(
-                    "text-blue-100 hover:bg-blue-800 hover:text-white",
-                    "group flex w-full flex-col items-center rounded-md p-3 text-xs font-medium",
-                  )}
-                >
-                  <div className="">
-                    <Squares2X2Icon className="h-6 w-6" aria-hidden="true" />
-                  </div>
-                  <h2
-                    className={`whitespace-pre duration-500 ${!open && "translate-x-28 overflow-hidden opacity-0"
-                      }`}
-                  >
-                    Appbar
-                  </h2>
-                  <h2
-                    className={`${open && "hidden"
-                      } absolute left-48 z-10 w-0 overflow-hidden whitespace-pre rounded-md bg-blue-800 px-0 py-0 font-semibold text-blue-100 drop-shadow-lg group-hover:left-14 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300  `}
-                  >
-                    User Profile
-                  </h2>
-                </div>
-              </Link>
-            </div> */}
+     
         </div>
       </div>
     </Sidebar>

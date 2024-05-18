@@ -1,5 +1,3 @@
-"use client";
-
 import { useFetcher, useNavigate } from "@remix-run/react";
 // import { useNavigate } from '@remix-run/react'
 import * as React from "react";

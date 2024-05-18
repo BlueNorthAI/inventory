@@ -1,5 +1,3 @@
-"use client";
-
 import { Link, useLocation } from "@remix-run/react";
 import { motion } from "framer-motion";
 import * as React from "react";

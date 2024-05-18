@@ -1,4 +1,3 @@
-"use client"
 import { Link } from "@remix-run/react" 
 import { LucideIcon } from "lucide-react"
 

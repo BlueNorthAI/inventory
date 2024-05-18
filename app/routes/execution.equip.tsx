@@ -11,8 +11,6 @@ import {
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu'
 
-import ExecutionSupplier from '~/components/network/ExecutionSupplier'
-import ExecutionCarrier from '~/components/network/ExecutionCarrier'
 import ExecutionEquip from '~/components/network/ExecutionEquip'
 
 export interface SidebarProps extends React.ComponentProps<'div'> {

@@ -29,11 +29,7 @@ export default function MeasureMaster() {
   }
 
   const columnDefs = [
-    // {
-    //   field: 'measure_id',
-    //   headerName: 'Measure & Format',
-    //   valueGetter: p => p.data.measure_type + ' ' + p.data.number_format,
-    // },
+  
     {
       field: 'level_id',
       headerName: 'Level ID',

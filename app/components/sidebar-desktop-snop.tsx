@@ -79,13 +79,13 @@ const senariomenus = [
     icon: GearIcon,
     current: true,
   },
-  // {
-  //   id: 6,
-  //   name: 'Truck',
-  //   to: '/snop/truck',
-  //   icon: BarChartIcon,
-  //   current: false,
-  // },
+  {
+    id: 6,
+    name: 'Truck',
+    to: '/snop/input',
+    icon: BarChartIcon,
+    current: false,
+  },
 ]
 
 

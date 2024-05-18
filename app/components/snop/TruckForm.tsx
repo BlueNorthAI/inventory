@@ -65,8 +65,6 @@ function DemoContainer({
   )
 }
 
-
-// eslint-disable-next-line react/prop-types
 export default function TruckForm({ truckData }) {
   const params = useParams()
   const [tyopen, settyOpen] = React.useState(false)
@@ -80,6 +78,7 @@ export default function TruckForm({ truckData }) {
               <div className="p-2">Truck Parameters</div>
             </div>
           </div>
+        
           <div className="mt-2 items-start justify-center gap-6 rounded-lg p-4 md:grid lg:grid-cols-2 xl:grid-cols-2">
             <div>
               <div className="flex items-center space-x-4 justify-between mb-4 p-2 border-b rounded-lg">
