@@ -108,8 +108,8 @@ const dropdown = [
   },
   {
     icon: FaPeopleGroup,
-    name: 'Labour Optimizer',
-    to: '/snop/dashboard/balance',
+    name: 'Risk Optimizer',
+    to: '/risk/analysis',
     iconForeground: 'text-orange-700',
     iconBackground: 'bg-orange-100',
     description:

@@ -28,7 +28,7 @@ export function DataTableRowActions<TData>({
 }: DataTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original);
   const fetcher = useFetcher();
-  console.log(`inside row action`,row.original);
+  // console.log(`inside row action`,row.original);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -43,8 +43,8 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[140px]">
         <Link
-          to={`/snop/scenario/${row.original.scenario_id}`}
-          hidden={row.original.Status !== "Open"}
+          // to={`/snop/scenario/${row.original.Customer_1}`}
+          hidden={row.original.Type !== 'Open'}
         >
           <DropdownMenuItem>Edit</DropdownMenuItem>
         </Link>
@@ -56,8 +56,8 @@ export function DataTableRowActions<TData>({
             className="w-full"
             onClick={() =>
               fetcher.submit(
-                { scenario_id: row.original.scenario_id, intent: "duplicate" },
-                { method: "post" },
+                { Customer_1: row.original.Customer_1, intent: 'duplicate' },
+                { method: 'post' }
               )
             }
           >
@@ -70,11 +70,11 @@ export function DataTableRowActions<TData>({
             name="intent"
             value="archive"
             className="w-full"
-            hidden={row.original.Status === "Open"}
+            hidden={row.original.Status === 'Open'}
             onClick={() =>
               fetcher.submit(
-                { scenario_id: row.original.scenario_id, intent: "archive" },
-                { method: "post" },
+                { scenario_id: row.original.scenario_id, intent: 'archive' },
+                { method: 'post' }
               )
             }
           >
@@ -87,11 +87,11 @@ export function DataTableRowActions<TData>({
             name="intent"
             value="delete"
             className="w-full"
-            hidden={row.original.Status !== "Open"}
+            hidden={row.original.Status !== 'Open'}
             onClick={() =>
               fetcher.submit(
-                { scenario_id: row.original.scenario_id, intent: "delete" },
-                { method: "post" },
+                { scenario_id: row.original.scenario_id, intent: 'delete' },
+                { method: 'post' }
               )
             }
           >
@@ -103,12 +103,12 @@ export function DataTableRowActions<TData>({
         <DropdownMenuItem>
           <Link
             to={`/snop/scenario/${row.original.scenario_id}/analyze`}
-            hidden={row.original.Status !== "Open"}
+            hidden={row.original.Status !== 'Open'}
           >
             <DropdownMenuItem>Analyze</DropdownMenuItem>
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

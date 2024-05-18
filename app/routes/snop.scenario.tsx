@@ -23,7 +23,7 @@ const navigation = [
 
 export const loader = async () => {
   const scenarioList = await getScenarioItems()
-  // console.log(scenarioList);
+  // console.log(`snop`,scenarioList);
 
   return json({ scenarioList })
 }

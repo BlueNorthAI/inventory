@@ -61,14 +61,6 @@ const frameworks = [
   },
 ]
 
-
-const trucktype = [
-  {
-    id: 1,
-
-  }
-]
-
 const origin = [
   {
     id: 1,

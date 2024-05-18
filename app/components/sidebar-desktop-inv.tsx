@@ -132,6 +132,7 @@ const senariomenus = [
     icon: Component1Icon,
     current: false,
   },
+
 ]
 
 export interface SidebarProps extends React.ComponentProps<'div'> {

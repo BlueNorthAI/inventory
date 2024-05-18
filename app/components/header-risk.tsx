@@ -1,9 +1,8 @@
-import clsx from 'clsx'
-import React, { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { NavLink,Link } from '@remix-run/react'
+import { Link } from "@remix-run/react";
 import { NavigationMenuLink } from "~/components/ui/navigation-menu";
 import { cn } from "~/lib/utils";
+import React, { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
 import { FaMapLocationDot, FaPeopleGroup } from 'react-icons/fa6'
 import {
   FaChartLine,
@@ -14,8 +13,13 @@ import {
 } from 'react-icons/fa'
 import { GrTree } from 'react-icons/gr'
 import { MdInventory } from 'react-icons/md'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 // import { SidebarMobile } from "./sidebar-mobile";
-import { SidebarToggle } from "./sidebar-toggle-trans";
+import { SidebarToggle } from "./sidebar-toggle-inv";
+
 
 
 const dropdown = [
@@ -128,48 +132,14 @@ const ListItem = React.forwardRef<
 });
 ListItem.displayName = "ListItem";
 
-const navigation = [
-  { name: 'Network', to: '/network/config', current: true },
-  { name: 'Track & Trace', to: '/track/order', current: false },
-  { name: 'Events', to: '/events/demand', current: false },
-  { name: 'Planning', to: '/planning/demand', current: false },
-  { name: 'Execution', to: '/execution/store', current: false },
-]
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
-
-function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
-  return (
-    <NavLink
-      to={to}
-      prefetch="intent"
-      className={({ isActive }) =>
-        clsx(
-          'rounded-md px-2 py-2 text-sm font-semibold uppercase',
-          isActive
-            ? 'py-2 bg-sky-500 text-white  bg-opacity-75 border border-sky-500'
-            : 'text-white hover:bg-blue-900 hover:bg-opacity-75'
-        )
-      }
-      aria-current={isActive => (isActive ? 'page' : undefined)}
-    >
-      {children}
-    </NavLink>
-  )
-}
 // function UserOrLogin() {
 //   // const user = useUser();
 //   // const user = "shrikanth@bluenorthai.com"
 //   return (
 //     <>
-      
-      
-    
 //       <div className="flex items-center ">
 //         {/* <IconSeparator className="size-6 text-muted-foreground/50" /> */}
 //         {/* <UserMenu /> */}
-      
 //       </div>
 //     </>
 //   );
@@ -184,22 +154,7 @@ export function Header() {
         </React.Suspense>
       </div>
 
-      <nav className="">
-        <div className="w-full">
-          <div className="flex items-center justify-center">
-            <div className="flex items-center">
-              <div className=" flex items-baseline space-x-4 ">
-                {navigation.map((item) => (
-                  <NavItem to={item.to} key={item.name}>
-                    {item.name}
-                  </NavItem>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+    
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="flex items-center justify-end ">
@@ -226,35 +181,40 @@ export function Header() {
             <div className="grid grid-cols-3 w-[700px] gap-2 p-4 ">
               {dropdown.map((item) => (
                 <Menu.Item key={item.name}>
-                  <Link to={item.to} className="">
-                    <div className="rounded-lg hover:bg-gradient-to-t hover:from-indigo-400 hover:via-cyan-400 hover:to-sky-500  p-0.5">
-                      <div className=" flex items-center w-full justify-between hover:bg-sky-50 rounded-lg text-2xl text-blue-900 font-bold">
-                        <div className="flex items-center p-4 ">
-                          <span
-                            className={classNames(
-                              item.iconBackground,
-                              item.iconForeground,
-                              'inline-flex rounded-lg p-2'
-                            )}
-                          >
-                            <item.icon
-                              className="h-8 w-8 flex-none rounded-lg"
-                              aria-hidden="true"
-                            />
-                          </span>
-                          <div className="ml-4 text-lg font-semibold text-gray-900">
-                            {item.name}
+                
+                    <Link
+                      to={item.to}
+                      className=""
+                    >
+                      <div className="rounded-lg hover:bg-gradient-to-t hover:from-indigo-400 hover:via-cyan-400 hover:to-sky-500  p-0.5">
+                        <div className=" flex items-center w-full justify-between hover:bg-sky-50 rounded-lg text-2xl text-blue-900 font-bold">
+                          <div className="flex items-center p-4 ">
+                            <span
+                              className={classNames(
+                                item.iconBackground,
+                                item.iconForeground,
+                                'inline-flex rounded-lg p-2'
+                              )}
+                            >
+                              <item.icon
+                                className="h-8 w-8 flex-none rounded-lg"
+                                aria-hidden="true"
+                              />
+                            </span>
+                            <div className="ml-4 text-lg font-semibold text-gray-900">
+                              {item.name}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    {/* 
+                      {/* 
                       <div className="px-6 py-4">
                         <p className="text-base text-gray-500">
                           {item.description}
                         </p>
                       </div> */}
-                  </Link>
+                    </Link>
+             
                 </Menu.Item>
               ))}
             </div>

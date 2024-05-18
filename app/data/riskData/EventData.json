@@ -1,0 +1,92 @@
+[
+  {
+    "Name": "Event_1",
+    "EventType": "Weather",
+    "Parameters": "Parameter_1",
+    "OccurrenceType": "Single",
+    "OccurrenceTime": "2023-10-19",
+    "Trigger": "Automatic",
+    "Probability": 0.21
+  },
+  {
+    "Name": "Event_2",
+    "EventType": "Weather",
+    "Parameters": "Parameter_2",
+    "OccurrenceType": "Recurring",
+    "OccurrenceTime": "2023-06-28",
+    "Trigger": "Automatic",
+    "Probability": 0.57
+  },
+  {
+    "Name": "Event_3",
+    "EventType": "Holiday",
+    "Parameters": "Parameter_3",
+    "OccurrenceType": "Single",
+    "OccurrenceTime": "2023-07-14",
+    "Trigger": "Automatic",
+    "Probability": 0.32
+  },
+  {
+    "Name": "Event_4",
+    "EventType": "Weather",
+    "Parameters": "Parameter_4",
+    "OccurrenceType": "Recurring",
+    "OccurrenceTime": "2023-09-08",
+    "Trigger": "Automatic",
+    "Probability": 0.4
+  },
+  {
+    "Name": "Event_5",
+    "EventType": "Holiday",
+    "Parameters": "Parameter_5",
+    "OccurrenceType": "Single",
+    "OccurrenceTime": "2023-05-09",
+    "Trigger": "Automatic",
+    "Probability": 0.11
+  },
+  {
+    "Name": "Event_6",
+    "EventType": "Weather",
+    "Parameters": "Parameter_6",
+    "OccurrenceType": "Single",
+    "OccurrenceTime": "2023-03-11",
+    "Trigger": "Automatic",
+    "Probability": 0.6
+  },
+  {
+    "Name": "Event_7",
+    "EventType": "Holiday",
+    "Parameters": "Parameter_7",
+    "OccurrenceType": "Single",
+    "OccurrenceTime": "2023-01-30",
+    "Trigger": "Automatic",
+    "Probability": 0.39
+  },
+  {
+    "Name": "Event_8",
+    "EventType": "Promotion",
+    "Parameters": "Parameter_8",
+    "OccurrenceType": "Single",
+    "OccurrenceTime": "2023-07-27",
+    "Trigger": "Manual",
+    "Probability": 0.86
+  },
+  {
+    "Name": "Event_9",
+    "EventType": "Promotion",
+    "Parameters": "Parameter_9",
+    "OccurrenceType": "Recurring",
+    "OccurrenceTime": "2023-03-25",
+    "Trigger": "Automatic",
+    "Probability": 0.55
+  },
+  {
+    "Name": "Event_10",
+    "EventType": "Holiday",
+    "Parameters": "Parameter_10",
+    "OccurrenceType": "Single",
+    "OccurrenceTime": "2023-06-06",
+    "Trigger": "Manual",
+    "Probability": 0.4
+  }
+]

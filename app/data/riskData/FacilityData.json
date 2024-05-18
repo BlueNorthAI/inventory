@@ -1,0 +1,92 @@
+[
+  {
+    "facility": "Facility_5",
+    "expenseType": "Rent",
+    "value": 30391.46,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "11 months"
+  },
+  {
+    "facility": "Facility_2",
+    "expenseType": "Rent",
+    "value": 24060.2,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "6 months"
+  },
+  {
+    "facility": "Facility_1",
+    "expenseType": "Maintenance",
+    "value": 12560.35,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "9 months"
+  },
+  {
+    "facility": "Facility_5",
+    "expenseType": "Maintenance",
+    "value": 29137.01,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "3 months"
+  },
+  {
+    "facility": "Facility_3",
+    "expenseType": "Rent",
+    "value": 39655.51,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "4 months"
+  },
+  {
+    "facility": "Facility_1",
+    "expenseType": "Utilities",
+    "value": 3318.58,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "12 months"
+  },
+  {
+    "facility": "Facility_2",
+    "expenseType": "Rent",
+    "value": 3392.29,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "7 months"
+  },
+  {
+    "facility": "Facility_3",
+    "expenseType": "Utilities",
+    "value": 18159.07,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "11 months"
+  },
+  {
+    "facility": "Facility_5",
+    "expenseType": "Maintenance",
+    "value": 12989.12,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "11 months"
+  },
+  {
+    "facility": "Facility_2",
+    "expenseType": "Utilities",
+    "value": 18732.43,
+    "currency": "USD",
+    "timeUnit": "monthly",
+    "productUnit": "unit",
+    "timePeriod": "4 months"
+  }
+]

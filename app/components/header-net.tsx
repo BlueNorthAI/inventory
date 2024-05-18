@@ -1,10 +1,9 @@
 import clsx from 'clsx'
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { NavLink,Link, Outlet, useLoaderData, useMatches } from '@remix-run/react'
+import { NavLink,Link } from '@remix-run/react'
 import { NavigationMenuLink } from "~/components/ui/navigation-menu";
 import { cn } from "~/lib/utils";
-import { useUser } from "~/utils";
 import { FaMapLocationDot, FaPeopleGroup } from 'react-icons/fa6'
 import {
   FaChartLine,
@@ -15,7 +14,6 @@ import {
 } from 'react-icons/fa'
 import { GrTree } from 'react-icons/gr'
 import { MdInventory } from 'react-icons/md'
-// import { SidebarMobile } from "./sidebar-mobile";
 import { SidebarToggle } from "./sidebar-toggle-inv";
 
 const dropdown = [
@@ -93,8 +91,8 @@ const dropdown = [
   },
   {
     icon: FaPeopleGroup,
-    name: 'Labour Optimizer',
-    to: '/snop/dashboard/balance',
+    name: 'Risk Optimizer',
+    to: '/risk/analysis',
     iconForeground: 'text-orange-700',
     iconBackground: 'bg-orange-100',
     description:
@@ -135,7 +133,7 @@ const navigation = [
   { name: 'Planning', to: '/planning/demand', current: false },
   { name: 'Execution', to: '/execution/store', current: false },
 ]
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -158,22 +156,21 @@ function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
     </NavLink>
   )
 }
-function UserOrLogin() {
-  // const user = useUser();
-  // const user = "shrikanth@bluenorthai.com"
-  return (
-    <>
+
+// function UserOrLogin() {
+//   // const user = useUser();
+//   // const user = "shrikanth@bluenorthai.com"
+//   return (
+//     <>
+//       <div className="flex items-center ">
+//         {/* <IconSeparator className="size-6 text-muted-foreground/50" /> */}
+//         {/* <UserMenu /> */}
       
-      
-    
-      <div className="flex items-center ">
-        {/* <IconSeparator className="size-6 text-muted-foreground/50" /> */}
-        {/* <UserMenu /> */}
-      
-      </div>
-    </>
-  );
-}
+//       </div>
+//     </>
+//   );
+// }
+
 export function Header() {
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between w-full h-12  shrink-0 bg-[#272e62]">

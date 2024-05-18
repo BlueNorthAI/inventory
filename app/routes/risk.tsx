@@ -1,22 +1,16 @@
 import { Outlet } from "@remix-run/react";
 import { Toaster } from "react-hot-toast";
-
 import type { LinksFunction } from '@remix-run/node'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import customAgStyles from '~/styles/custom-grid-styles.css?url'
 import aggrid from '~/styles/aggrid.css?url'
-import tailwindStyles from '~/styles/tailwind.css?url'
-import { Header } from "~/components/header-trans";
+import { Header } from "~/components/header-risk";
 import { Providers } from "~/components/providers";
-import {
-  TableCellsIcon,
-  ArrowTrendingUpIcon,
-  ChartBarIcon,
-  CpuChipIcon,
-} from '@heroicons/react/20/solid'
+import { ChartBarIcon } from '@heroicons/react/20/solid'
 
 import SidebarDemo from '~/components/snop/SidebarDemo'
+
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: gridCommStyles },
   { rel: 'stylesheet', href: themeStyles },
@@ -26,36 +20,32 @@ export const links: LinksFunction = () => [
 
 const menus = [
   {
-    name: 'Configuration',
-    to: '/trans/config',
+    name: 'Risk Analysis',
+    to: '/risk/analysis',
     icon: ChartBarIcon,
     current: true,
   },
   {
-    name: 'Segmentation',
-    to: '/trans/input',
-    icon: TableCellsIcon,
-    current: false,
+    name: 'Simulation',
+    to: '/risk/simulation',
+    icon: ChartBarIcon,
+    current: true,
   },
   {
-    name: 'Service',
-    to: '/trans/country',
-    icon: CpuChipIcon,
-    current: false,
+    name: 'Optimization',
+    to: '/risk/optimization',
+    icon: ChartBarIcon,
+    current: true,
   },
   {
-    name: 'Cost',
-    to: '/trans/truck',
-    icon: ArrowTrendingUpIcon,
-    current: false,
-  },
-  {
-    name: 'Master Data',
-    to: '/trans/master',
-    icon: ArrowTrendingUpIcon,
-    current: false,
+    name: 'Results',
+    to: '/risk/results',
+    icon: ChartBarIcon,
+    current: true,
   },
 ]
+
+
 export default function Index() {
   return (
     <div className="min-h-screen flex flex-col">
