@@ -114,7 +114,7 @@ export default function MeasureMaster() {
 
   // Load data when the grid is ready
   const onGridReady = useCallback((params) => {
-    console.log(params.api)
+
     setGridApi(params.api);
     loadData();
   }, []);
@@ -127,7 +127,7 @@ export default function MeasureMaster() {
   // Effect to update row data when fetcher data changes
   useEffect(() => {
     if (fetcher.data) {
-      console.log(fetcher.data.data)
+   
       setRowData(fetcher.data.data);
     }
   }, [fetcher.data]);

@@ -1,7 +1,6 @@
 import { json } from '@remix-run/node'
 
 export async function loader({ request }) {
-  console.log('inside loader', request.url)
   // const url = new URL(request.url);
   // // const page = Number(url.searchParams.get("page")) || 1;
   // // const limit = Number(url.searchParams.get("limit")) || 10; // Default to 10 rows per page
@@ -324,7 +323,7 @@ export async function loader({ request }) {
       // totalPages: Math.ceil(totalCount / limit),
     })
   } catch (error) {
-    console.error('Failed to load level master data:', error)
+  
     return json(
       { success: false, error: 'Failed to load level master data' },
       { status: 500 }

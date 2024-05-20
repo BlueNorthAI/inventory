@@ -26,6 +26,9 @@ import EventData from '~/data/riskData/EventGrid'
 import CustomerGrid from '~/data/riskData/CustomerGrid'
 import FacilityGrid from '~/data/riskData/FacilityGrid'
 import InventoryGrid from '~/data/riskData/InventoryGrid'
+import PathsGrid from '~/data/riskData/PathsGrid'
+import ProcessGrid from '~/data/riskData/ProcessGrid'
+import SourcingGrid from '~/data/riskData/SourcingGrid'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: gridCommStyles },
@@ -171,12 +174,15 @@ export default function MasterData() {
               <TabsTrigger className="" value="Types">
                 Vehicle Types
               </TabsTrigger>
+              <TabsTrigger className="" value="Process">
+                Processing Cost
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="Customers">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Customers</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -188,7 +194,7 @@ export default function MasterData() {
             <TabsContent value="DC">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">DC</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -199,7 +205,7 @@ export default function MasterData() {
             <TabsContent value="Demand">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Demand</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -210,7 +216,7 @@ export default function MasterData() {
             <TabsContent value="Events">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Events</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -221,7 +227,7 @@ export default function MasterData() {
             <TabsContent value="Facility">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Facility</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -232,7 +238,7 @@ export default function MasterData() {
             <TabsContent value="Groups">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Groups</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -243,7 +249,7 @@ export default function MasterData() {
             <TabsContent value="Inventory">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Inventory</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -254,7 +260,7 @@ export default function MasterData() {
             <TabsContent value="Location">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Location</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -265,18 +271,18 @@ export default function MasterData() {
             <TabsContent value="Paths">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Paths</div>
                   <Icontooltip />
                 </div>
               </div>
               <div>
-                <LevelMaster />
+                <PathsGrid />
               </div>
             </TabsContent>
             <TabsContent value="Periods">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Periods</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -287,7 +293,7 @@ export default function MasterData() {
             <TabsContent value="Products">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Products</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -298,7 +304,7 @@ export default function MasterData() {
             <TabsContent value="Shipping">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Shipping</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -309,18 +315,18 @@ export default function MasterData() {
             <TabsContent value="Sourcing">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Sourcing</div>
                   <Icontooltip />
                 </div>
               </div>
               <div>
-                <LevelMaster />
+                <SourcingGrid />
               </div>
             </TabsContent>
             <TabsContent value="Suppliers">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Suppliers</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -331,7 +337,7 @@ export default function MasterData() {
             <TabsContent value="Unit">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Unit</div>
                   <Icontooltip />
                 </div>
               </div>
@@ -342,12 +348,23 @@ export default function MasterData() {
             <TabsContent value="Types">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
+                  <div className="p-2">Types</div>
                   <Icontooltip />
                 </div>
               </div>
               <div>
                 <LevelMaster />
+              </div>
+            </TabsContent>
+            <TabsContent value="Process">
+              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+                  <div className="p-2">Types</div>
+                  <Icontooltip />
+                </div>
+              </div>
+              <div>
+                <ProcessGrid />
               </div>
             </TabsContent>
           </Tabs>

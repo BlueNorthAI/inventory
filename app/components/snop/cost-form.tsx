@@ -1,7 +1,7 @@
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
 import { Form } from "@remix-run/react";
-import { Console } from "console";
+
 
 export default function CostInput({ cost }) {
   const monthNames = [

@@ -19,7 +19,7 @@ export default function DemandGrid() {
           title="Customer"
           locked={true}
           filter="numeric"
-          width="200px"
+          width="400px"
         />
         <GridColumn
           className="text-lg"
@@ -37,7 +37,7 @@ export default function DemandGrid() {
           className="text-lg"
           field="orderInterval"
           title="Inclusion Type"
-          width="200px"
+          width="400px"
         />
         <GridColumn
           className="text-lg"
@@ -57,7 +57,7 @@ export default function DemandGrid() {
           title="Additional Parameters"
           width="200px"
         />
-
+      
         <GridColumn
           className="text-lg"
           field="revenue"
@@ -89,7 +89,7 @@ export default function DemandGrid() {
           width="200px"
         />
         <GridColumn
-          className="text-lg"
+          className=""
           field="inclusionType"
           title="Additional Parameters"
           width="200px"

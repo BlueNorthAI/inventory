@@ -4,9 +4,8 @@ import { AgChartsReact } from 'ag-charts-react'
 import {
   islandTopology,
   flightTopology,
-  ferryTopology,
-  backgroundTopology,
-  capitals,
+ferryTopology,
+backgroundTopology,
 } from '~/data/network/mapData/laneData/topology'
 
 import CardLayout from '~/components/snop/CardLayout'
@@ -16,35 +15,35 @@ import { ProgressBar } from '@progress/kendo-react-progressbars'
 import { Link } from '@remix-run/react'
 
 const flightData = [
-  { name: 'SHA-FL', duration: 20 },
-  // { name: 'ATH-AXD', duration: 57 },
-  // { name: 'ATH-CHQ', duration: 49 },
-  // { name: 'ATH-HER', duration: 52 },
-  // { name: 'ATH-JIK', duration: 45 },
-  // { name: 'ATH-JKH', duration: 44 },
-  // { name: 'ATH-JKL', duration: 51 },
-  // { name: 'ATH-JMK', duration: 40 },
-  // { name: 'ATH-JNX', duration: 41 },
-  // { name: 'ATH-JSH', duration: 56 },
-  // { name: 'ATH-JSI', duration: 40 },
-  // { name: 'ATH-JSY', duration: 37 },
-  // { name: 'ATH-JTR', duration: 46 },
-  // { name: 'ATH-JTY', duration: 49 },
-  // { name: 'ATH-KGS', duration: 52 },
-  // { name: 'ATH-KIT', duration: 45 },
-  // { name: 'ATH-KVA', duration: 54 },
-  // { name: 'ATH-LRS', duration: 49 },
-  // { name: 'ATH-LXS', duration: 48 },
-  // { name: 'ATH-MJT', duration: 49 },
-  // { name: 'ATH-MLO', duration: 40 },
-  // { name: 'ATH-PAS', duration: 40 },
-  // { name: 'ATH-RHO', duration: 60 },
-  // { name: 'ATH-SKU', duration: 39 },
-  // { name: 'ATH-SMI', duration: 49 },
+  { name: 'AOK-ATH', duration: 59 },
+  { name: 'ATH-AXD', duration: 57 },
+  { name: 'ATH-CHQ', duration: 49 },
+  { name: 'ATH-HER', duration: 52 },
+  { name: 'ATH-JIK', duration: 45 },
+  { name: 'ATH-JKH', duration: 44 },
+  { name: 'ATH-JKL', duration: 51 },
+  { name: 'ATH-JMK', duration: 40 },
+  { name: 'ATH-JNX', duration: 41 },
+  { name: 'ATH-JSH', duration: 56 },
+  { name: 'ATH-JSI', duration: 40 },
+  { name: 'ATH-JSY', duration: 37 },
+  { name: 'ATH-JTR', duration: 46 },
+  { name: 'ATH-JTY', duration: 49 },
+  { name: 'ATH-KGS', duration: 52 },
+  { name: 'ATH-KIT', duration: 45 },
+  { name: 'ATH-KVA', duration: 54 },
+  { name: 'ATH-LRS', duration: 49 },
+  { name: 'ATH-LXS', duration: 48 },
+  { name: 'ATH-MJT', duration: 49 },
+  { name: 'ATH-MLO', duration: 40 },
+  { name: 'ATH-PAS', duration: 40 },
+  { name: 'ATH-RHO', duration: 60 },
+  { name: 'ATH-SKU', duration: 39 },
+  { name: 'ATH-SMI', duration: 49 },
 ]
 
 const islandData = [
-  { name: 'Shanghai', population: 3138 },
+  { name: 'Alonnisos', population: 3138 },
   { name: 'Andros', population: 8826 },
   { name: 'Astypalaia', population: 1300 },
   { name: 'Chios', population: 50361 },
@@ -582,50 +581,22 @@ const options = {
       maxSize: 32,
     },
     {
-      type: 'map-marker',
-      topology: capitals,
-      data: capitals.features.map((t) => {
-        return { name: t.properties.name }
-      }),
-
-      idKey: 'name',
-      shape: 'pin',
-      size: 10,
-      fill: '#15803d',
-      fillOpacity: 1,
-      strokeWidth: 0,
+      type: 'map-line',
+      title: 'Ferries',
+      legendItemName: 'Ferries',
+      data: ferryData,
+      topology: ferryTopology,
+      idKey: '@id',
+      topologyIdKey: '@id',
+      sizeKey: 'duration',
+      sizeName: 'Duration',
+      sizeDomain,
       tooltip: {
-        renderer: (
-          params
-        ) => `<div class="ag-chart-tooltip-title" style="background-color: #15803d">
-      DC Location
-    </div>
-    <div class="ag-chart-tooltip-content">
-      <a href="/execution/dc">${params.datum.name} <br> Shipment Volume: 806 <br> D+X: 958 <br> Open items: 1,098 <br> Cost per Shipment: 238</a>
-    </div>`,
-
-        interaction: {
-          enabled: true,
-        },
+        renderer: ({ datum }) => ({
+          content: `${datum.int_name}<br>Duration: ${datum.duration}`,
+        }),
       },
     },
-    // {
-    //   type: 'map-line',
-    //   title: 'Ferries',
-    //   legendItemName: 'Ferries',
-    //   data: ferryData,
-    //   topology: ferryTopology,
-    //   idKey: '@id',
-    //   topologyIdKey: '@id',
-    //   sizeKey: 'duration',
-    //   sizeName: 'Duration',
-    //   sizeDomain,
-    //   tooltip: {
-    //     renderer: ({ datum }) => ({
-    //       content: `${datum.int_name}<br>Duration: ${datum.duration}`,
-    //     }),
-    //   },
-    // },
     {
       type: 'map-line',
       title: 'Flights',
@@ -647,8 +618,8 @@ export default function LaneMap() {
     const emptyStyles = { background: '#ef4444' }
     const progressStyles = { background: '#22c55e' }
   return (
-    <div className='bg-white shadow-lg border rounded-lg'>
-      <ul className="p-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 ">
+    <div className='bg-white'>
+      <ul className="p-2 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 ">
         {stats.map((kpi) => (
           <li
             key={kpi.Name}

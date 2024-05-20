@@ -7,11 +7,11 @@ export default function CustomerGrid() {
     <div>
       <Grid
         data={CustomerData}
-        style={{ height: '700px' }}
+        style={{ height: '600px', fontSize: '20px' }}
         rowHeight={50}
         // groupable={true}
-        // size={'medium'}
-        className="text-lg min-w-full"
+        size={'medium'}
+        className="text-lg"
       >
         <GridColumn
           className="text-lg"
@@ -35,13 +35,13 @@ export default function CustomerGrid() {
         />
         <GridColumn
           className="text-lg"
-          field="Include"
+          field="InclusionType"
           title="Inclusion Type"
           width="400px"
         />
         <GridColumn
           className="text-lg"
-          field="AdditionalParameter"
+          field="AdditionalParameters"
           title="Additional Parameters"
           width="200px"
         />

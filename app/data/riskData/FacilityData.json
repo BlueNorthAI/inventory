@@ -1,92 +1,56 @@
 [
   {
-    "facility": "Facility_5",
-    "expenseType": "Rent",
-    "value": 30391.46,
+    "facility": "Factory Berlin",
+    "expenseType": "Carrying Cost",
+    "value": 0.005,
     "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "11 months"
+    "timeUnit": "day",
+    "productUnit": "pcs",
+    "timePeriod": "(All Periods)"
   },
   {
-    "facility": "Facility_2",
-    "expenseType": "Rent",
-    "value": 24060.2,
+    "facility": "Factory Berlin",
+    "expenseType": "Other Costs",
+    "value": 2630,
     "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "6 months"
+    "timeUnit": "day",
+    "productUnit": "",
+    "timePeriod": "(All Periods)"
   },
   {
-    "facility": "Facility_1",
-    "expenseType": "Maintenance",
-    "value": 12560.35,
+    "facility": "DC Spain",
+    "expenseType": "Other Costs",
+    "value": 70,
     "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "9 months"
+    "timeUnit": "day",
+    "productUnit": "",
+    "timePeriod": "(All Periods)"
   },
   {
-    "facility": "Facility_5",
-    "expenseType": "Maintenance",
-    "value": 29137.01,
+    "facility": "DC Berlin",
+    "expenseType": "Other Costs",
+    "value": 100,
     "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "3 months"
+    "timeUnit": "day",
+    "productUnit": "",
+    "timePeriod": "(All Periods)"
   },
   {
-    "facility": "Facility_3",
-    "expenseType": "Rent",
-    "value": 39655.51,
+    "facility": "DC Berlin",
+    "expenseType": "Carrying Cost",
+    "value": 0.2,
     "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "4 months"
+    "timeUnit": "day",
+    "productUnit": "Beer Pallets",
+    "timePeriod": "(All Periods)"
   },
   {
-    "facility": "Facility_1",
-    "expenseType": "Utilities",
-    "value": 3318.58,
+    "facility": "DC Spain",
+    "expenseType": "Carrying Cost",
+    "value": 0.1,
     "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "12 months"
-  },
-  {
-    "facility": "Facility_2",
-    "expenseType": "Rent",
-    "value": 3392.29,
-    "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "7 months"
-  },
-  {
-    "facility": "Facility_3",
-    "expenseType": "Utilities",
-    "value": 18159.07,
-    "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "11 months"
-  },
-  {
-    "facility": "Facility_5",
-    "expenseType": "Maintenance",
-    "value": 12989.12,
-    "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "11 months"
-  },
-  {
-    "facility": "Facility_2",
-    "expenseType": "Utilities",
-    "value": 18732.43,
-    "currency": "USD",
-    "timeUnit": "monthly",
-    "productUnit": "unit",
-    "timePeriod": "4 months"
+    "timeUnit": "day",
+    "productUnit": "Beer Pallets",
+    "timePeriod": "(All Periods)"
   }
 ]

@@ -8,7 +8,7 @@ import aggrid from '~/styles/aggrid.css?url'
 import { Header } from "~/components/header-risk";
 import { Providers } from "~/components/providers";
 import { ChartBarIcon } from '@heroicons/react/20/solid'
-
+import kendoStylesheetUrl from '~/styles/kendo.css?url'
 import SidebarDemo from '~/components/snop/SidebarDemo'
 
 export const links: LinksFunction = () => [
@@ -16,6 +16,7 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: themeStyles },
   { rel: 'stylesheet', href: customAgStyles },
   { rel: 'stylesheet', href: aggrid },
+  { rel: 'stylesheet', href: kendoStylesheetUrl },
 ]
 
 const menus = [
@@ -40,6 +41,12 @@ const menus = [
   {
     name: 'Results',
     to: '/risk/results',
+    icon: ChartBarIcon,
+    current: true,
+  },
+  {
+    name: 'Flowchart',
+    to: '/risk/flowchart',
     icon: ChartBarIcon,
     current: true,
   },

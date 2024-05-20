@@ -32,6 +32,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
 import { Label } from '../ui/label'
 import { Input } from '../ui/input'
+import LaneMap from '../network/LaneMap'
 const stats = [
   { name: 'Cost per Unit (USD/Unit)', stat: '2,279' },
   { name: 'Cost per Trip Margin', stat: '136,744' },
@@ -60,7 +61,7 @@ const frameworks = [
     label: 'Astro',
   },
 ]
-
+const parmeters = [{ id: 1, name: 'Region', value: 'Asia Pacific' }]
 const origin = [
   {
     id: 1,
@@ -188,1163 +189,1594 @@ export default function TruckForm({ truckData }) {
   return (
     <div className="m-2">
       <Form method="post">
-        <div className="bg-white mx-2 shadow-md rounded-b-lg">
-          {/* <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-            <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-              <div className="p-2">Truck Parameters</div>
-            </div>
-          </div> */}
-          <div className="border m-4 rounded-lg flex">
-            <div className="m-4">
-              <CardTitle className="space-y-1 flex items-center text-blue-900">
-                {/* <TruckIcon className="h-8 w-8 mr-2" /> */}
-                <span className="text-xl ">Origin</span>
-              </CardTitle>
-
-              <div className="border-b" />
-
-              <div className=" mt-2 flex items-center space-x-6">
-                <div className="flex items-center space-x-4">
-                  <Select
-                    defaultValue={selectedAccount}
-                    onValueChange={setSelectedAccount}
-                  >
-                    <SelectTrigger
-                      className={cn(
-                        'flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 w-[180px]',
-                        isCollapsed &&
-                          'flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden'
-                      )}
-                      aria-label="Select account"
+        <Tabs defaultValue="Overall" className=" m-4 space-y-4">
+          <TabsList className="">
+            <TabsTrigger value="Overall">Overall</TabsTrigger>
+            <TabsTrigger value="Parameters">Parameters</TabsTrigger>
+            <TabsTrigger value="Ocean">Ocean</TabsTrigger>
+            <TabsTrigger value="Last">Last Mile</TabsTrigger>
+          </TabsList>
+          <TabsContent value="Overall" className="w-full">
+            <div className="border rounded-lg flex">
+              <div className="m-4">
+                <CardTitle className="space-y-1 flex items-center text-blue-900">
+                  <span className="text-xl ">Origin</span>
+                </CardTitle>
+                <div className="border-b" />
+                <div className=" mt-2 flex items-center space-x-6">
+                  <div className="flex items-center space-x-4">
+                    <Select
+                      defaultValue={selectedAccount}
+                      onValueChange={setSelectedAccount}
                     >
-                      <SelectValue placeholder="Select an account">
-                        <img
-                          src={
-                            origin.find(
-                              (account) => account.name === selectedAccount
-                            )?.svg
-                          }
-                          width="30"
-                          height="16"
-                          alt="Flag"
-                        />
-                        <span className={cn('ml-2', isCollapsed && 'hidden')}>
-                          {
-                            origin.find(
-                              (account) => account.name === selectedAccount
-                            )?.name
-                          }
-                        </span>
-                      </SelectValue>
-                    </SelectTrigger>
-                    <SelectContent>
-                      {origin.map((account) => (
-                        <SelectItem key={account.name} value={account.name}>
-                          <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
-                            <img
-                              src={account.svg}
-                              width="30"
-                              height="16"
-                              alt="Flag"
-                            />
-                            {/* {account.svg} */}
-                            {account.name}
+                      <SelectTrigger
+                        className={cn(
+                          'flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 w-[180px]',
+                          isCollapsed &&
+                            'flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden'
+                        )}
+                        aria-label="Select account"
+                      >
+                        <SelectValue placeholder="Select an account">
+                          <img
+                            src={
+                              origin.find(
+                                (account) => account.name === selectedAccount
+                              )?.svg
+                            }
+                            width="30"
+                            height="16"
+                            alt="Flag"
+                          />
+                          <span className={cn('ml-2', isCollapsed && 'hidden')}>
+                            {
+                              origin.find(
+                                (account) => account.name === selectedAccount
+                              )?.name
+                            }
+                          </span>
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        {origin.map((account) => (
+                          <SelectItem key={account.name} value={account.name}>
+                            <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
+                              <img
+                                src={account.svg}
+                                width="30"
+                                height="16"
+                                alt="Flag"
+                              />
+                              {/* {account.svg} */}
+                              {account.name}
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <Select>
+                      <SelectTrigger className="w-[120px]">
+                        <SelectValue placeholder="City" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Air">
+                          {' '}
+                          <div className="items-center flex space-x-2">
+                            <PiAirplaneTiltFill className="h-5 w-5" />
+
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Air
+                            </label>
                           </div>
                         </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                        <SelectItem value="Rail">
+                          <div className="items-center flex space-x-2">
+                            <FaTrainSubway className="h-5 w-5" />
 
-                <div className="flex items-center space-x-2">
-                  <Select>
-                    <SelectTrigger className="w-[120px]">
-                      <SelectValue placeholder="City" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Air">
-                        {' '}
-                        <div className="items-center flex space-x-2">
-                          <PiAirplaneTiltFill className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Air
-                          </label>
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Rail">
-                        <div className="items-center flex space-x-2">
-                          <FaTrainSubway className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Rail
-                          </label>
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Ship">
-                        <div className="items-center flex space-x-2">
-                          <RiShipFill className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Ship
-                          </label>
-                        </div>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Select>
-                    <SelectTrigger className="w-[120px]">
-                      <SelectValue placeholder="Port" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Air">
-                        {' '}
-                        <div className="items-center flex space-x-2">
-                          <PiAirplaneTiltFill className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Air
-                          </label>
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Rail">
-                        <div className="items-center flex space-x-2">
-                          <FaTrainSubway className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Rail
-                          </label>
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Ship">
-                        <div className="items-center flex space-x-2">
-                          <RiShipFill className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Ship
-                          </label>
-                        </div>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-            </div>
-            <span className="border-l my-4" />
-            <div className="m-4">
-              <CardTitle className="space-y-1 flex items-center text-blue-900">
-                {/* <TruckIcon className="h-8 w-8 mr-2" /> */}
-                <span className="text-xl ">Destination</span>
-              </CardTitle>
-              <div className="border-b" />
-
-              <div className="mt-2 flex items-center space-x-6">
-                <div className="flex items-center space-x-4">
-                  <Select
-                    defaultValue={selectedAccount}
-                    onValueChange={setSelectedAccount}
-                  >
-                    <SelectTrigger
-                      className={cn(
-                        'flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 w-[180px]',
-                        isCollapsed &&
-                          'flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden'
-                      )}
-                      aria-label="Select account"
-                    >
-                      <SelectValue placeholder="Select an account">
-                        <img
-                          src={
-                            origin.find(
-                              (account) => account.name === selectedAccount
-                            )?.svg
-                          }
-                          width="30"
-                          height="16"
-                          alt="Flag"
-                        />
-                        <span className={cn('ml-2', isCollapsed && 'hidden')}>
-                          {
-                            origin.find(
-                              (account) => account.name === selectedAccount
-                            )?.name
-                          }
-                        </span>
-                      </SelectValue>
-                    </SelectTrigger>
-                    <SelectContent>
-                      {origin.map((account) => (
-                        <SelectItem key={account.name} value={account.name}>
-                          <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
-                            <img
-                              src={account.svg}
-                              width="30"
-                              height="16"
-                              alt="Flag"
-                            />
-                            {/* {account.svg} */}
-                            {account.name}
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Rail
+                            </label>
                           </div>
                         </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                        <SelectItem value="Ship">
+                          <div className="items-center flex space-x-2">
+                            <RiShipFill className="h-5 w-5" />
 
-                <div className="flex items-center space-x-2">
-                  <Select>
-                    <SelectTrigger className="">
-                      <SelectValue placeholder="Secondary" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Air">
-                        {' '}
-                        <div className="items-center flex space-x-2">
-                          <PiAirplaneTiltFill className="h-5 w-5" />
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Ship
+                            </label>
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Select>
+                      <SelectTrigger className="w-[120px]">
+                        <SelectValue placeholder="Port" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Air">
+                          {' '}
+                          <div className="items-center flex space-x-2">
+                            <PiAirplaneTiltFill className="h-5 w-5" />
 
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Air
-                          </label>
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Rail">
-                        <div className="items-center flex space-x-2">
-                          <FaTrainSubway className="h-5 w-5" />
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Air
+                            </label>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Rail">
+                          <div className="items-center flex space-x-2">
+                            <FaTrainSubway className="h-5 w-5" />
 
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Rail
-                          </label>
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Ship">
-                        <div className="items-center flex space-x-2">
-                          <RiShipFill className="h-5 w-5" />
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Rail
+                            </label>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Ship">
+                          <div className="items-center flex space-x-2">
+                            <RiShipFill className="h-5 w-5" />
 
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Ship
-                          </label>
-                        </div>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Select>
-                    <SelectTrigger className="">
-                      <SelectValue placeholder="Secondary" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Air">
-                        {' '}
-                        <div className="items-center flex space-x-2">
-                          <PiAirplaneTiltFill className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Air
-                          </label>
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Rail">
-                        <div className="items-center flex space-x-2">
-                          <FaTrainSubway className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Rail
-                          </label>
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Ship">
-                        <div className="items-center flex space-x-2">
-                          <RiShipFill className="h-5 w-5" />
-
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Ship
-                          </label>
-                        </div>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Ship
+                            </label>
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
-            </div>
-            <span className="border-l my-4" />
-            <div className="m-4">
-              <CardTitle className="space-y-1 flex items-center text-blue-900">
-                {/* <TruckIcon className="h-8 w-8 mr-2" /> */}
-                <span className="text-xl ">Types of Goods</span>
-              </CardTitle>
-              <div className="border-b" />
+              <span className="border-l my-4" />
+              <div className="m-4">
+                <CardTitle className="space-y-1 flex items-center text-blue-900">
+                  {/* <TruckIcon className="h-8 w-8 mr-2" /> */}
+                  <span className="text-xl ">Destination</span>
+                </CardTitle>
+                <div className="border-b" />
 
-              <div className="mt-2 flex items-center space-x-6">
-                <div className="flex items-center space-x-2">
-                  <Select>
-                    <SelectTrigger className="w-[260px]">
-                      <SelectValue placeholder="Container / Pallets Shipment" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Container">
-                        Container / Pallets Shipment
-                      </SelectItem>
-                      <SelectItem value="Bulk">Bulk Shipment</SelectItem>
-                      <SelectItem value="Liquid">Liquid Shipment</SelectItem>
-                      <SelectItem value="Temperature">
-                        Temperature Controlled Shipment
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="mt-2 flex items-center space-x-6">
+                  <div className="flex items-center space-x-4">
+                    <Select
+                      defaultValue={selectedAccount}
+                      onValueChange={setSelectedAccount}
+                    >
+                      <SelectTrigger
+                        className={cn(
+                          'flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 w-[180px]',
+                          isCollapsed &&
+                            'flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden'
+                        )}
+                        aria-label="Select account"
+                      >
+                        <SelectValue placeholder="Select an account">
+                          <img
+                            src={
+                              origin.find(
+                                (account) => account.name === selectedAccount
+                              )?.svg
+                            }
+                            width="30"
+                            height="16"
+                            alt="Flag"
+                          />
+                          <span className={cn('ml-2', isCollapsed && 'hidden')}>
+                            {
+                              origin.find(
+                                (account) => account.name === selectedAccount
+                              )?.name
+                            }
+                          </span>
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        {origin.map((account) => (
+                          <SelectItem key={account.name} value={account.name}>
+                            <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
+                              <img
+                                src={account.svg}
+                                width="30"
+                                height="16"
+                                alt="Flag"
+                              />
+                              {/* {account.svg} */}
+                              {account.name}
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <Select>
+                      <SelectTrigger className="">
+                        <SelectValue placeholder="Secondary" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Air">
+                          {' '}
+                          <div className="items-center flex space-x-2">
+                            <PiAirplaneTiltFill className="h-5 w-5" />
+
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Air
+                            </label>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Rail">
+                          <div className="items-center flex space-x-2">
+                            <FaTrainSubway className="h-5 w-5" />
+
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Rail
+                            </label>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Ship">
+                          <div className="items-center flex space-x-2">
+                            <RiShipFill className="h-5 w-5" />
+
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Ship
+                            </label>
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Select>
+                      <SelectTrigger className="">
+                        <SelectValue placeholder="Secondary" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Air">
+                          {' '}
+                          <div className="items-center flex space-x-2">
+                            <PiAirplaneTiltFill className="h-5 w-5" />
+
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Air
+                            </label>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Rail">
+                          <div className="items-center flex space-x-2">
+                            <FaTrainSubway className="h-5 w-5" />
+
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Rail
+                            </label>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Ship">
+                          <div className="items-center flex space-x-2">
+                            <RiShipFill className="h-5 w-5" />
+
+                            <label
+                              htmlFor="terms1"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Ship
+                            </label>
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
-            </div>
-            <span className="border-l my-4" />
-            <div className="m-4">
-              <CardTitle className="space-y-1 flex items-center text-blue-900">
-                {/* <TruckIcon className="h-8 w-8 mr-2" /> */}
-                <span className="text-xl ">Parameters</span>
-              </CardTitle>
-              <div className="border-b" />
+              <span className="border-l my-4" />
+              <div className="m-4">
+                <CardTitle className="space-y-1 flex items-center text-blue-900">
+                  {/* <TruckIcon className="h-8 w-8 mr-2" /> */}
+                  <span className="text-xl ">Types of Goods</span>
+                </CardTitle>
+                <div className="border-b" />
 
-              <div className="mt-2 flex items-center space-x-6">
-                <div className=" items-center flex space-x-2">
-                  <Checkbox id="terms1" />
-                  <div className="grid gap-1.5 leading-none">
+                <div className="mt-2 flex items-center space-x-6">
+                  <div className="flex items-center space-x-2">
+                    <Select>
+                      <SelectTrigger className="w-[260px]">
+                        <SelectValue placeholder="Container / Pallets Shipment" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Container">
+                          Container / Pallets Shipment
+                        </SelectItem>
+                        <SelectItem value="Bulk">Bulk Shipment</SelectItem>
+                        <SelectItem value="Liquid">Liquid Shipment</SelectItem>
+                        <SelectItem value="Temperature">
+                          Temperature Controlled Shipment
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+              <span className="border-l my-4" />
+              <div className="m-4">
+                <CardTitle className="space-y-1 flex items-center text-blue-900">
+                  {/* <TruckIcon className="h-8 w-8 mr-2" /> */}
+                  <span className="text-xl ">Parameters</span>
+                </CardTitle>
+                <div className="border-b" />
+
+                <div className="mt-2 flex items-center space-x-6">
+                  <div className=" items-center flex space-x-2">
+                    <Checkbox id="terms1" />
+                    <div className="grid gap-1.5 leading-none">
+                      <label
+                        htmlFor="terms1"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        FTL
+                      </label>
+                    </div>
+                  </div>
+                  <div className="items-top flex items-center space-x-2">
+                    <Checkbox id="terms2" />
+
                     <label
-                      htmlFor="terms1"
+                      htmlFor="terms2"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
-                      FTL
+                      LTL
+                    </label>
+                    <Input
+                      className="mx-2 text-blue-900 w-[150px] "
+                      name="customer"
+                      defaultValue="0.00"
+                    />
+                    <label
+                      htmlFor="terms2"
+                      className="text-sm text-blue-900 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      % of Truck / Container load
                     </label>
                   </div>
                 </div>
-                <div className="items-top flex items-center space-x-2">
-                  <Checkbox id="terms2" />
-
-                  <label
-                    htmlFor="terms2"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    LTL
-                  </label>
-                  <Input
-                    className="mx-2 text-blue-900 w-[150px] "
-                    name="customer"
-                    defaultValue="0.00"
-                  />
-                  <label
-                    htmlFor="terms2"
-                    className="text-sm text-blue-900 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    % of Truck / Container load
-                  </label>
-                </div>
               </div>
             </div>
-          </div>
-          <Tabs defaultValue="Overall" className=" m-4 space-y-4">
-            <TabsList className="">
-              <TabsTrigger value="Primary">Primary</TabsTrigger>
-              <TabsTrigger value="Ocean">Ocean</TabsTrigger>
-              <TabsTrigger value="Last">Last Mile</TabsTrigger>
-              <TabsTrigger value="Overall">Overall</TabsTrigger>
-            </TabsList>
-            <TabsContent value="Primary" className="w-full">
-              <div className="items-start justify-center gap-6 rounded-lg md:grid lg:grid-cols-2 xl:grid-cols-2">
-                <div>
-                  <div className="items-start justify-center gap-6 grid grid-cols-1 lg:grid-cols-2">
-                    <DemoContainer>
-                      <Card className="  text-blue-900">
-                        <CardHeader className="space-y-1 ">
-                          <CardTitle className="flex items-center">
-                            <TruckIcon className="h-8 w-8 mr-2" />
-                            <span className="text-2xl">Truck Parameters</span>
-                          </CardTitle>
-
-                          <div className="border-b" />
-                        </CardHeader>
-
-                        <CardContent className="grid gap-10 mb-2">
-                          <div className="grid grid-cols-2 items-center gap-1">
-                            <div className="text-xl text-blue-900 font-semibold ">
-                              Truck Type
-                            </div>
-                            <div>
-                              <Popover open={tyopen} onOpenChange={settyOpen}>
-                                <PopoverTrigger asChild>
-                                  <Button
-                                    variant="outline"
-                                    role="combobox"
-                                    aria-expanded={tyopen}
-                                    className=" w-[155px] justify-between text-xl "
-                                  >
-                                    {value
-                                      ? frameworks.find(
-                                          (framework) =>
-                                            framework.value === value
-                                        )?.label
-                                      : 'Kolkata'}
-                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                  </Button>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-[200px] p-0">
-                                  <Command>
-                                    <CommandGroup>
-                                      {frameworks.map((framework) => (
-                                        <CommandItem
-                                          key={framework.value}
-                                          value={framework.value}
-                                          onSelect={(currentValue) => {
-                                            setValue(
-                                              currentValue === value
-                                                ? ''
-                                                : currentValue
-                                            )
-                                            settyOpen(false)
-                                          }}
-                                        >
-                                          <Check
-                                            className={cn(
-                                              'mr-2 h-4 w-4',
-                                              value === framework.value
-                                                ? 'opacity-100'
-                                                : 'opacity-0'
-                                            )}
-                                          />
-                                          {framework.label}
-                                        </CommandItem>
-                                      ))}
-                                    </CommandGroup>
-                                  </Command>
-                                </PopoverContent>
-                              </Popover>
-                            </div>
-                          </div>
-
-                          <TruckInput truck={truckData} />
-                        </CardContent>
-                      </Card>
-                    </DemoContainer>
-                    <DemoContainer>
-                      <Card className=" text-blue-900">
-                        <CardHeader className="space-y-1">
-                          <CardTitle className="flex items-center">
-                            <MapIcon className="h-8 w-8 mr-2" />
-                            <span className="text-2xl">
-                              {' '}
-                              Route Admin Expenses
-                            </span>
-                          </CardTitle>
-
-                          <div className="border-b" />
-                        </CardHeader>
-                        <CardContent className="grid gap-4">
-                          <AdminInput admin={truckData} />
-                        </CardContent>
-                      </Card>
-                    </DemoContainer>
-                  </div>
-                  <div className="flex justify-end  pt-6 rounded-lg">
-                    <Button className="bg-blue-900 hover:bg-blue-800 text-lg">
-                      {params.bkt ? 'Submitting' : 'Submit'}
-                    </Button>
-                  </div>
-                </div>
-
-                <div>
-                  <DemoContainer>
-                    <Card className="shadow-lg text-blue-900">
-                      <CardHeader className="space-y-1">
-                        <CardTitle className="flex items-center">
-                          <PresentationChartLineIcon className="h-8 w-8 mr-2" />
-                          <span className="text-2xl">Cleansheet Summary</span>
-                        </CardTitle>
-
-                        <div className="border-b" />
-                      </CardHeader>
-                      <CardContent className="grid gap-4">
-                        <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                          {stats.map((item) => (
-                            <div
-                              key={item.name}
-                              className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
-                            >
-                              <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
-                                {item.stat}
-                              </dd>
-                              <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
-                                {item.name}
-                              </dt>
-                            </div>
-                          ))}
-                        </dl>
-
-                        <ul className="grid grid-cols-1 gap-2 mt-2">
-                          {kpiService_m.map((kpi) => (
-                            <li
-                              key={kpi.Name}
-                              className="col-span-1 flex flex-col divide-y divide-white"
-                            >
-                              <div className="relative flex flex-1 flex-col p-2">
-                                <div className="flex items-baseline gap-2">
-                                  <h3 className="text-base font-medium text-gray-900">
-                                    {kpi.Name}
-                                  </h3>
-                                </div>
-                                <div className="mt-2">{kpi.container}</div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </DemoContainer>
-                </div>
+            <div className="grid grid-cols-2 gap-6 py-4">
+              <div >
+                <LaneMap  />
               </div>
-            </TabsContent>
-            <TabsContent value="Ocean" className="w-full">
-              <div className="items-start justify-center gap-6 rounded-lg md:grid lg:grid-cols-2 xl:grid-cols-2">
-                <div>
-                  <div className="items-start justify-center gap-6 grid grid-cols-1 lg:grid-cols-2">
-                    <DemoContainer>
-                      <Card className="  text-blue-900">
-                        <CardHeader className="space-y-1 ">
-                          <CardTitle className="flex items-center">
-                            <TruckIcon className="h-8 w-8 mr-2" />
-                            <span className="text-2xl">Truck Parameters</span>
-                          </CardTitle>
 
-                          <div className="border-b" />
-                        </CardHeader>
-
-                        <CardContent className="grid gap-10 mb-2">
-                          <div className="grid grid-cols-2 items-center gap-1">
-                            <div className="text-xl text-blue-900 font-semibold ">
-                              Truck Type
-                            </div>
-                            <div>
-                              <Popover open={tyopen} onOpenChange={settyOpen}>
-                                <PopoverTrigger asChild>
-                                  <Button
-                                    variant="outline"
-                                    role="combobox"
-                                    aria-expanded={tyopen}
-                                    className=" w-[155px] justify-between text-xl "
-                                  >
-                                    {value
-                                      ? frameworks.find(
-                                          (framework) =>
-                                            framework.value === value
-                                        )?.label
-                                      : 'Kolkata'}
-                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                  </Button>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-[200px] p-0">
-                                  <Command>
-                                    <CommandGroup>
-                                      {frameworks.map((framework) => (
-                                        <CommandItem
-                                          key={framework.value}
-                                          value={framework.value}
-                                          onSelect={(currentValue) => {
-                                            setValue(
-                                              currentValue === value
-                                                ? ''
-                                                : currentValue
-                                            )
-                                            settyOpen(false)
-                                          }}
-                                        >
-                                          <Check
-                                            className={cn(
-                                              'mr-2 h-4 w-4',
-                                              value === framework.value
-                                                ? 'opacity-100'
-                                                : 'opacity-0'
-                                            )}
-                                          />
-                                          {framework.label}
-                                        </CommandItem>
-                                      ))}
-                                    </CommandGroup>
-                                  </Command>
-                                </PopoverContent>
-                              </Popover>
-                            </div>
-                          </div>
-
-                          <TruckInput truck={truckData} />
-                        </CardContent>
-                      </Card>
-                    </DemoContainer>
-                    <DemoContainer>
-                      <Card className=" text-blue-900">
-                        <CardHeader className="space-y-1">
-                          <CardTitle className="flex items-center">
-                            <MapIcon className="h-8 w-8 mr-2" />
-                            <span className="text-2xl">
-                              {' '}
-                              Route Admin Expenses
-                            </span>
-                          </CardTitle>
-
-                          <div className="border-b" />
-                        </CardHeader>
-                        <CardContent className="grid gap-4">
-                          <AdminInput admin={truckData} />
-                        </CardContent>
-                      </Card>
-                    </DemoContainer>
-                  </div>
-                  <div className="flex justify-end  pt-6 rounded-lg">
-                    <Button className="bg-blue-900 hover:bg-blue-800 text-lg">
-                      {params.bkt ? 'Submitting' : 'Submit'}
-                    </Button>
-                  </div>
-                </div>
-
-                <div>
-                  <DemoContainer>
-                    <Card className="shadow-lg text-blue-900">
-                      <CardHeader className="space-y-1">
-                        <CardTitle className="flex items-center">
-                          <PresentationChartLineIcon className="h-8 w-8 mr-2" />
-                          <span className="text-2xl">Cleansheet Summary</span>
-                        </CardTitle>
-
-                        <div className="border-b" />
-                      </CardHeader>
-                      <CardContent className="grid gap-4">
-                        <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                          {stats.map((item) => (
-                            <div
-                              key={item.name}
-                              className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
-                            >
-                              <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
-                                {item.stat}
-                              </dd>
-                              <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
-                                {item.name}
-                              </dt>
-                            </div>
-                          ))}
-                        </dl>
-
-                        <ul className="grid grid-cols-1 gap-2 mt-2">
-                          {kpiService_m.map((kpi) => (
-                            <li
-                              key={kpi.Name}
-                              className="col-span-1 flex flex-col divide-y divide-white"
-                            >
-                              <div className="relative flex flex-1 flex-col p-2">
-                                <div className="flex items-baseline gap-2">
-                                  <h3 className="text-base font-medium text-gray-900">
-                                    {kpi.Name}
-                                  </h3>
-                                </div>
-                                <div className="mt-2">{kpi.container}</div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </DemoContainer>
-                </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="Last" className="w-full">
-              <div className="items-start justify-center gap-6 rounded-lg md:grid lg:grid-cols-2 xl:grid-cols-2">
-                <div>
-                  <div className="items-start justify-center gap-6 grid grid-cols-1 lg:grid-cols-2">
-                    <DemoContainer>
-                      <Card className="  text-blue-900">
-                        <CardHeader className="space-y-1 ">
-                          <CardTitle className="flex items-center">
-                            <TruckIcon className="h-8 w-8 mr-2" />
-                            <span className="text-2xl">Truck Parameters</span>
-                          </CardTitle>
-
-                          <div className="border-b" />
-                        </CardHeader>
-
-                        <CardContent className="grid gap-10 mb-2">
-                          <div className="grid grid-cols-2 items-center gap-1">
-                            <div className="text-xl text-blue-900 font-semibold ">
-                              Truck Type
-                            </div>
-                            <div>
-                              <Popover open={tyopen} onOpenChange={settyOpen}>
-                                <PopoverTrigger asChild>
-                                  <Button
-                                    variant="outline"
-                                    role="combobox"
-                                    aria-expanded={tyopen}
-                                    className=" w-[155px] justify-between text-xl "
-                                  >
-                                    {value
-                                      ? frameworks.find(
-                                          (framework) =>
-                                            framework.value === value
-                                        )?.label
-                                      : 'Multi-Axle'}
-                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                  </Button>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-[200px] p-0">
-                                  <Command>
-                                    <CommandGroup>
-                                      {frameworks.map((framework) => (
-                                        <CommandItem
-                                          key={framework.value}
-                                          value={framework.value}
-                                          onSelect={(currentValue) => {
-                                            setValue(
-                                              currentValue === value
-                                                ? ''
-                                                : currentValue
-                                            )
-                                            settyOpen(false)
-                                          }}
-                                        >
-                                          <Check
-                                            className={cn(
-                                              'mr-2 h-4 w-4',
-                                              value === framework.value
-                                                ? 'opacity-100'
-                                                : 'opacity-0'
-                                            )}
-                                          />
-                                          {framework.label}
-                                        </CommandItem>
-                                      ))}
-                                    </CommandGroup>
-                                  </Command>
-                                </PopoverContent>
-                              </Popover>
-                            </div>
-                          </div>
-
-                          <TruckInput truck={truckData} />
-                        </CardContent>
-                      </Card>
-                    </DemoContainer>
-                    <DemoContainer>
-                      <Card className=" text-blue-900">
-                        <CardHeader className="space-y-1">
-                          <CardTitle className="flex items-center">
-                            <MapIcon className="h-8 w-8 mr-2" />
-                            <span className="text-2xl">
-                              {' '}
-                              Route Admin Expenses
-                            </span>
-                          </CardTitle>
-
-                          <div className="border-b" />
-                        </CardHeader>
-                        <CardContent className="grid gap-4">
-                          <AdminInput admin={truckData} />
-                        </CardContent>
-                      </Card>
-                    </DemoContainer>
-                  </div>
-                  <div className="flex justify-end  pt-6 rounded-lg">
-                    <Button className="bg-blue-900 hover:bg-blue-800 text-lg">
-                      {params.bkt ? 'Submitting' : 'Submit'}
-                    </Button>
-                  </div>
-                </div>
-
-                <div>
-                  <DemoContainer>
-                    <Card className="shadow-lg text-blue-900">
-                      <CardHeader className="space-y-1">
-                        <CardTitle className="flex items-center">
-                          <PresentationChartLineIcon className="h-8 w-8 mr-2" />
-                          <span className="text-2xl">Cleansheet Summary</span>
-                        </CardTitle>
-
-                        <div className="border-b" />
-                      </CardHeader>
-                      <CardContent className="grid gap-4">
-                        <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                          {stats.map((item) => (
-                            <div
-                              key={item.name}
-                              className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
-                            >
-                              <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
-                                {item.stat}
-                              </dd>
-                              <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
-                                {item.name}
-                              </dt>
-                            </div>
-                          ))}
-                        </dl>
-
-                        <ul className="grid grid-cols-1 gap-2 mt-2">
-                          {kpiService_m.map((kpi) => (
-                            <li
-                              key={kpi.Name}
-                              className="col-span-1 flex flex-col divide-y divide-white"
-                            >
-                              <div className="relative flex flex-1 flex-col p-2">
-                                <div className="flex items-baseline gap-2">
-                                  <h3 className="text-base font-medium text-gray-900">
-                                    {kpi.Name}
-                                  </h3>
-                                </div>
-                                <div className="mt-2">{kpi.container}</div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </DemoContainer>
-                </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="Overall" className="w-full">
-              <div className="items-start justify-center gap-6 rounded-lg md:grid lg:grid-cols-2 xl:grid-cols-2">
-                <div>
-                  <div className="items-start justify-center gap-6 grid grid-cols-1 lg:grid-cols-2">
-                    <DemoContainer>
-                      <Card className="  text-blue-900">
-                        <CardHeader className="space-y-1 ">
-                          <CardTitle className="flex items-center">
-                            <TruckIcon className="h-8 w-8 mr-2" />
-                            <span className="text-2xl">Truck Parameters</span>
-                          </CardTitle>
-
-                          <div className="border-b" />
-                        </CardHeader>
-
-                        <CardContent className="grid gap-10 mb-2">
-                          <div className="grid grid-cols-2 items-center gap-1">
-                            <div className="text-xl text-blue-900 font-semibold ">
-                              Truck Type
-                            </div>
-                            <div>
-                              <Popover open={tyopen} onOpenChange={settyOpen}>
-                                <PopoverTrigger asChild>
-                                  <Button
-                                    variant="outline"
-                                    role="combobox"
-                                    aria-expanded={tyopen}
-                                    className=" w-[155px] justify-between text-xl "
-                                  >
-                                    {value
-                                      ? frameworks.find(
-                                          (framework) =>
-                                            framework.value === value
-                                        )?.label
-                                      : 'Kolkata'}
-                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                  </Button>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-[200px] p-0">
-                                  <Command>
-                                    <CommandGroup>
-                                      {frameworks.map((framework) => (
-                                        <CommandItem
-                                          key={framework.value}
-                                          value={framework.value}
-                                          onSelect={(currentValue) => {
-                                            setValue(
-                                              currentValue === value
-                                                ? ''
-                                                : currentValue
-                                            )
-                                            settyOpen(false)
-                                          }}
-                                        >
-                                          <Check
-                                            className={cn(
-                                              'mr-2 h-4 w-4',
-                                              value === framework.value
-                                                ? 'opacity-100'
-                                                : 'opacity-0'
-                                            )}
-                                          />
-                                          {framework.label}
-                                        </CommandItem>
-                                      ))}
-                                    </CommandGroup>
-                                  </Command>
-                                </PopoverContent>
-                              </Popover>
-                            </div>
-                          </div>
-
-                          <TruckInput truck={truckData} />
-                        </CardContent>
-                      </Card>
-                    </DemoContainer>
-                    <DemoContainer>
-                      <Card className=" text-blue-900">
-                        <CardHeader className="space-y-1">
-                          <CardTitle className="flex items-center">
-                            <MapIcon className="h-8 w-8 mr-2" />
-                            <span className="text-2xl">
-                              {' '}
-                              Route Admin Expenses
-                            </span>
-                          </CardTitle>
-
-                          <div className="border-b" />
-                        </CardHeader>
-                        <CardContent className="grid gap-4">
-                          <AdminInput admin={truckData} />
-                        </CardContent>
-                      </Card>
-                    </DemoContainer>
-                  </div>
-                  <div className="flex justify-end  pt-6 rounded-lg">
-                    <Button className="bg-blue-900 hover:bg-blue-800 text-lg">
-                      {params.bkt ? 'Submitting' : 'Submit'}
-                    </Button>
-                  </div>
-                </div>
-
-                <div>
-                  <DemoContainer>
-                    <Card className="shadow-lg text-blue-900">
-                      <CardHeader className="space-y-1">
-                        <CardTitle className="flex items-center">
-                          <PresentationChartLineIcon className="h-8 w-8 mr-2" />
-                          <span className="text-2xl">Cleansheet Summary</span>
-                        </CardTitle>
-
-                        <div className="border-b" />
-                      </CardHeader>
-                      <CardContent className="grid gap-4">
-                        <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                          {stats.map((item) => (
-                            <div
-                              key={item.name}
-                              className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
-                            >
-                              <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
-                                {item.stat}
-                              </dd>
-                              <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
-                                {item.name}
-                              </dt>
-                            </div>
-                          ))}
-                        </dl>
-
-                        <ul className="grid grid-cols-1 gap-2 mt-2">
-                          {kpiService_m.map((kpi) => (
-                            <li
-                              key={kpi.Name}
-                              className="col-span-1 flex flex-col divide-y divide-white"
-                            >
-                              <div className="relative flex flex-1 flex-col p-2">
-                                <div className="flex items-baseline gap-2">
-                                  <h3 className="text-base font-medium text-gray-900">
-                                    {kpi.Name}
-                                  </h3>
-                                </div>
-                                <div className="mt-2">{kpi.container}</div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </DemoContainer>
-                </div>
-              </div>
-            </TabsContent>
-          </Tabs>
-          {/* <div className="mt-2 items-start justify-center gap-6 rounded-lg p-4 md:grid lg:grid-cols-2 xl:grid-cols-2">
-            <div>
-              <div className="items-start justify-center gap-6 grid grid-cols-1 lg:grid-cols-2">
+              <div>
                 <DemoContainer>
-                  <Card className="  text-blue-900">
-                    <CardHeader className="space-y-1 ">
-                      <CardTitle className="flex items-center">
-                        <TruckIcon className="h-8 w-8 mr-2" />
-                        <span className="text-2xl">Truck Parameters</span>
-                      </CardTitle>
-
-                      <div className="border-b" />
-                    </CardHeader>
-
-                    <CardContent className="grid gap-10 mb-2">
-                      <div className="grid grid-cols-2 items-center gap-1">
-                        <div className="text-xl text-blue-900 font-semibold ">
-                          Truck Type
-                        </div>
-                        <div>
-                          <Popover open={tyopen} onOpenChange={settyOpen}>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant="outline"
-                                role="combobox"
-                                aria-expanded={tyopen}
-                                className=" w-[155px] justify-between text-xl "
-                              >
-                                {value
-                                  ? frameworks.find(
-                                      (framework) => framework.value === value
-                                    )?.label
-                                  : 'Kolkata'}
-                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-[200px] p-0">
-                              <Command>
-                                <CommandGroup>
-                                  {frameworks.map((framework) => (
-                                    <CommandItem
-                                      key={framework.value}
-                                      value={framework.value}
-                                      onSelect={(currentValue) => {
-                                        setValue(
-                                          currentValue === value
-                                            ? ''
-                                            : currentValue
-                                        )
-                                        settyOpen(false)
-                                      }}
-                                    >
-                                      <Check
-                                        className={cn(
-                                          'mr-2 h-4 w-4',
-                                          value === framework.value
-                                            ? 'opacity-100'
-                                            : 'opacity-0'
-                                        )}
-                                      />
-                                      {framework.label}
-                                    </CommandItem>
-                                  ))}
-                                </CommandGroup>
-                              </Command>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                      </div>
-
-                      <TruckInput truck={truckData} />
-                    </CardContent>
-                  </Card>
-                </DemoContainer>
-                <DemoContainer>
-                  <Card className=" text-blue-900">
+                  <Card className="shadow-lg text-blue-900">
                     <CardHeader className="space-y-1">
                       <CardTitle className="flex items-center">
-                        <MapIcon className="h-8 w-8 mr-2" />
-                        <span className="text-2xl"> Route Admin Expenses</span>
+                        <PresentationChartLineIcon className="h-8 w-8 mr-2" />
+                        <span className="text-2xl">Cleansheet Summary</span>
                       </CardTitle>
 
                       <div className="border-b" />
                     </CardHeader>
                     <CardContent className="grid gap-4">
-                      <AdminInput admin={truckData} />
+                      <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                        {stats.map((item) => (
+                          <div
+                            key={item.name}
+                            className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
+                          >
+                            <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
+                              {item.stat}
+                            </dd>
+                            <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
+                              {item.name}
+                            </dt>
+                          </div>
+                        ))}
+                      </dl>
+
+                      <ul className="grid grid-cols-1 gap-2 mt-2">
+                        {kpiService_m.map((kpi) => (
+                          <li
+                            key={kpi.Name}
+                            className="col-span-1 flex flex-col divide-y divide-white"
+                          >
+                            <div className="relative flex flex-1 flex-col p-2">
+                              <div className="flex items-baseline gap-2">
+                                <h3 className="text-base font-medium text-gray-900">
+                                  {kpi.Name}
+                                </h3>
+                              </div>
+                              <div className="mt-2">{kpi.container}</div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
                     </CardContent>
                   </Card>
                 </DemoContainer>
               </div>
-              <div className="flex justify-end  pt-6 rounded-lg">
-                <Button className="bg-blue-900 hover:bg-blue-800 text-lg">
-                  {params.bkt ? 'Submitting' : 'Submit'}
-                </Button>
+            </div>
+          </TabsContent>
+          <TabsContent value="Parameters" className="w-full">
+            <div className="items-start justify-center gap-6 rounded-lg md:grid lg:grid-cols-2 xl:grid-cols-2">
+              <div className="border rounded-lg">
+                <div className=" m-4 flex space-x-4">
+                  <CardTitle className="space-y-1 flex items-center text-blue-900">
+                    <span className="text-xl ">Origin</span>
+                  </CardTitle>
+                  <div className=" mt-2 flex items-center space-x-6">
+                    <div className="flex items-center space-x-4">
+                      <Select
+                        defaultValue={selectedAccount}
+                        onValueChange={setSelectedAccount}
+                      >
+                        <SelectTrigger
+                          className={cn(
+                            'flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 w-[180px]',
+                            isCollapsed &&
+                              'flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden'
+                          )}
+                          aria-label="Select account"
+                        >
+                          <SelectValue placeholder="Select an account">
+                            <img
+                              src={
+                                origin.find(
+                                  (account) => account.name === selectedAccount
+                                )?.svg
+                              }
+                              width="30"
+                              height="16"
+                              alt="Flag"
+                            />
+                            <span
+                              className={cn('ml-2', isCollapsed && 'hidden')}
+                            >
+                              {
+                                origin.find(
+                                  (account) => account.name === selectedAccount
+                                )?.name
+                              }
+                            </span>
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent>
+                          {origin.map((account) => (
+                            <SelectItem key={account.name} value={account.name}>
+                              <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
+                                <img
+                                  src={account.svg}
+                                  width="30"
+                                  height="16"
+                                  alt="Flag"
+                                />
+                                {/* {account.svg} */}
+                                {account.name}
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <Select>
+                        <SelectTrigger className="w-[120px]">
+                          <SelectValue placeholder="City" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Air">
+                            {' '}
+                            <div className="items-center flex space-x-2">
+                              <PiAirplaneTiltFill className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Air
+                              </label>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="Rail">
+                            <div className="items-center flex space-x-2">
+                              <FaTrainSubway className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Rail
+                              </label>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="Ship">
+                            <div className="items-center flex space-x-2">
+                              <RiShipFill className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Ship
+                              </label>
+                            </div>
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Select>
+                        <SelectTrigger className="w-[120px]">
+                          <SelectValue placeholder="Port" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Air">
+                            {' '}
+                            <div className="items-center flex space-x-2">
+                              <PiAirplaneTiltFill className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Air
+                              </label>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="Rail">
+                            <div className="items-center flex space-x-2">
+                              <FaTrainSubway className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Rail
+                              </label>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="Ship">
+                            <div className="items-center flex space-x-2">
+                              <RiShipFill className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Ship
+                              </label>
+                            </div>
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </div>
+                <div className="mx-4 border-b" />
+                <div className="items-start justify-center  grid grid-cols-1 lg:grid-cols-2 ">
+                  <DemoContainer className="text-blue-900">
+                    <CardContent className="mt-4 grid gap-6">
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="Asia_Pacific">
+                          Region
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="Asia_Pacific"
+                          name="Asia_Pacific"
+                          defaultValue={'Asia Pacific'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="Asia_Pacific">
+                          Currency
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Select>
+                          <SelectTrigger className="w-[185px]">
+                            <SelectValue placeholder="Container / Pallets Shipment" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Container">
+                              Container / Pallets Shipment
+                            </SelectItem>
+                            <SelectItem value="Bulk">Bulk Shipment</SelectItem>
+                            <SelectItem value="Liquid">
+                              Liquid Shipment
+                            </SelectItem>
+                            <SelectItem value="Temperature">
+                              Temperature Controlled Shipment
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Distance measure
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="km"
+                          defaultValue={'km'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Road toll
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'0.5'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Toll proportion
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'20%'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Distance to hub (pickup)
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Distance to hub (delivery)
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Loading/unloading base duration
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Loading/unloading ramp duration
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Backhaul (% of main haul distance)
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                    </CardContent>
+                  </DemoContainer>
+                  <DemoContainer className="text-blue-900">
+                    <CardContent className="mt-4 grid gap-6">
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="Asia_Pacific">
+                          Min. backhaul distance
+                        </Label>
+                        <Input
+                          id="Asia_Pacific"
+                          name="Asia_Pacific"
+                          defaultValue={'30%'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Max. backhaul distance
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="km"
+                          defaultValue={'30%'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Truck utilization on line haul in LTL
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Max backhaul discount
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Labor cost
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'150000'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Fuel price
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'9.14'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Semi-trailer purchasing price
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'2,50,000'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Refrigerator truck purchasing price
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'2,50,000'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Maximum speed
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'65'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Average speed
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'55'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                    </CardContent>
+                  </DemoContainer>
+                </div>
+              </div>
+
+              <div className="border rounded-lg">
+                <div className=" m-4 flex space-x-4">
+                  <CardTitle className="space-y-1 flex items-center text-blue-900">
+                    <span className="text-xl ">Destination</span>
+                  </CardTitle>
+                  <div className=" mt-2 flex items-center space-x-6">
+                    <div className="flex items-center space-x-4">
+                      <Select
+                        defaultValue={selectedAccount}
+                        onValueChange={setSelectedAccount}
+                      >
+                        <SelectTrigger
+                          className={cn(
+                            'flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 w-[180px]',
+                            isCollapsed &&
+                              'flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden'
+                          )}
+                          aria-label="Select account"
+                        >
+                          <SelectValue placeholder="Select an account">
+                            <img
+                              src={
+                                origin.find(
+                                  (account) => account.name === selectedAccount
+                                )?.svg
+                              }
+                              width="30"
+                              height="16"
+                              alt="Flag"
+                            />
+                            <span
+                              className={cn('ml-2', isCollapsed && 'hidden')}
+                            >
+                              {
+                                origin.find(
+                                  (account) => account.name === selectedAccount
+                                )?.name
+                              }
+                            </span>
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent>
+                          {origin.map((account) => (
+                            <SelectItem key={account.name} value={account.name}>
+                              <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
+                                <img
+                                  src={account.svg}
+                                  width="30"
+                                  height="16"
+                                  alt="Flag"
+                                />
+                                {/* {account.svg} */}
+                                {account.name}
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <Select>
+                        <SelectTrigger className="w-[120px]">
+                          <SelectValue placeholder="City" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Air">
+                            {' '}
+                            <div className="items-center flex space-x-2">
+                              <PiAirplaneTiltFill className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Air
+                              </label>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="Rail">
+                            <div className="items-center flex space-x-2">
+                              <FaTrainSubway className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Rail
+                              </label>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="Ship">
+                            <div className="items-center flex space-x-2">
+                              <RiShipFill className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Ship
+                              </label>
+                            </div>
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Select>
+                        <SelectTrigger className="w-[120px]">
+                          <SelectValue placeholder="Port" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Air">
+                            {' '}
+                            <div className="items-center flex space-x-2">
+                              <PiAirplaneTiltFill className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Air
+                              </label>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="Rail">
+                            <div className="items-center flex space-x-2">
+                              <FaTrainSubway className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Rail
+                              </label>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="Ship">
+                            <div className="items-center flex space-x-2">
+                              <RiShipFill className="h-5 w-5" />
+
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              >
+                                Ship
+                              </label>
+                            </div>
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </div>
+                <div className="mx-4 border-b" />
+                <div className="items-start justify-center  grid grid-cols-1 lg:grid-cols-2 ">
+                  <DemoContainer className="text-blue-900">
+                    <CardContent className="mt-4 grid gap-6">
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="Asia_Pacific">
+                          Region
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="Asia_Pacific"
+                          name="Asia_Pacific"
+                          defaultValue={'Asia Pacific'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="Asia_Pacific">
+                          Currency
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Select>
+                          <SelectTrigger className="w-[185px]">
+                            <SelectValue placeholder="Container / Pallets Shipment" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Container">
+                              Container / Pallets Shipment
+                            </SelectItem>
+                            <SelectItem value="Bulk">Bulk Shipment</SelectItem>
+                            <SelectItem value="Liquid">
+                              Liquid Shipment
+                            </SelectItem>
+                            <SelectItem value="Temperature">
+                              Temperature Controlled Shipment
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Distance measure
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="km"
+                          defaultValue={'km'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Road toll
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'0.5'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Toll proportion
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'20%'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Distance to hub (pickup)
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Distance to hub (delivery)
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Loading/unloading base duration
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Loading/unloading ramp duration
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Backhaul (% of main haul distance)
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                    </CardContent>
+                  </DemoContainer>
+                  <DemoContainer className="text-blue-900">
+                    <CardContent className="mt-4 grid gap-6">
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="Asia_Pacific">
+                          Min. backhaul distance
+                        </Label>
+                        <Input
+                          id="Asia_Pacific"
+                          name="Asia_Pacific"
+                          defaultValue={'30%'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Max. backhaul distance
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="km"
+                          defaultValue={'30%'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Truck utilization on line haul in LTL
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Max backhaul discount
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={''}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Labor cost
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'150000'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Fuel price
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'9.14'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Semi-trailer purchasing price
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'2,50,000'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Refrigerator truck purchasing price
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'2,50,000'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Maximum speed
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'65'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 items-center gap-1">
+                        <Label className="text-lg" htmlFor="km">
+                          Average speed
+                          <p className="text-gray-400 text-sm"></p>
+                        </Label>
+                        <Input
+                          id="km"
+                          name="0.5"
+                          defaultValue={'55'}
+                          className="text-lg text-gray-500 text-center"
+                        />
+                      </div>
+                    </CardContent>
+                  </DemoContainer>
+                </div>
               </div>
             </div>
+          </TabsContent>
+          <TabsContent value="Ocean" className="w-full">
+            <div className="items-start justify-center gap-6 rounded-lg md:grid lg:grid-cols-2 xl:grid-cols-2">
+              <div>
+                <div className="items-start justify-center gap-6 grid grid-cols-1 lg:grid-cols-2">
+                  <DemoContainer>
+                    <Card className="  text-blue-900">
+                      <CardHeader className="space-y-1 ">
+                        <CardTitle className="flex items-center">
+                          <TruckIcon className="h-8 w-8 mr-2" />
+                          <span className="text-2xl">Truck Parameters</span>
+                        </CardTitle>
 
-            <div>
-              <DemoContainer>
-                <Card className="shadow-lg text-blue-900">
-                  <CardHeader className="space-y-1">
-                    <CardTitle className="flex items-center">
-                      <PresentationChartLineIcon className="h-8 w-8 mr-2" />
-                      <span className="text-2xl">Cleansheet Summary</span>
-                    </CardTitle>
+                        <div className="border-b" />
+                      </CardHeader>
 
-                    <div className="border-b" />
-                  </CardHeader>
-                  <CardContent className="grid gap-4">
-                    <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                      {stats.map((item) => (
-                        <div
-                          key={item.name}
-                          className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
-                        >
-                          <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
-                            {item.stat}
-                          </dd>
-                          <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
-                            {item.name}
-                          </dt>
-                        </div>
-                      ))}
-                    </dl>
-
-                    <ul className="grid grid-cols-1 gap-2 mt-2">
-                      {kpiService_m.map((kpi) => (
-                        <li
-                          key={kpi.Name}
-                          className="col-span-1 flex flex-col divide-y divide-white"
-                        >
-                          <div className="relative flex flex-1 flex-col p-2">
-                            <div className="flex items-baseline gap-2">
-                              <h3 className="text-base font-medium text-gray-900">
-                                {kpi.Name}
-                              </h3>
-                            </div>
-                            <div className="mt-2">{kpi.container}</div>
+                      <CardContent className="grid gap-10 mb-2">
+                        <div className="grid grid-cols-2 items-center gap-1">
+                          <div className="text-xl text-blue-900 font-semibold ">
+                            Truck Type
                           </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </DemoContainer>
+                          <div>
+                            <Popover open={tyopen} onOpenChange={settyOpen}>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                  role="combobox"
+                                  aria-expanded={tyopen}
+                                  className=" w-[155px] justify-between text-xl "
+                                >
+                                  {value
+                                    ? frameworks.find(
+                                        (framework) => framework.value === value
+                                      )?.label
+                                    : 'Kolkata'}
+                                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-[200px] p-0">
+                                <Command>
+                                  <CommandGroup>
+                                    {frameworks.map((framework) => (
+                                      <CommandItem
+                                        key={framework.value}
+                                        value={framework.value}
+                                        onSelect={(currentValue) => {
+                                          setValue(
+                                            currentValue === value
+                                              ? ''
+                                              : currentValue
+                                          )
+                                          settyOpen(false)
+                                        }}
+                                      >
+                                        <Check
+                                          className={cn(
+                                            'mr-2 h-4 w-4',
+                                            value === framework.value
+                                              ? 'opacity-100'
+                                              : 'opacity-0'
+                                          )}
+                                        />
+                                        {framework.label}
+                                      </CommandItem>
+                                    ))}
+                                  </CommandGroup>
+                                </Command>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                        </div>
+
+                        <TruckInput truck={truckData} />
+                      </CardContent>
+                    </Card>
+                  </DemoContainer>
+                  <DemoContainer>
+                    <Card className=" text-blue-900">
+                      <CardHeader className="space-y-1">
+                        <CardTitle className="flex items-center">
+                          <MapIcon className="h-8 w-8 mr-2" />
+                          <span className="text-2xl">
+                            {' '}
+                            Route Admin Expenses
+                          </span>
+                        </CardTitle>
+
+                        <div className="border-b" />
+                      </CardHeader>
+                      <CardContent className="grid gap-4">
+                        <AdminInput admin={truckData} />
+                      </CardContent>
+                    </Card>
+                  </DemoContainer>
+                </div>
+                <div className="flex justify-end  pt-6 rounded-lg">
+                  <Button className="bg-blue-900 hover:bg-blue-800 text-lg">
+                    {params.bkt ? 'Submitting' : 'Submit'}
+                  </Button>
+                </div>
+              </div>
+
+              <div>
+                <DemoContainer>
+                  <Card className="shadow-lg text-blue-900">
+                    <CardHeader className="space-y-1">
+                      <CardTitle className="flex items-center">
+                        <PresentationChartLineIcon className="h-8 w-8 mr-2" />
+                        <span className="text-2xl">Cleansheet Summary</span>
+                      </CardTitle>
+
+                      <div className="border-b" />
+                    </CardHeader>
+                    <CardContent className="grid gap-4">
+                      <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                        {stats.map((item) => (
+                          <div
+                            key={item.name}
+                            className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
+                          >
+                            <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
+                              {item.stat}
+                            </dd>
+                            <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
+                              {item.name}
+                            </dt>
+                          </div>
+                        ))}
+                      </dl>
+
+                      <ul className="grid grid-cols-1 gap-2 mt-2">
+                        {kpiService_m.map((kpi) => (
+                          <li
+                            key={kpi.Name}
+                            className="col-span-1 flex flex-col divide-y divide-white"
+                          >
+                            <div className="relative flex flex-1 flex-col p-2">
+                              <div className="flex items-baseline gap-2">
+                                <h3 className="text-base font-medium text-gray-900">
+                                  {kpi.Name}
+                                </h3>
+                              </div>
+                              <div className="mt-2">{kpi.container}</div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </DemoContainer>
+              </div>
             </div>
-          </div> */}
-        </div>
+          </TabsContent>
+          <TabsContent value="Last" className="w-full">
+            <div className="items-start justify-center gap-6 rounded-lg md:grid lg:grid-cols-2 xl:grid-cols-2">
+              <div>
+                <div className="items-start justify-center gap-6 grid grid-cols-1 lg:grid-cols-2">
+                  <DemoContainer>
+                    <Card className="  text-blue-900">
+                      <CardHeader className="space-y-1 ">
+                        <CardTitle className="flex items-center">
+                          <TruckIcon className="h-8 w-8 mr-2" />
+                          <span className="text-2xl">Truck Parameters</span>
+                        </CardTitle>
+
+                        <div className="border-b" />
+                      </CardHeader>
+
+                      <CardContent className="grid gap-10 mb-2">
+                        <div className="grid grid-cols-2 items-center gap-1">
+                          <div className="text-xl text-blue-900 font-semibold ">
+                            Truck Type
+                          </div>
+                          <div>
+                            <Popover open={tyopen} onOpenChange={settyOpen}>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                  role="combobox"
+                                  aria-expanded={tyopen}
+                                  className=" w-[155px] justify-between text-xl "
+                                >
+                                  {value
+                                    ? frameworks.find(
+                                        (framework) => framework.value === value
+                                      )?.label
+                                    : 'Multi-Axle'}
+                                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-[200px] p-0">
+                                <Command>
+                                  <CommandGroup>
+                                    {frameworks.map((framework) => (
+                                      <CommandItem
+                                        key={framework.value}
+                                        value={framework.value}
+                                        onSelect={(currentValue) => {
+                                          setValue(
+                                            currentValue === value
+                                              ? ''
+                                              : currentValue
+                                          )
+                                          settyOpen(false)
+                                        }}
+                                      >
+                                        <Check
+                                          className={cn(
+                                            'mr-2 h-4 w-4',
+                                            value === framework.value
+                                              ? 'opacity-100'
+                                              : 'opacity-0'
+                                          )}
+                                        />
+                                        {framework.label}
+                                      </CommandItem>
+                                    ))}
+                                  </CommandGroup>
+                                </Command>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                        </div>
+
+                        <TruckInput truck={truckData} />
+                      </CardContent>
+                    </Card>
+                  </DemoContainer>
+                  <DemoContainer>
+                    <Card className=" text-blue-900">
+                      <CardHeader className="space-y-1">
+                        <CardTitle className="flex items-center">
+                          <MapIcon className="h-8 w-8 mr-2" />
+                          <span className="text-2xl">
+                            {' '}
+                            Route Admin Expenses
+                          </span>
+                        </CardTitle>
+
+                        <div className="border-b" />
+                      </CardHeader>
+                      <CardContent className="grid gap-4">
+                        <AdminInput admin={truckData} />
+                      </CardContent>
+                    </Card>
+                  </DemoContainer>
+                </div>
+                <div className="flex justify-end  pt-6 rounded-lg">
+                  <Button className="bg-blue-900 hover:bg-blue-800 text-lg">
+                    {params.bkt ? 'Submitting' : 'Submit'}
+                  </Button>
+                </div>
+              </div>
+
+              <div>
+                <DemoContainer>
+                  <Card className="shadow-lg text-blue-900">
+                    <CardHeader className="space-y-1">
+                      <CardTitle className="flex items-center">
+                        <PresentationChartLineIcon className="h-8 w-8 mr-2" />
+                        <span className="text-2xl">Cleansheet Summary</span>
+                      </CardTitle>
+
+                      <div className="border-b" />
+                    </CardHeader>
+                    <CardContent className="grid gap-4">
+                      <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                        {stats.map((item) => (
+                          <div
+                            key={item.name}
+                            className="rounded-2xl bg-gray-100 border px-4 py-5 shadow"
+                          >
+                            <dd className="flex justify-center mt-1 text-3xl font-semibold tracking-tight text-blue-900">
+                              {item.stat}
+                            </dd>
+                            <dt className="mt-2 flex justify-center truncate text-sm font-medium text-gray-500">
+                              {item.name}
+                            </dt>
+                          </div>
+                        ))}
+                      </dl>
+
+                      <ul className="grid grid-cols-1 gap-2 mt-2">
+                        {kpiService_m.map((kpi) => (
+                          <li
+                            key={kpi.Name}
+                            className="col-span-1 flex flex-col divide-y divide-white"
+                          >
+                            <div className="relative flex flex-1 flex-col p-2">
+                              <div className="flex items-baseline gap-2">
+                                <h3 className="text-base font-medium text-gray-900">
+                                  {kpi.Name}
+                                </h3>
+                              </div>
+                              <div className="mt-2">{kpi.container}</div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </DemoContainer>
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </Form>
     </div>
   )

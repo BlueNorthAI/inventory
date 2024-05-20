@@ -30,8 +30,6 @@ export const action = async ({ request }) => {
   const data = Object.fromEntries(formData);
   const intent = formData.get("intent");
   const scenarioId = formData.get("scenario_id");
-  console.log("Intent-->", intent);
-  console.log("scenario id-->", scenarioId);
   if (intent === "optimize") {
     await updateScenario(scenarioId, "Submitted");
   }

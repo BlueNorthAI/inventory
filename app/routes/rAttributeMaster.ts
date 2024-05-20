@@ -3,7 +3,6 @@ import { prisma } from "~/db.server";
 import { getAttributeMaster } from "~/models/snop.server";
 
 export async function loader({ request }) {
-  console.log("inside loader", request.url);
   const url = new URL(request.url);
   const page = Number(url.searchParams.get("page")) || 1;
   const limit = Number(url.searchParams.get("limit")) || 10; // Default to 10 rows per page
