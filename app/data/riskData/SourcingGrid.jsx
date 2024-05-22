@@ -11,14 +11,25 @@ export default function SourcingGrid() {
       size={'medium'}
       data={ProcessData}
     >
-      <GridColumn field="delivery" title="Delivery Destination" />
-      <GridColumn field="product" title="Product" />
-      <GridColumn field="type" title="Type" />
-      <GridColumn field="parameter" title="Parameter Type" />
-      <GridColumn field="sources" title="Sources" />
-      <GridColumn field="timePeriod" title="Time Period" />
-      <GridColumn field="inculusionType" title="Inculusion Type" />
-    
+      <GridColumn
+        field="delivery"
+        title="Delivery Destination"
+        className="text-lg"
+      />
+      <GridColumn field="product" title="Product" className="text-lg" />
+      <GridColumn field="type" title="Type" className="text-lg" />
+      <GridColumn
+        field="parameter"
+        title="Parameter Type"
+        className="text-lg"
+      />
+      <GridColumn field="sources" title="Sources" className="text-lg" />
+      <GridColumn field="timePeriod" title="Time Period" className="text-lg" />
+      <GridColumn
+        field="inculusionType"
+        title="Inculusion Type"
+        className="text-lg"
+      />
     </Grid>
   )
 }

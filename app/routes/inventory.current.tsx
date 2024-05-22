@@ -140,7 +140,7 @@ export default function InventoryIndex() {
   return (
     <>
       <div className="m-4">
-        <div className="w-100 m-2 flex  justify-between p-4 rounded-lg border bg-white">
+        <div className="w-100 my-2 flex  justify-between p-4 rounded-lg border bg-white">
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-sky-700 to-blue-700 font-display">
             Slow Moving Inventory Optimizer
           </h2>

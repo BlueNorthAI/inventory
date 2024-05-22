@@ -88,15 +88,12 @@ export default function Sidebar({sidebarMenu}) {
                 isActive
                   ? 'bg-sky-100 text-sky-500 border border-sky-500'
                   : 'text-slate-700 hover:bg-sky-50 hover:text-sky-500 hover:border hover:border-sky-500',
-                'group  flex flex-col items-center rounded-md p-4  text-xs font-medium '
+                'group  flex flex-col items-center rounded-md p-4 '
               )
             }
           >
-            <item.icon className="h-5 w-5" aria-hidden="true" />
-            <h2
-              className="text-center ">
-              {item?.name}
-            </h2>
+            <item.icon className="h-4 w-4" aria-hidden="true" />
+            <h2 className="text-center text-xs font-medium ">{item?.name}</h2>
             {/* <h2
               className={`${
                 open && 'hidden'

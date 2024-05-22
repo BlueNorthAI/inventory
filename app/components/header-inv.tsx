@@ -3,18 +3,7 @@ import { NavigationMenuLink } from "~/components/ui/navigation-menu";
 import { cn } from "~/lib/utils";
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import {
-  BanknotesIcon,
-  DocumentMagnifyingGlassIcon,
-  PresentationChartLineIcon,
-  CubeIcon,
-  ArchiveBoxArrowDownIcon,
-  ShoppingCartIcon,
-  SpeakerWaveIcon,
-  ArrowUpRightIcon,
-  ScaleIcon,
-  ArrowTrendingUpIcon,
-} from '@heroicons/react/20/solid'
+
 import { FaMapLocationDot, FaPeopleGroup } from 'react-icons/fa6'
 import {
   FaChartLine,
@@ -64,7 +53,7 @@ const dropdown = [
   {
     icon: FaTruck,
     name: 'Transport Cleansheet',
-    to: '/trans',
+    to: '/trans/config',
     iconForeground: 'text-yellow-600',
     iconBackground: 'bg-yellow-100',
     description:
@@ -110,6 +99,15 @@ const dropdown = [
     icon: FaPeopleGroup,
     name: 'Risk Optimizer',
     to: '/risk/analysis',
+    iconForeground: 'text-orange-700',
+    iconBackground: 'bg-orange-100',
+    description:
+      "Review the balance sheet for a snapshot of the company's financial health at a specific point in time.",
+  },
+  {
+    icon: FaPeopleGroup,
+    name: 'Saftey Stock Optimizer',
+    to: '/ss/dc',
     iconForeground: 'text-orange-700',
     iconBackground: 'bg-orange-100',
     description:
@@ -162,9 +160,11 @@ export function Header() {
         <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
           <SidebarToggle />
         </React.Suspense>
+        <div className="ml-10 text-2xl font-semibold text-white">
+          Inventory Optimizer
+        </div>
       </div>
 
-    
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="flex items-center justify-end ">
@@ -191,40 +191,35 @@ export function Header() {
             <div className="grid grid-cols-3 w-[700px] gap-2 p-4 ">
               {dropdown.map((item) => (
                 <Menu.Item key={item.name}>
-                
-                    <Link
-                      to={item.to}
-                      className=""
-                    >
-                      <div className="rounded-lg hover:bg-gradient-to-t hover:from-indigo-400 hover:via-cyan-400 hover:to-sky-500  p-0.5">
-                        <div className=" flex items-center w-full justify-between hover:bg-sky-50 rounded-lg text-2xl text-blue-900 font-bold">
-                          <div className="flex items-center p-4 ">
-                            <span
-                              className={classNames(
-                                item.iconBackground,
-                                item.iconForeground,
-                                'inline-flex rounded-lg p-2'
-                              )}
-                            >
-                              <item.icon
-                                className="h-8 w-8 flex-none rounded-lg"
-                                aria-hidden="true"
-                              />
-                            </span>
-                            <div className="ml-4 text-lg font-semibold text-gray-900">
-                              {item.name}
-                            </div>
+                  <Link to={item.to} className="">
+                    <div className="rounded-lg hover:bg-gradient-to-t hover:from-indigo-400 hover:via-cyan-400 hover:to-sky-500  p-0.5">
+                      <div className=" flex items-center w-full justify-between hover:bg-sky-50 rounded-lg text-2xl text-blue-900 font-bold">
+                        <div className="flex items-center p-4 ">
+                          <span
+                            className={classNames(
+                              item.iconBackground,
+                              item.iconForeground,
+                              'inline-flex rounded-lg p-2'
+                            )}
+                          >
+                            <item.icon
+                              className="h-8 w-8 flex-none rounded-lg"
+                              aria-hidden="true"
+                            />
+                          </span>
+                          <div className="ml-4 text-lg font-semibold text-gray-900">
+                            {item.name}
                           </div>
                         </div>
                       </div>
-                      {/* 
+                    </div>
+                    {/* 
                       <div className="px-6 py-4">
                         <p className="text-base text-gray-500">
                           {item.description}
                         </p>
                       </div> */}
-                    </Link>
-             
+                  </Link>
                 </Menu.Item>
               ))}
             </div>

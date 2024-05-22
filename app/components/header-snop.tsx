@@ -3,6 +3,18 @@ import { NavigationMenuLink } from "~/components/ui/navigation-menu";
 import { cn } from "~/lib/utils";
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import {
+  BanknotesIcon,
+  DocumentMagnifyingGlassIcon,
+  PresentationChartLineIcon,
+  CubeIcon,
+  ArchiveBoxArrowDownIcon,
+  ShoppingCartIcon,
+  SpeakerWaveIcon,
+  ArrowUpRightIcon,
+  ScaleIcon,
+  ArrowTrendingUpIcon,
+} from '@heroicons/react/20/solid'
 import { FaMapLocationDot, FaPeopleGroup } from 'react-icons/fa6'
 import {
   FaChartLine,
@@ -13,8 +25,7 @@ import {
 } from 'react-icons/fa'
 import { GrTree } from 'react-icons/gr'
 import { MdInventory } from 'react-icons/md'
-
-function classNames(...classes: string[]) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 // import { SidebarMobile } from "./sidebar-mobile";
@@ -141,19 +152,18 @@ const ListItem = React.forwardRef<
 });
 ListItem.displayName = "ListItem";
 
-// function UserOrLogin() {
-//   // const user = useUser();
-//   // const user = "shrikanth@bluenorthai.com"
-//   return (
-//     <>
-//       <div className="flex items-center ">
-//         {/* <IconSeparator className="size-6 text-muted-foreground/50" /> */}
-//         {/* <UserMenu /> */}
-//       </div>
-//     </>
-//   );
-// }
-
+function UserOrLogin() {
+  // const user = useUser();
+  // const user = "shrikanth@bluenorthai.com"
+  return (
+    <>
+      <div className="flex items-center ">
+        {/* <IconSeparator className="size-6 text-muted-foreground/50" /> */}
+        {/* <UserMenu /> */}
+      </div>
+    </>
+  );
+}
 export function Header() {
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between w-full h-12  shrink-0 bg-[#272e62]">
@@ -162,7 +172,7 @@ export function Header() {
           <SidebarToggle />
         </React.Suspense>
         <div className="ml-10 text-2xl font-semibold text-white">
-          Risk Optimizer
+          Inventory Optimizer
         </div>
       </div>
 

@@ -49,7 +49,7 @@ const dropdown = [
   {
     icon: FaTruck,
     name: 'Transport Cleansheet',
-    to: '/trans',
+    to: '/trans/config',
     iconForeground: 'text-yellow-600',
     iconBackground: 'bg-yellow-100',
     description:
@@ -95,6 +95,15 @@ const dropdown = [
     icon: FaPeopleGroup,
     name: 'Risk Optimizer',
     to: '/risk/analysis',
+    iconForeground: 'text-orange-700',
+    iconBackground: 'bg-orange-100',
+    description:
+      "Review the balance sheet for a snapshot of the company's financial health at a specific point in time.",
+  },
+  {
+    icon: FaPeopleGroup,
+    name: 'Saftey Stock Optimizer',
+    to: '/ss/dc',
     iconForeground: 'text-orange-700',
     iconBackground: 'bg-orange-100',
     description:
@@ -182,6 +191,9 @@ export function Header() {
         <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
           <SidebarToggle />
         </React.Suspense>
+        <div className="ml-10 text-2xl font-semibold text-white">
+         Transport Cleansheet
+        </div>
       </div>
 
       <nav className="">

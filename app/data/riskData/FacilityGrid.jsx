@@ -27,13 +27,48 @@ export default function FacilityGrid() {
         rowHeight={50}
         size={'medium'}
       >
-        <GridColumn field="facility" title="Facility" width="200px" />
-        <GridColumn field="expenseType" title="Expense Type" width="200px" />
-        <GridColumn field="value" title="Value" width="200px" />
-        <GridColumn field="currency" title="Currency" width="200px" />
-        <GridColumn field="timeUnit" title="Time Unit" width="200px" />
-        <GridColumn field="productUnit" title="Product Unit" width="200px" />
-        <GridColumn field="timePeriod" title="Time Period" width="200px" />
+        <GridColumn
+          field="facility"
+          title="Facility"
+          width="250px"
+          className="text-lg"
+        />
+        <GridColumn
+          field="expenseType"
+          title="Expense Type"
+          width="250px"
+          className="text-lg"
+        />
+        <GridColumn
+          field="value"
+          title="Value"
+          width="250px"
+          className="text-lg"
+        />
+        <GridColumn
+          field="currency"
+          title="Currency"
+          width="250px"
+          className="text-lg"
+        />
+        <GridColumn
+          field="timeUnit"
+          title="Time Unit"
+          width="250px"
+          className="text-lg"
+        />
+        <GridColumn
+          field="productUnit"
+          title="Product Unit"
+          width="250px"
+          className="text-lg"
+        />
+        <GridColumn
+          field="timePeriod"
+          title="Time Period"
+          width="270px"
+          className="text-lg"
+        />
       </Grid>
     </div>
   )

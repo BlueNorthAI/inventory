@@ -20,7 +20,11 @@ import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandato
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import customAgStyles from '~/styles/custom-grid-styles.css?url'
 import LevelMaster from '~/components/lowes/LevelMaster'
+import ResultOverall from '~/components/risk/ResultOverall'
+
+
 import { cn } from '~/lib/utils'
+import Carrying from '~/components/risk/Carrying'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: gridCommStyles },
@@ -114,202 +118,36 @@ export default function MasterData() {
     <>
       <div className="m-4">
         <DemoContainer>
-          <Tabs defaultValue="Target" className="">
+          <Tabs defaultValue="Overall" className="">
             <TabsList className="">
-              <TabsTrigger value="Target" className="relative">
-                Target Service Level
-              </TabsTrigger>
-              <TabsTrigger className="" value="Events">
-                Events and Recovery
+              <TabsTrigger value="Overall" className="relative">
+                Overall
               </TabsTrigger>
               <TabsTrigger className="" value="Cost">
-                Total Cost
-              </TabsTrigger>
-              <TabsTrigger className="" value="Revenue">
-                Revenue
-              </TabsTrigger>
-              <TabsTrigger className="" value="Profit">
-                Profit
-              </TabsTrigger>
-              <TabsTrigger className="" value="Fullfillments">
-                Fullfillments Received (Products) by Customer
-              </TabsTrigger>
-              <TabsTrigger className="" value="Received">
-                Demand Received (Dropped Products)
-              </TabsTrigger>
-              <TabsTrigger className="" value="Placed">
-                Demand Placed (Dropped Products) by Customer
-              </TabsTrigger>
-              <TabsTrigger className="" value="Received">
-                Fulfillment Received (Products On-time)
-              </TabsTrigger>
-              <TabsTrigger className="" value="Late">
-                Fulfillment (Late Products)
-              </TabsTrigger>
-              <TabsTrigger className="" value="Mean">
-                Mean Lead Time
-              </TabsTrigger>
-              <TabsTrigger className="" value="Max">
-                Max Lead Time
-              </TabsTrigger>
-              <TabsTrigger className="" value="Bullwhip">
-                Bullwhip Effect by Product
+                Cost
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="Target">
+            <TabsContent value="Overall">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
+                  <div className="p-2">Overall</div>
                 </div>
               </div>
               <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Events">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
+                <ResultOverall />
               </div>
             </TabsContent>
 
             <TabsContent value="Cost">
               <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
+                  <div className="p-2">Cost</div>
                 </div>
               </div>
               <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Revenue">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Profit">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Fullfillments">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Received">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Placed">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Received">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Late">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Mean">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Max">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="Bullwhip">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Dimension Master</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
+                <Carrying />
+               
               </div>
             </TabsContent>
           </Tabs>

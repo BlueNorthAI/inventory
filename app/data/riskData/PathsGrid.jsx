@@ -11,15 +11,28 @@ export default function PathsGrid() {
       size={'medium'}
       data={PathData}
     >
-      <GridColumn field="from" title="From" />
-      <GridColumn field="to" title="To" />
-      <GridColumn field="cost" title="Cost Calculation" />
-      <GridColumn field="costCalculation" title="Cost Calculation Product" />
-      <GridColumn field="co2Calculation" title="CO2 Calculation" />
-      <GridColumn field="currency" title="Currency" />
-      <GridColumn field="distance" title="Distance" />
-      <GridColumn field="distanceUnit" title="Distance Unit" />
-      <GridColumn field="transport" title="Transport" />
+      <GridColumn field="from" title="From" className="text-lg" />
+      <GridColumn field="to" title="To" className="text-lg" />
+      <GridColumn field="cost" title="Cost Calculation" className="text-lg" />
+      <GridColumn
+        field="costCalculation"
+        title="Cost Calculation Product"
+        width="220px"
+        className="text-lg"
+      />
+      <GridColumn
+        field="co2Calculation"
+        title="CO2 Calculation"
+        className="text-lg"
+      />
+      <GridColumn field="currency" title="Currency" className="text-lg" />
+      <GridColumn field="distance" title="Distance" className="text-lg" />
+      <GridColumn
+        field="distanceUnit"
+        title="Distance Unit"
+        className="text-lg"
+      />
+      <GridColumn field="transport" title="Transport" className="text-lg" />
     </Grid>
   )
 }

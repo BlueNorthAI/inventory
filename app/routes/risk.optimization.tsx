@@ -1,41 +1,20 @@
-/* eslint-disable react/prop-types */
-import React from 'react'
+import { Form, useLoaderData } from '@remix-run/react'
+import { Label } from '~/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group'
+import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
+import { getSubmittedoptimize } from '~/models/optimize.server'
+import { json } from '@remix-run/node'
+import { Input } from '~/components/ui/input'
 import { Button } from '~/components/ui/button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
-import { PrinterIcon } from '@heroicons/react/24/outline'
-import {
-  FilePlusIcon,
-  Pencil2Icon,
-  TrashIcon,
-  DownloadIcon,
-} from '@radix-ui/react-icons'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '~/components/ui/tooltip'
-import type { LinksFunction } from '@remix-run/node'
-import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
-import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
-import customAgStyles from '~/styles/custom-grid-styles.css?url'
-import LevelMaster from '~/components/lowes/LevelMaster'
+
 import { cn } from '~/lib/utils'
-import DemandGrid from '~/data/riskData/DemandGrid'
-import EventData from '~/data/riskData/EventGrid'
-import CustomerGrid from '~/data/riskData/CustomerGrid'
-import FacilityGrid from '~/data/riskData/FacilityGrid'
-import InventoryGrid from '~/data/riskData/InventoryGrid'
-import PathsGrid from '~/data/riskData/PathsGrid'
-import ProcessGrid from '~/data/riskData/ProcessGrid'
-import SourcingGrid from '~/data/riskData/SourcingGrid'
 
-export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: gridCommStyles },
-  { rel: 'stylesheet', href: themeStyles },
-  { rel: 'stylesheet', href: customAgStyles },
-]
+export const loader = async () => {
+  const submittedList = await getSubmittedoptimize()
+  // console.log(submittedList)
 
+  return json({ submittedList })
+}
 
 function DemoContainer({
   className,
@@ -51,324 +30,245 @@ function DemoContainer({
     />
   )
 }
-
-export function Icontooltip() {
-  return (
-    <div className="m-2 space-x-1">
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon" className="bg-indigo-100 ">
-              <FilePlusIcon className="text-indigo-700 w-6 h-6 " />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>New</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon" className="bg-purple-100">
-              <Pencil2Icon className="text-purple-700 w-6 h-6 " />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Edit</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon" className="bg-red-100">
-              <TrashIcon className="text-red-700 w-6 h-6 " />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Delete</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon" className="bg-yellow-100">
-              <PrinterIcon className="text-yellow-800 w-6 h-6 " />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Print</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon" className="bg-green-100">
-              <DownloadIcon className="text-green-700 w-6 h-6 " />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Download</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    </div>
-  )
-}
-export default function MasterData() {
+export default function Optimizer() {
   return (
     <>
-      <div className="m-4">
-        <DemoContainer>
-          <Tabs defaultValue="Customers" className="">
-            <TabsList className="">
-              <TabsTrigger value="Customers" className="relative ">
-                Customers
-              </TabsTrigger>
-              <TabsTrigger className="" value="DC">
-                DC
-              </TabsTrigger>
-              <TabsTrigger className="" value="Demand">
-                Demand
-              </TabsTrigger>
-              <TabsTrigger className="" value="Events">
-                Events
-              </TabsTrigger>
-              <TabsTrigger className="" value="Facility">
-                Facility Expenses
-              </TabsTrigger>
-              <TabsTrigger className="" value="Groups">
-                Groups
-              </TabsTrigger>
-              <TabsTrigger className="" value="Inventory">
-                Inventory
-              </TabsTrigger>
-              <TabsTrigger className="" value="Location">
-                Location
-              </TabsTrigger>
-              <TabsTrigger className="" value="Paths">
-                Paths
-              </TabsTrigger>
-              <TabsTrigger className="" value="Periods">
-                Periods
-              </TabsTrigger>
-              <TabsTrigger className="" value="Products">
-                Products
-              </TabsTrigger>
-              <TabsTrigger className="" value="Shipping">
-                Shipping
-              </TabsTrigger>
-              <TabsTrigger className="" value="Sourcing">
-                Sourcing
-              </TabsTrigger>
-              <TabsTrigger className="" value="Suppliers">
-                Suppliers
-              </TabsTrigger>
-              <TabsTrigger className="" value="Unit">
-                Unit Conversions
-              </TabsTrigger>
-              <TabsTrigger className="" value="Types">
-                Vehicle Types
-              </TabsTrigger>
-              <TabsTrigger className="" value="Process">
-                Processing Cost
-              </TabsTrigger>
-            </TabsList>
+      <div className="m-2">
+        <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+          <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
+            <div className="p-2">Capacity Analyzer</div>
+          </div>
+        </div>
+        <div className="bg-white shadow-md rounded-b-lg pb-2">
+          <div className="items-start justify-center gap-6 rounded-lg p-4 md:grid lg:grid-cols-2 xl:grid-cols-2">
+            <div className="col-span-2 grid items-start  gap-2 lg:col-span-2 lg:grid-cols-2 xl:col-span-1 xl:grid-cols-1 ">
+              <DemoContainer>
+                <Card className="shadow-lg text-blue-900">
+                  <CardHeader className="space-y-1 ">
+                    <CardTitle className="text-2xl flex">
+                      Scenario Execution
+                    </CardTitle>
 
-            <TabsContent value="Customers">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Customers</div>
-                  <Icontooltip />
-                </div>
-              </div>
+                    <div className="border-b" />
+                  </CardHeader>
 
-              <div>
-                <CustomerGrid />
-              </div>
-            </TabsContent>
-            <TabsContent value="DC">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">DC</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Demand">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Demand</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <DemandGrid />
-              </div>
-            </TabsContent>
-            <TabsContent value="Events">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Events</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <EventData />
-              </div>
-            </TabsContent>
-            <TabsContent value="Facility">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Facility</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <FacilityGrid />
-              </div>
-            </TabsContent>
-            <TabsContent value="Groups">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Groups</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Inventory">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Inventory</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <InventoryGrid />
-              </div>
-            </TabsContent>
-            <TabsContent value="Location">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Location</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Paths">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Paths</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <PathsGrid />
-              </div>
-            </TabsContent>
-            <TabsContent value="Periods">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Periods</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Products">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Products</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Shipping">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Shipping</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Sourcing">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Sourcing</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <SourcingGrid />
-              </div>
-            </TabsContent>
-            <TabsContent value="Suppliers">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Suppliers</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Unit">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Unit</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Types">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Types</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <LevelMaster />
-              </div>
-            </TabsContent>
-            <TabsContent value="Process">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
-                <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
-                  <div className="p-2">Types</div>
-                  <Icontooltip />
-                </div>
-              </div>
-              <div>
-                <ProcessGrid />
-              </div>
-            </TabsContent>
-          </Tabs>
-        </DemoContainer>
+                  <CardContent className="grid gap-4 space-y-4">
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Scenario Id
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder="6"
+                      />
+                    </div>
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Created By
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder="ETL"
+                      />
+                    </div>
+
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Scenario Name
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder="Base_Data"
+                      />
+                    </div>
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Scenario Description
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder="Base Scenario for instance: IO Test Cases"
+                      />
+                    </div>
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Sensitivity Attached
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder="False"
+                      />
+                    </div>
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Current Status
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder="Ready"
+                      />
+                    </div>
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Last Error Message
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder=""
+                      />
+                    </div>
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Last Run Start
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder=""
+                      />
+                    </div>
+                    <div className="flex items-center space-x-4 ">
+                      <span className="w-[160px] font-semibold">
+                        Last Run End
+                      </span>
+                      <Input
+                        className="w-[180px]"
+                        type="email"
+                        id="email"
+                        placeholder=""
+                      />
+                    </div>
+
+                    <Form className="flex border-t justify-center pt-4">
+                      <Button
+                        type="submit"
+                        name="start"
+                        value="yes"
+                        className="text-base bg-blue-500  text-white hover:bg-blue-600"
+                      >
+                        Optimize
+                      </Button>
+                    </Form>
+                  </CardContent>
+                </Card>
+              </DemoContainer>
+            </div>
+
+            <div className="col-span-2 grid items-start gap-6 lg:col-span-2 lg:grid-cols-2 xl:col-span-1 xl:grid-cols-1">
+              <DemoContainer>
+                <Card className="shadow-lg text-blue-900">
+                  <CardHeader className="space-y-1">
+                    <CardTitle className="text-2xl grid grid-cols-2 gap-4">
+                      <div>Objective</div>
+                      <div>Constraints</div>
+                    </CardTitle>
+                    <div className="border-b" />
+                  </CardHeader>
+                  <CardContent className="grid grid-cols-2 gap-4 space-y-6">
+                    <RadioGroup
+                      defaultValue="Mininize"
+                      className="space-y-4 w-full"
+                    >
+                      <div className="flex items-center space-x-2 ">
+                        <RadioGroupItem value="Mininize" id="r1" />
+                        <Label htmlFor="r1" className="">
+                          Mininize Cost
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="comfortable" id="r2" />
+                        <Label htmlFor="r2" className="">
+                          Maximize Performance
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 ">
+                        <RadioGroupItem value="compact" id="r3" />
+                        <Label htmlFor="r3" className="">
+                          Redistibution
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 ">
+                        <RadioGroupItem value="Policy" id="r4" />
+                        <Label htmlFor="r4" className="">
+                          Replenishment Policy Analyzer
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 ">
+                        <RadioGroupItem value="Tiered" id="r5" />
+                        <Label htmlFor="r5" className="">
+                          Tiered Budget Otimization
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 ">
+                        <RadioGroupItem value="Replenishment" id="r6" />
+                        <Label htmlFor="r6" className="">
+                          Replenishment Interval Optimization
+                        </Label>
+                      </div>
+                    </RadioGroup>
+                    <RadioGroup defaultValue="TSL" className="space-y-4">
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="TSL" id="s1" />
+                        <Label htmlFor="s1" className="">
+                          Minimum TSL for Item at a Location
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="Minimum" id="s2" />
+                        <Label htmlFor="s2" className="">
+                          Minimum Overall TSL for a Location
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 ">
+                        <RadioGroupItem value="Location" id="s3" />
+                        <Label htmlFor="s3" className="">
+                          Location Budget
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 ">
+                        <RadioGroupItem value="System" id="s4" />
+                        <Label htmlFor="s4" className="">
+                          System Budget
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 ">
+                        <RadioGroupItem value="Max" id="s5" />
+                        <Label htmlFor="s5" className="">
+                          Max Volume at a Location
+                        </Label>
+                      </div>
+                    </RadioGroup>
+                  </CardContent>
+                  <Form className="flex justify-center border-t  p-4 mx-6">
+                    <Button
+                      type="submit"
+                      name="start"
+                      value="yes"
+                      className="text-base bg-blue-500  text-white hover:bg-blue-600"
+                    >
+                      Log
+                    </Button>
+                  </Form>
+                </Card>
+              </DemoContainer>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

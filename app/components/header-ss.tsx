@@ -162,7 +162,7 @@ export function Header() {
           <SidebarToggle />
         </React.Suspense>
         <div className="ml-10 text-2xl font-semibold text-white">
-          Risk Optimizer
+          Saftey Stock Optimizer
         </div>
       </div>
 

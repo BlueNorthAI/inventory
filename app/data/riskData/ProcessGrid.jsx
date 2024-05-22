@@ -11,13 +11,13 @@ export default function ProcessGrid() {
       size={'medium'}
       data={ProcessData}
     >
-      <GridColumn field="facility" title="Facility" />
-      <GridColumn field="product" title="Product" />
-      <GridColumn field="type" title="type" />
-      <GridColumn field="units" title="Units" />
-      <GridColumn field="cost" title="Cost" />
-      <GridColumn field="currency" title="Currency" />
-      <GridColumn field="time" title="Time" />
+      <GridColumn field="facility" title="Facility" className="text-lg" />
+      <GridColumn field="product" title="Product" className="text-lg" />
+      <GridColumn field="type" title="type" className="text-lg" />
+      <GridColumn field="units" title="Units" className="text-lg" />
+      <GridColumn field="cost" title="Cost" className="text-lg" />
+      <GridColumn field="currency" title="Currency" className="text-lg" />
+      <GridColumn field="time" title="Time" className="text-lg" />
     </Grid>
   )
 }

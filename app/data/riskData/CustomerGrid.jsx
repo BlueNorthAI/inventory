@@ -19,31 +19,31 @@ export default function CustomerGrid() {
           title="Name"
           locked={true}
           filter="numeric"
-          width="400px"
+         
         />
         <GridColumn
           className="text-lg"
           field="Type"
           title="Type"
-          width="200px"
+          
         />
         <GridColumn
           className="text-lg"
           field="Location"
           title="Location"
-          width="200px"
+        
         />
         <GridColumn
           className="text-lg"
           field="Include"
           title="Inclusion Type"
-          width="400px"
+          
         />
         <GridColumn
           className="text-lg"
           field="AdditionalParameter"
           title="Additional Parameters"
-          width="200px"
+         
         />
       </Grid>
     </div>

@@ -5,11 +5,9 @@ import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandato
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import customAgStyles from '~/styles/custom-grid-styles.css?url'
 import aggrid from '~/styles/aggrid.css?url'
-import { Header } from "~/components/header-risk";
+import { Header } from "~/components/header-ss";
 import { Providers } from "~/components/providers";
-import { ChartBarIcon,PresentationChartLineIcon,TableCellsIcon,AdjustmentsHorizontalIcon } from '@heroicons/react/20/solid'
-import { GrTree } from 'react-icons/gr'
-import { RiBarChartBoxLine } from 'react-icons/ri'
+import { ChartBarIcon } from '@heroicons/react/20/solid'
 import kendoStylesheetUrl from '~/styles/kendo.css?url'
 import SidebarDemo from '~/components/snop/SidebarDemo'
 
@@ -23,41 +21,18 @@ export const links: LinksFunction = () => [
 
 const menus = [
   {
-    name: 'Master Data',
-    to: '/risk/analysis',
+    name: 'Risk Analysis',
+    to: '/ss/dc',
     icon: ChartBarIcon,
     current: true,
   },
   {
-    name: 'Output',
-    to: '/risk/output',
-    icon: PresentationChartLineIcon,
+    name: 'Comparison',
+    to: '/ss/comparison',
+    icon: ChartBarIcon,
     current: true,
   },
-  {
-    name: 'Scenarios',
-    to: '/risk/simulation',
-    icon: TableCellsIcon,
-    current: true,
-  },
-  {
-    name: 'Optimization',
-    to: '/risk/optimization',
-    icon: AdjustmentsHorizontalIcon,
-    current: true,
-  },
-  {
-    name: 'Results',
-    to: '/risk/results',
-    icon: RiBarChartBoxLine,
-    current: true,
-  },
-  {
-    name: 'Visualizer',
-    to: '/risk/flowchart',
-    icon: GrTree,
-    current: true,
-  },
+ 
 ]
 
 
