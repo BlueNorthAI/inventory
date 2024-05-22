@@ -80,13 +80,13 @@ const senariomenus = [
     icon: CameraIcon,
     current: false,
   },
-  {
-    id: 11,
-    name: 'Scenario Planning',
-    to: '/inventory/scenario',
-    icon: CameraIcon,
-    current: false,
-  },
+  // {
+  //   id: 11,
+  //   name: 'Scenario Planning',
+  //   to: '/inventory/scenario',
+  //   icon: CameraIcon,
+  //   current: false,
+  // },
 
   // {
   //   id: 12,
@@ -95,13 +95,13 @@ const senariomenus = [
   //   icon: Component1Icon,
   //   current: false,
   // },
-  {
-    id: 12,
-    name: 'Optimization',
-    to: '/inventory/optimize2',
-    icon: Component1Icon,
-    current: false,
-  },
+  // {
+  //   id: 12,
+  //   name: 'Optimization',
+  //   to: '/inventory/optimize2',
+  //   icon: Component1Icon,
+  //   current: false,
+  // },
   // {
   //   id: 12,
   //   name: 'Optimization',

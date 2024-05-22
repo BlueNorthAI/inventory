@@ -11,6 +11,7 @@ import {
   FaShip,
   FaDatabase,
   FaWarehouse,
+  FaLock,
 } from 'react-icons/fa'
 import { GrTree } from 'react-icons/gr'
 import { MdInventory } from 'react-icons/md'
@@ -56,6 +57,24 @@ const dropdown = [
       'Manage your inventory levels efficiently to meet demand without overstocking.',
   },
   {
+    icon: FaPeopleGroup,
+    name: 'Risk Optimizer',
+    to: '/risk/analysis',
+    iconForeground: 'text-orange-700',
+    iconBackground: 'bg-orange-100',
+    description:
+      "Review the balance sheet for a snapshot of the company's financial health at a specific point in time.",
+  },
+  {
+    icon: FaLock,
+    name: 'Saftey Stock Optimizer',
+    to: '/ss/dc',
+    iconForeground: 'text-lime-700',
+    iconBackground: 'bg-lime-100',
+    description:
+      "Review the balance sheet for a snapshot of the company's financial health at a specific point in time.",
+  },
+  {
     icon: FaShip,
     name: 'Transshipment Optimizer',
     to: '/snop/dashboard/spend',
@@ -90,24 +109,6 @@ const dropdown = [
     iconBackground: 'bg-violet-100',
     description:
       'Plan and monitor marketing campaigns to enhance brand visibility and lead generation.',
-  },
-  {
-    icon: FaPeopleGroup,
-    name: 'Risk Optimizer',
-    to: '/risk/analysis',
-    iconForeground: 'text-orange-700',
-    iconBackground: 'bg-orange-100',
-    description:
-      "Review the balance sheet for a snapshot of the company's financial health at a specific point in time.",
-  },
-  {
-    icon: FaPeopleGroup,
-    name: 'Saftey Stock Optimizer',
-    to: '/ss/dc',
-    iconForeground: 'text-orange-700',
-    iconBackground: 'bg-orange-100',
-    description:
-      "Review the balance sheet for a snapshot of the company's financial health at a specific point in time.",
   },
 ]
 const ListItem = React.forwardRef<
