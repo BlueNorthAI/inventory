@@ -527,3 +527,108 @@ model time_master {
   fsc_month         Int?
   fsc_month_desc    String?
 }
+
+model customer_risk {
+  Name                String
+  Type                String
+  Location            String?
+  Include             String?
+  AdditionalParameter String?
+  Icon                String?
+
+  @@id([Name, Type]) 
+}
+
+model demand_risk {
+  customer         String
+  product          String
+  demandType       String
+  orderInterval    String
+  quantity         Int
+  firstOccurrence  String
+  timePeriod       String
+  revenue          Int
+  currency         String
+  expectedLeadTime Int
+  timeUnit         String
+  backorderPolicy  String
+  inclusionType    String
+
+  @@id([customer, product]) // Add this line to specify a unique identifier for the model
+}
+
+model events_risk {
+  Name           String @id @default(cuid())
+  EventType      String?
+  Parameters     String?
+  OccurrenceType String?
+  OccurrenceTime String?
+  Trigger        String?
+  Probability    Int?
+
+}
+
+model facility_expense_risk {
+  facility    String @id
+  expenseType String?
+  value       Int?
+  currency    String?
+  timeUnit    String?
+  productUnit String?
+  timePeriod  String?
+
+}
+
+model inventory_risk {
+  facility           String
+  product            String
+  policyType         String?
+  parameters         String?
+  initial            Int?
+  onHandInventory    Int?
+  periodicCheck      String?
+  period             String?
+  firstPeriodicCheck String?
+  policyBasis        String?
+  timeUnit           String?
+  timePeriod         String?
+  inclusionType      String?
+
+  @@id([facility, product])
+}
+
+model paths_risk {
+  from            String @id 
+  to              String?
+  cost            String?
+  costCalculation String?
+  co2Calculation  Int?
+  currency        String?
+  distance        Int?
+  distanceUnit    String?
+  transport       Int?
+}
+
+model process_risk {
+  facility String
+  product  String
+  type     String?
+  units    String?
+  cost     Int?
+  currency String?
+  time     String?
+
+  @@id([facility, product])
+}
+
+model sourcing_risk {
+  delivery       String
+  product        String
+  type           String?
+  parameter      String?
+  sources        String?
+  timePeriod     String?
+  inculusionType String?
+
+  @@id([delivery, product])
+}

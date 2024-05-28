@@ -29,6 +29,26 @@ import InventoryGrid from '~/data/riskData/InventoryGrid'
 import PathsGrid from '~/data/riskData/PathsGrid'
 import ProcessGrid from '~/data/riskData/ProcessGrid'
 import SourcingGrid from '~/data/riskData/SourcingGrid'
+import { json, redirect, useLoaderData } from '@remix-run/react'
+import { getDemand, getDemandListItems } from '~/models/demand.server'
+import {getCustomerRisk } from '~/models/risk.server'
+
+export async function loader({ params }) {
+  const Customerdata = await getCustomerRisk()
+  if (!Customerdata) {
+    throw new Response('Not Found', { status: 404 })
+  }
+  return json({ Customerdata })
+}
+
+export const action = async ({ request }) => {
+  const formData = await request.formData()
+  console.log(`risk Analysis`,formData)
+  // const updates = convertToNumbers(Object.fromEntries(formData))
+  // await createScenario(updates)
+  // console.log(updates)
+  return redirect(`/`)
+}
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: gridCommStyles },
@@ -119,6 +139,7 @@ export function Icontooltip() {
   )
 }
 export default function MasterData() {
+    const { Customerdata } = useLoaderData()
   return (
     <>
       <div className="m-4">
@@ -184,12 +205,12 @@ export default function MasterData() {
             </TabsList>
 
             <TabsContent value="Customers">
-              <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
+              {/* <div className="flex items-center justify-center  rounded-t-lg bg-gradient-to-t from-indigo-400 via-cyan-400 to-sky-500 shadow-lg p-0.5">
                 <div className=" flex items-center w-full justify-between bg-sky-50  border rounded-t-lg text-2xl text-blue-900 font-bold">
                   <div className="p-2">Customers</div>
                   <Icontooltip />
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 <CustomerGrid />
