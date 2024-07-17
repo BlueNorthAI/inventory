@@ -1,9 +1,10 @@
-import { json, redirect } from "@remix-run/node";
-import { useLoaderData, useNavigate } from "@remix-run/react";
+import { json } from "@remix-run/node";
+import { useLoaderData  } from "@remix-run/react";
 
 import SnopTruckFrom from "~/components/trans/TruckForm";
 import { getTruckInput } from "~/models/input.server";
 import { createTruck } from "~/models/truck.server";
+
 
 function convertToNumbers(obj) {
   const numericFields = [

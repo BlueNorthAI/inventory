@@ -57,6 +57,12 @@ const menus = [
     icon: PresentationChartBarIcon,
     current: false,
   },
+  {
+    name: 'Network Simulation',
+    to: '/network/netsim',
+    icon: PresentationChartBarIcon,
+    current: false,
+  },
 ]
 export default function Index() {
   return (
