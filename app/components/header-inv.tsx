@@ -78,19 +78,19 @@ const dropdown = [
     description:
       "Review the balance sheet for a snapshot of the company's financial health at a specific point in time.",
   },
-  {
-    icon: FaShip,
-    name: 'Transshipment Optimizer',
-    to: '/snop/dashboard/spend',
-    iconForeground: 'text-gray-700',
-    iconBackground: 'bg-gray-300',
-    description:
-      "Track and analyze your company's spending to identify cost-saving opportunities.",
-  },
+  // {
+  //   icon: FaShip,
+  //   name: 'Transshipment Optimizer',
+  //   to: '/snop/dashboard/spend',
+  //   iconForeground: 'text-gray-700',
+  //   iconBackground: 'bg-gray-300',
+  //   description:
+  //     "Track and analyze your company's spending to identify cost-saving opportunities.",
+  // },
   {
     icon: FaDatabase,
     name: 'Capacity Analytics',
-    to: '/snop/dashboard/finance',
+    to: '/capacity/master',
     iconForeground: 'text-blue-700',
     iconBackground: 'bg-blue-100',
     description:
@@ -99,7 +99,7 @@ const dropdown = [
   {
     icon: GrTree,
     name: 'Product Flow Analyzer',
-    to: '/snop/dashboard/sales',
+    to: '/product/sim',
     iconForeground: 'text-sky-600',
     iconBackground: 'bg-sky-100',
     description:
@@ -108,7 +108,7 @@ const dropdown = [
   {
     icon: FaWarehouse,
     name: 'Warehouse Optimizer',
-    to: '/snop/dashboard/campaign',
+    to: '/warhousing/dc',
     iconForeground: 'text-violet-700',
     iconBackground: 'bg-violet-100',
     description:

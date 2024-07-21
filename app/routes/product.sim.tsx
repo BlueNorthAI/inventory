@@ -18,7 +18,7 @@ import BlueNorthSC from '../components/trans/BlueNorthSc'
 import DC from '~/components/trans/DC'
 import ContainerLine from '~/components/trans/ContainerLine'
 import EOQ from '~/components/trans/Eoq'
-
+import WholesaleWarehouse from '~/components/trans/WholesaleWarehouse'
 
 export interface SidebarProps extends React.ComponentProps<'div'> {
   children: React.ReactNode
@@ -92,6 +92,7 @@ export default function Agmap() {
                   <TabsTrigger value="Inventory">Inventory Control</TabsTrigger>
                   <TabsTrigger value="Container">Container Line</TabsTrigger>
                   <TabsTrigger value="Eoq">EOQ</TabsTrigger>
+                  <TabsTrigger value="Ware">Wholesale Warehousing</TabsTrigger>
                 </TabsList>
                 <TabsContent value="Adaptive" className="w-full">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-2">
@@ -438,6 +439,79 @@ export default function Agmap() {
 
                             <ul className="grid grid-cols-2 gap-2 mt-2 h-[390px] overflow-auto">
                               {kpiEoq.map((kpi) => (
+                                <li
+                                  key={kpi.Name}
+                                  className="col-span-1 flex flex-col divide-y divide-white"
+                                >
+                                  <div className="relative flex flex-1 flex-col p-2">
+                                    <div className="flex items-baseline gap-2">
+                                      <h3 className="text-base font-medium text-gray-900">
+                                        {kpi.Name}
+                                      </h3>
+                                    </div>
+                                    <div className="mt-2">{kpi.container}</div>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                        </Card>
+                      </DemoContainer>
+                    </div>
+                  </div>
+                </TabsContent>
+                <TabsContent value="Ware" className="w-full">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-2">
+                    <div>
+                      <DemoContainer>
+                        <Card className="shadow-lg text-blue-900">
+                          <CardHeader className="space-y-1">
+                            <CardTitle className="flex items-center">
+                              <PresentationChartLineIcon className="h-8 w-8 mr-2" />
+                              <span className="text-2xl">Simulation</span>
+                            </CardTitle>
+
+                            <div className="border-b" />
+                          </CardHeader>
+                          <CardContent className="grid gap-4">
+                            <WholesaleWarehouse />
+                          </CardContent>
+                        </Card>
+                      </DemoContainer>
+                    </div>
+
+                    <div>
+                      <DemoContainer>
+                        <Card className="shadow-lg text-blue-900">
+                          <CardHeader className="space-y-1">
+                            <CardTitle className="flex items-center">
+                              <PresentationChartLineIcon className="h-8 w-8 mr-2" />
+                              <span className="text-2xl">
+                                Parameters & Statistics
+                              </span>
+                            </CardTitle>
+
+                            <div className="border-b" />
+                          </CardHeader>
+                          <CardContent className="grid gap-4">
+                            <dl className="grid grid-cols-1 gap-4 sm:grid-cols-6">
+                              {DcSta.map((item) => (
+                                <div
+                                  key={item.name}
+                                  className="rounded-2xl bg-gray-100 border p-1 shadow"
+                                >
+                                  <dd className="flex justify-center mt-1 text-2xl font-semibold tracking-tight text-blue-900">
+                                    {item.stat}
+                                  </dd>
+                                  <dt className="mt-2 flex justify-center  text-center text-xs font-medium text-gray-500">
+                                    {item.name}
+                                  </dt>
+                                </div>
+                              ))}
+                            </dl>
+
+                            <ul className="grid grid-cols-2 gap-2 mt-2  h-[455px] overflow-auto">
+                              {kpiDc.map((kpi) => (
                                 <li
                                   key={kpi.Name}
                                   className="col-span-1 flex flex-col divide-y divide-white"

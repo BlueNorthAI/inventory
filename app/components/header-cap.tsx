@@ -1,9 +1,9 @@
-import { Link } from "@remix-run/react";
-import { NavigationMenuLink } from "~/components/ui/navigation-menu";
-import { cn } from "~/lib/utils";
+import clsx from 'clsx'
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-
+import { NavLink,Link } from '@remix-run/react'
+import { NavigationMenuLink } from "~/components/ui/navigation-menu";
+import { cn } from "~/lib/utils";
 import { FaMapLocationDot, FaPeopleGroup } from 'react-icons/fa6'
 import {
   FaChartLine,
@@ -15,13 +15,7 @@ import {
 } from 'react-icons/fa'
 import { GrTree } from 'react-icons/gr'
 import { MdInventory } from 'react-icons/md'
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-// import { SidebarMobile } from "./sidebar-mobile";
 import { SidebarToggle } from "./sidebar-toggle-inv";
-
-
 
 const dropdown = [
   {
@@ -142,18 +136,48 @@ const ListItem = React.forwardRef<
 });
 ListItem.displayName = "ListItem";
 
-function UserOrLogin() {
-  // const user = useUser();
-  // const user = "shrikanth@bluenorthai.com"
-  return (
-    <>
-      <div className="flex items-center ">
-        {/* <IconSeparator className="size-6 text-muted-foreground/50" /> */}
-        {/* <UserMenu /> */}
-      </div>
-    </>
-  );
+// const navigation = [
+//   { name: 'Network', to: '/network/config', current: true },
+ 
+// ]
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
 }
+
+function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
+  return (
+    <NavLink
+      to={to}
+      prefetch="intent"
+      className={({ isActive }) =>
+        clsx(
+          'rounded-md px-2 py-2 text-sm font-semibold uppercase',
+          isActive
+            ? 'py-2 bg-sky-500 text-white  bg-opacity-75 border border-sky-500'
+            : 'text-white hover:bg-blue-900 hover:bg-opacity-75'
+        )
+      }
+      aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
+    >
+      {children}
+    </NavLink>
+  )
+}
+
+// function UserOrLogin() {
+//   // const user = useUser();
+//   // const user = "shrikanth@bluenorthai.com"
+//   return (
+//     <>
+//       <div className="flex items-center ">
+//         {/* <IconSeparator className="size-6 text-muted-foreground/50" /> */}
+//         {/* <UserMenu /> */}
+      
+//       </div>
+//     </>
+//   );
+// }
+
 export function Header() {
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between w-full h-12  shrink-0 bg-[#272e62]">
@@ -162,9 +186,25 @@ export function Header() {
           <SidebarToggle />
         </React.Suspense>
         <div className="ml-10 text-2xl font-semibold text-white">
-          SNOP
+        Capacity Analytics
         </div>
       </div>
+
+      <nav className="">
+        <div className="w-full">
+          <div className="flex items-center justify-center">
+            <div className="flex items-center">
+              {/* <div className=" flex items-baseline space-x-4 ">
+                {navigation.map((item) => (
+                  <NavItem to={item.to} key={item.name}>
+                    {item.name}
+                  </NavItem>
+                ))}
+              </div> */}
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <Menu as="div" className="relative inline-block text-left">
         <div>
