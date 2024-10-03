@@ -25,34 +25,28 @@ export const links: LinksFunction = () => [
 ]
 
 const menus = [
+  // {
+  //   name: 'Configuration',
+  //   to: '/trans/config',
+  //   icon: ChartBarIcon,
+  //   current: true,
+  // },
+  // {
+  //   name: 'Segmentation',
+  //   to: '/trans/input',
+  //   icon: TableCellsIcon,
+  //   current: false,
+  // },
+  // {
+  //   name: 'Service',
+  //   to: '/trans/country',
+  //   icon: CpuChipIcon,
+  //   current: false,
+  // },
   {
-    name: 'Configuration',
-    to: '/trans/config',
-    icon: ChartBarIcon,
-    current: true,
-  },
-  {
-    name: 'Segmentation',
-    to: '/trans/input',
-    icon: TableCellsIcon,
-    current: false,
-  },
-  {
-    name: 'Service',
-    to: '/trans/country',
-    icon: CpuChipIcon,
-    current: false,
-  },
-  {
-    name: 'Cost',
+    name: 'Cleansheet Output',
     to: '/trans/truck',
-    icon: ArrowTrendingUpIcon,
-    current: false,
-  },
-  {
-    name: 'Master Data',
-    to: '/trans/master',
-    icon: ArrowTrendingUpIcon,
+    icon: ChartBarIcon,
     current: false,
   },
 ]

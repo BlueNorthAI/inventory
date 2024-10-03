@@ -1,7 +1,7 @@
 import { useSidebar } from "~/lib/hooks/use-sidebar";
 
 import logoAssetUrl from "../images/logo1.png";
-// eslint-disable-next-line import/no-unresolved
+
 export function SidebarToggle() {
   const { toggleSidebar } = useSidebar();
 

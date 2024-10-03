@@ -20,7 +20,7 @@ import { SidebarToggle } from "./sidebar-toggle-inv";
 const dropdown = [
   {
     icon: FaMapLocationDot,
-    name: 'Network Optimizer',
+    name: 'Digital Twin',
     to: '/network/config',
     iconForeground: 'text-green-700',
     iconBackground: 'bg-green-100',

@@ -14,16 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '~/components/ui/tooltip'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '~/components/ui/select'
-import { kpiService_m, kpiInv_m } from '~/data/analysis/underData'
+
 import { json, type LinksFunction } from '@remix-run/node'
 import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
 import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'

@@ -15,9 +15,6 @@ import {
   TooltipTrigger,
 } from '~/components/ui/tooltip'
 
-import { json, type LinksFunction } from '@remix-run/node'
-import gridCommStyles from 'ag-grid-community/styles/ag-grid.css?url' // Mandatory CSS required by the grid
-import themeStyles from 'ag-grid-community/styles/ag-theme-quartz.css?url'
 import ReactFlow, {
   useNodesState,
   useEdgesState,
@@ -386,10 +383,7 @@ const initEdges = [
      animated: true,
   },
 ]
-export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: gridCommStyles },
-  { rel: 'stylesheet', href: themeStyles },
-]
+
 
 export default function Flowchart() {
   const [nodes, onNodesChange] = useNodesState(initNodes)

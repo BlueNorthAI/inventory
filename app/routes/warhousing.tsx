@@ -37,6 +37,13 @@ const menus = [
     icon: BarChartIcon,
     current: false,
   },
+  {
+    id: 2,
+    name: 'Logistics & Warehousing',
+    to: '/warhousing/logistics',
+    icon: LoopIcon,
+    current: false,
+  }
 ]
 
 

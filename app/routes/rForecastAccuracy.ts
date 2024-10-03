@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node'
-import { getLevelMaster } from '~/models/snop.server'
+// import { getLevelMaster } from '~/models/snop.server'
 import {generatedAccuracyData } from '~/data/agGrid/snop/demand/forecastAccuracy'
 export async function loader({ request }) {
   // const url = new URL(request.url);

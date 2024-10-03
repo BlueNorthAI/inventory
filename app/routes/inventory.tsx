@@ -73,13 +73,13 @@ const senariomenus = [
     current: false,
   },
 
-  {
-    id: 10,
-    name: 'Input Data',
-    to: '/inventory/input',
-    icon: CameraIcon,
-    current: false,
-  },
+  // {
+  //   id: 10,
+  //   name: 'Input Data',
+  //   to: '/inventory/input',
+  //   icon: CameraIcon,
+  //   current: false,
+  // },
   // {
   //   id: 11,
   //   name: 'Scenario Planning',

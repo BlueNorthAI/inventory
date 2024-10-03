@@ -42,13 +42,13 @@ const senariomenus = [
     icon: ExclamationTriangleIcon,
     current: false,
   },
-  {
-    id: 4,
-    name: 'Capacity Optimizer',
-    to: '/snop/scenarioanalysis',
-    icon: BarChartIcon,
-    current: false,
-  },
+  // {
+  //   id: 4,
+  //   name: 'Capacity Optimizer',
+  //   to: '/snop/scenarioanalysis',
+  //   icon: BarChartIcon,
+  //   current: false,
+  // },
   {
     id: 5,
     name: 'Scenario Planning',
@@ -58,32 +58,32 @@ const senariomenus = [
   },
   {
     id: 6,
+    name: 'List of Scenarios',
+    to: '/snop/scenario',
+    icon: GearIcon,
+    current: true,
+  },
+  {
+    id: 7,
     name: 'Optimizer',
     to: '/snop/optimize',
     icon: PieChartIcon,
     current: true,
   },
   {
-    id: 7,
-    name: 'Scenario Planning',
-    to: '/snop/scenario',
-    icon: GearIcon,
-    current: true,
-  },
-  {
     id: 8,
-    name: 'Inventory Optimizer',
-    to: '/snop/inventoryopt',
+    name: 'Results',
+    to: '/snop/results',
     icon: GearIcon,
     current: true,
   },
-  {
-    id: 6,
-    name: 'Truck',
-    to: '/snop/input',
-    icon: BarChartIcon,
-    current: false,
-  },
+  // {
+  //   id: 6,
+  //   name: 'Truck',
+  //   to: '/snop/input',
+  //   icon: BarChartIcon,
+  //   current: false,
+  // },
 ]
 
 export const links: LinksFunction = () => [

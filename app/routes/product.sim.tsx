@@ -1,9 +1,7 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
-import {
-  PresentationChartLineIcon,
-} from '@heroicons/react/24/outline'
+import { PresentationChartLineIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '~/lib/utils'
 
@@ -27,7 +25,7 @@ export interface SidebarProps extends React.ComponentProps<'div'> {
 const stats = [
   { name: 'Pixels per kilometer', stat: '0.39' },
   { name: 'Scaling Factor', stat: '10000' },
-  { name:'Number of iterations', stat: '10' },
+  { name: 'Number of iterations', stat: '10' },
   { name: 'Number of replications', stat: '3' },
 ]
 
@@ -541,5 +539,3 @@ export default function Agmap() {
     </div>
   )
 }
-
-

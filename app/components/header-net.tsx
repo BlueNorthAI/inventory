@@ -20,7 +20,7 @@ import { SidebarToggle } from "./sidebar-toggle-inv";
 const dropdown = [
   {
     icon: FaMapLocationDot,
-    name: 'Network Optimizer',
+    name: 'Digital Twin',
     to: '/network/config',
     iconForeground: 'text-green-700',
     iconBackground: 'bg-green-100',
@@ -189,7 +189,7 @@ export function Header() {
           <SidebarToggle />
         </React.Suspense>
         <div className="ml-10 text-2xl font-semibold text-white">
-          Network Optimizer
+          Digital Twin
         </div>
       </div>
 
