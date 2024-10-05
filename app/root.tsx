@@ -17,8 +17,7 @@ LicenseManager.setLicenseKey("[TRIAL]_this_{AG_Charts_and_AG_Grid}_Enterprise_ke
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
-   { rel: "stylesheet", href: kendoStylesheetUrl },
-  
+   { rel: "stylesheet", href: kendoStylesheetUrl },  
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

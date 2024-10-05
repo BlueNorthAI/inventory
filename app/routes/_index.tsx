@@ -12,8 +12,8 @@ export const links: LinksFunction = () => [
 export default function Home() {
   return (
     <div className="h-full bg-white dark:bg-slate-900">
-      <Hero/>
-      {/* <Layout /> */}
+      {/* <Hero/> */}
+      <Layout />
     </div>
   )
 }
