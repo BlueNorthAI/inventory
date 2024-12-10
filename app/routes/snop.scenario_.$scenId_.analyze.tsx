@@ -88,7 +88,7 @@ export const loader = async ({ params }) => {
 export default function AnalyzeScenario() {
   const [date, setDate] = React.useState<Date>(new Date());
   const { scenarioData } = useLoaderData<typeof loader>();
-  console.log("Scenario data", scenarioData);
+  // console.log("Scenario data", scenarioData);
   const fetcher = useFetcher();
 
   const demandSeries = [

@@ -108,7 +108,7 @@ export default function SpendAnalysisRoute() {
 
   const emptyStyles = { background: "#ef4444" };
   const progressStyles = { background: "#22c55e" };
-  console.log(kpiService_m);
+  // console.log(kpiService_m);
   return (
     <>
         <div className="flex flex-col" style={{

@@ -10,16 +10,16 @@ import { cn } from "~/lib/utils";
 
 
 export const loader = async ({ params }) => {
-  console.log(params.scenId);
+  // console.log(params.scenId);
   const scenarioData = await getScenarioById(params.scenId);
-  console.log(scenarioData);
+  // console.log(scenarioData);
 
   return json({ scenarioData });
 };
 
 export const action = async ({ request }) => {
   const body = new URLSearchParams(await request.text());
-  console.log(body);
+  // console.log(body);
   return json({ body });
 }
 

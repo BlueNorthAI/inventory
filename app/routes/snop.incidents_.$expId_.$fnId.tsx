@@ -155,10 +155,10 @@ export default function Example() {
   const [selected, setSelected] = useState(
     plans[params.fnId] || plans['Demand Planning']
   )
-  console.log('use params', params)
+  // console.log('use params', params)
 
   const exp = tasks.filter((task) => task.id === params.expId)[0]
-  console.log(exp)
+  // console.log(exp)
   const status = statuses.find((status) => status.value === exp.status)
   if (!status) {
     return null

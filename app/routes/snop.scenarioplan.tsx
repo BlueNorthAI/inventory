@@ -116,7 +116,7 @@ export const action = async ({ request }) => {
 
   const updates = convertToNumbers(Object.fromEntries(formData))
   await createScenario(updates)
-  console.log(updates)
+  // console.log(updates)
   return redirect(`/snop/scenario`)
 }
 

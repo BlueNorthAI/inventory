@@ -119,7 +119,7 @@ export default function MeasureMaster() {
   // Effect to update row data when fetcher data changes
   useEffect(() => {
     if (fetcher.data) {
-      console.log(fetcher.data.data)
+      // console.log(fetcher.data.data)
       setRowData(fetcher.data.data);
     }
   }, [fetcher.data]);

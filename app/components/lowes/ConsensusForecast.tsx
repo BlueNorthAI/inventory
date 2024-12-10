@@ -52,7 +52,7 @@ const ragRenderer = (params: CustomCellRendererProps) => {
 
 const numberParser = (params: ValueParserParams) => {
   const newValue = params.newValue
-  console.log(`newValue`, newValue)
+  // console.log(`newValue`, newValue)
   let valueAsNumber
   if (newValue === null || newValue === undefined || newValue === '') {
     valueAsNumber = null
