@@ -4,23 +4,27 @@ import "hammerjs";
 
 export function MultiAreaChartContainer({categories,series}){
   return (
-
-      <Chart style={{ height: 250 }}>
-        {/* <ChartTitle text="Units sold" /> */}
-          <ChartLegend position="top" orientation="horizontal" />
-          <ChartCategoryAxis>
-            <ChartCategoryAxisItem categories={categories}
+    <Chart style={{ height: 250 }}>
+      {/* <ChartTitle text="Units sold" /> */}
+      <ChartLegend position="top" orientation="horizontal" />
+      <ChartCategoryAxis>
+        <ChartCategoryAxisItem categories={categories} />
+      </ChartCategoryAxis>
+      <ChartSeries>
+        {series.map((s) => (
+          <ChartSeriesItem
+            name={s.name}
+            data={s.data}
+            type="area"
+            key={s.name}
+            labels={{ visible: true }}
           />
-          </ChartCategoryAxis>
-          <ChartSeries  >
-          {series.map((s) => (
-          <ChartSeriesItem name={s.name} data={s.data} type="area" key={s.name} />
-          ))}
-            {/* <ChartSeriesItem name={name[0]} type="area" data={firstSeries} visibleInLegend={true}/>
+        ))}
+        {/* <ChartSeriesItem name={name[0]} type="area" data={firstSeries} visibleInLegend={true}/>
             <ChartSeriesItem name={name[1]} type="area" data={secondSeries} visibleInLegend={true}/>
             <ChartSeriesItem name={name[2]} type="area" data={thirdSeries} visibleInLegend={true}/> */}
-          </ChartSeries>
-      </Chart>
+      </ChartSeries>
+    </Chart>
   )
 };
 

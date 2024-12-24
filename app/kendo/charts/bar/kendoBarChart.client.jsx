@@ -5,20 +5,27 @@ import 'hammerjs'
 
 export function MultiBarChartContainer({categories,series}){
     return (
-  
-        <Chart style={{ height: 250 }}>
-          {/* <ChartTitle text="Units sold" /> */}
-            <ChartLegend position="top" orientation="horizontal" />
-            <ChartCategoryAxis>
-              <ChartCategoryAxisItem categories={categories}
+      <Chart style={{ height: 250 }}>
+        {/* <ChartTitle text="Units sold" /> */}
+        <ChartLegend position="top" orientation="horizontal" />
+        <ChartCategoryAxis>
+          <ChartCategoryAxisItem categories={categories} />
+        </ChartCategoryAxis>
+        <ChartSeries>
+          {series.map((s) => (
+            <ChartSeriesItem
+              gap={1}
+              spacing={0.25}
+              name={s.name}
+              data={s.data}
+              type="bar"
+              key={s.name}
+              tooltip={{ visible: true }}
+              labels={{ visible: true }}
             />
-            </ChartCategoryAxis>
-            <ChartSeries  >
-            {series.map((s) => (
-            <ChartSeriesItem gap={1} spacing={0.25} name={s.name} data={s.data} type="bar" key={s.name} tooltip={{visible:true}} />
-            ))}
-            </ChartSeries>
-        </Chart>
+          ))}
+        </ChartSeries>
+      </Chart>
     )
   };
 //   };
